@@ -18,7 +18,7 @@
 
 
 # db : 
-![image](https://user-images.githubusercontent.com/30681841/146954963-79b0570b-69d1-48a7-b0fa-4b68c97773be.png)
+![image](https://user-images.githubusercontent.com/30681841/146958292-b087090e-8cd4-46ab-9739-bba16a39980c.png)
 
 # front : 
 ![image](https://user-images.githubusercontent.com/30681841/146956318-b92a322e-a44e-4814-88a2-274f0d8481e5.png)
