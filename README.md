@@ -15,10 +15,11 @@
 3. 일촌 맺기
 4. 랜덤 파도 타기
 5. 방문자 통계 
+6. 게시판 - 하위 게시판
 
 
 # db : 
-![image](https://user-images.githubusercontent.com/30681841/146958292-b087090e-8cd4-46ab-9739-bba16a39980c.png)
+![image](https://user-images.githubusercontent.com/30681841/147026277-43c29bf5-22df-48c0-9b4d-7e28ebf9100f.png)
 
 # front : 
 ![image](https://user-images.githubusercontent.com/30681841/146956318-b92a322e-a44e-4814-88a2-274f0d8481e5.png)
