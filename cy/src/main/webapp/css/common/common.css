@@ -1,5 +1,34 @@
 @charset "UTF-8";
 
+/* 부트스트랩 작성시 참고
+
+그리드 gap
+<div class="grid" style="row-gap: 0;">
+
+// 간격
+ <div class="row gx-3 gy-3">
+
+flex-row
+flex-column
+d-flex justify-content-center  -around -space-between -space-evenly
+d-flex align-items-center // 1줄
+align-content-center // 2줄
+align-self-center // 하위 아이템
+
+// 가운데정렬
+부모 - position-relative
+자식 - position-absolute top-50 start-50 translate-middle
+자식 - 
+ top: 50%; left: 50%; transform: translate(-50%, -50%)
+
+
+이미지1 - <img class="rounded mx-auto d-block">
+이미지2
+<div class="text-center">
+  <img src="..." class="rounded" alt="...">
+</div>
+ */
+
 /* 웰컴체 레귤러 */
 @font-face {
 	font-family: 'OTWelcomeRA';
@@ -11,7 +40,6 @@
 }
 
 /* 웰컴체 볼드 */
-
 @font-face {
 	font-family: 'OTWelcomeBA';
 	src:
@@ -25,4 +53,143 @@
 * {
 	font-family: 'OTWelcomeRA';
 	border: 1px solid orange;
+}
+
+/* 전체 설정 */
+* {
+	font-family: "맑은고딕";
+}
+
+.wrap {
+	width: 100%;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+/* 메인 */
+.category div {
+	height: 2rem;
+	line-height: 2rem;
+	border: 1px solid black;
+	margin-bottom: 10px;
+}
+
+
+
+/* 메인홈 사진존 */
+.homemid .photoitem {
+	height: 8rem;
+	width: 30%;
+	margin: 0.3rem 0;
+}
+
+.homemid .photoitem img {
+	width: 100%;
+	height: 100%;
+	border: solid 1px black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	object-fit: cover
+}
+
+/* 메인홈 사이드 */
+.category div {
+	background: black;
+	color: white;
+}
+
+.category div a {
+	color: white;
+}
+
+.category div:hover {
+	background: lightgrey;
+}
+
+.category div a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.category div a:focus {
+	 background: #2c3e50;
+}
+
+/* 사이드 버튼 */
+
+
+/* 백그라운드드배경 */
+#main {
+	background-image: url(../../img/gridback.png);
+	background-repeat: repeat;
+	background-size: 15px;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.main {
+	position: relative;
+}
+
+.mainbox {
+	border: solid 1px #000;
+	background-color: lightgray;
+	position: absolute;
+	transform: scale(0.97);
+	border: white dotted 3px;
+	border-radius: 1rem;
+}
+
+.mainleft {
+	border-radius: 1rem;
+}
+
+.mainright {
+	border-radius: 1rem;
+}
+/* 미디어 쿼리*/
+/* col (xs) : ~ 575  : 폰 */
+/* col-sm : ~ 576   */
+/* col-md- : 768    : 태블릿 */
+/* col-lg- : 960   */
+/* col-xl- : 1140   : 전체 */
+
+/* 미디어쿼리1 (320 - 575) : mobile - col- */
+@media ( max-width : 575px) {
+	.wrap {
+		border: solid 5px red;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리2 (576 - 767) : tablet - col-sm */
+@media ( min-width : 576px) and (max-width: 767px) {
+	.wrap {
+		border: solid 5px green;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리3 (768 - 991) :tablet - col-md */
+@media ( min-width : 768px) {
+	.wrap {
+		border: solid 5px blue;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리3 (992 ~) : pc - col-lg */
+@media ( min-width : 992px) {
+	.wrap {
+		border: solid 5px purple;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리3 (1200 ~) : pc - col-xl */
+@media ( min-width : 1200px) {
+	.wrap {
+		border: solid 5px purple;
+		font-family: "OTWelcomeRA";
+	}
 }
