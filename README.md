@@ -19,7 +19,8 @@
 
 
 # db : 
-![image](https://user-images.githubusercontent.com/30681841/147034604-8ed8d348-ccb8-40aa-a013-a732d7354124.png)
+![image](https://user-images.githubusercontent.com/30681841/147102882-75667af4-6c6f-4f44-9e94-057aeaf8deef.png)  
+![image](https://user-images.githubusercontent.com/30681841/147103957-cf4268bc-ee81-4ee1-9ad4-aeea022804b9.png)
 
 # front : 
 ![image](https://user-images.githubusercontent.com/30681841/146956318-b92a322e-a44e-4814-88a2-274f0d8481e5.png)
