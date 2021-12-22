@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main page</title>
+<title>메인 페이지</title>
 </head>
-
 <body>
 	<!-- 메인 페이지 시작 -->
-	<div class="container" id="main">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
 				<div class="row mainViewCount p-1" style="font-size: 0.4rem;">
@@ -38,11 +37,11 @@
 		<!-- 홈페이지 상단 종료 -->
 		<hr />
 		<!-- 메인 페이지 시작 -->
-		<div class="row">
-
+		<div class="row" style="height: 500px; overflow: auto;">
 			<div class="col-md-12 no-gutters">
 				<div class="row">
 					<div class="col-md-3">
+						<!-- 프로필 사진 부분 -->
 						<img src="../../image/default-profile-photo.png" alt=""
 							class="img-thumbnail" />
 						<hr />
@@ -50,7 +49,6 @@
 							<h3>홈페이지 소개</h3>
 						</div>
 						<hr />
-
 						<div class="row text-left">
 							<div class="col-md-6">
 								<a href="">EDIT</a>
@@ -71,7 +69,8 @@
 					</div>
 
 					<div class="col-md-9">
-						<div class="row">
+						<!-- 센터 부분 -->
+						<div class="row" style="overflow: hidden;">
 							<div class="col-md-6">
 								<span style="color: orange;">updated news</span>
 								<%
@@ -108,14 +107,9 @@
 
 							<div class="col-md-6">
 								<!-- 게시판 리스트 시작-->
-
 								<span style="color: orange;">boardlist</span>
-
 								<div class="row">
-
 									<div class="col-md-12">
-										<!-- 게시판 리스트  -->
-
 										<div class="row">
 											<div class="col-md-6">
 												<a href="">다이어리 </a>
@@ -149,44 +143,37 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 								<!-- 게시판 리스트 종료 -->
-
 							</div>
-
 						</div>
-
 						<div class="row">
 							<!-- 메인 페이지 중앙에 출력되는 이미지 혹은 동영상 혹은 미니룸 -->
 							<div
 								style="background-color: #eeeeee; width: 8000px; height: 180px;">
-								미니룸</div>
+								<h3>미니룸</h3>
+							</div>
 
 						</div>
 						<hr />
 						<span> 일촌평</span>
 						<div>
+							<!-- 일촌평 시작 -->
 							<%
 							// 1. DB 에서 가져와서 가장 최근 5개만 출력되도록 한다.
 							%>
-
 							<h6>일촌평입니다...</h6>
 							<h6>일촌평입니다...</h6>
 							<h6>일촌평입니다...</h6>
 							<h6>일촌평입니다...</h6>
 							<h6>일촌평입니다...</h6>
 						</div>
+						<!-- 일촌평 종료 -->
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- 메인 페이지 종료 -->
 	</div>
-
-
 	<!-- 메인 페이지 종료 -->
-
-
 </body>
 </html>
