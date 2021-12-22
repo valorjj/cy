@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%
 
-// 다른 계정의 홈페이지에 방명록을 작성하는 컨트롤러
-
+// 댓글 등록할 때 db 연동하는 컨트롤러입니다. 
 
 %>
