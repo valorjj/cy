@@ -16,17 +16,16 @@
 <body>
 	
 	<%@ include file="../common/common.jsp" %>
+	
 	<div class="container" id="signUpForm">
-		<form action="../../controller/signUpController.jsp" method="get">
+		<form action="../../controller/user/signUpController.jsp" method="post" enctype="multipart/form-data">
 			<div class="text-center">
 				<h3>회원가입</h3>
 			</div>
-			
 			<hr />
-			
 			<div class="form-group">
-				<label for="signUpId">아이디</label>
-				<input type="text" class="form-control" id="signUpId" name="signUpId"/>
+				<label for="signId">아이디</label>
+				<input type="text" class="form-control" id="signId" name="signId"/>
 				<small id="idHelp" class="form-text text-muted">아이디는 10글자를 넘을 수 없습니다.</small>
 			</div>
 			
@@ -50,13 +49,25 @@
 			
 			<div class="form-group">
 				<label for="signPhone">핸드폰번호</label>
-				<input type="text" class="form-control" id="signPhone" name="signPhone"/>
+				<input type="text" class="form-control" id="signPhone" name="signPhone" placeholder="핸드폰 번호를 입력하세요. "/>
 				<small id="phoneHelp" class="form-text text-muted">000-0000-0000 형식으로 입력해주세요.</small>
 			</div>
 			
 			<div class="form-group">
 				<label for="signEmail">이메일주소</label>
-				<input type="text" class="form-control" id="signEmail" name="signEmail"/>
+				
+				<div class="input-group-append">
+					<input type="text" class="form-control" id="signEmail" name="signEmail" placeholder="이메일주소"/>
+			    	<span class="input-group-text" id="basic-addon2">@</span>
+			    	<select class="custom-select" name="postAddress" id="postAddress">
+			    		<option value="메일을 선택하세요"></option>
+			    		<option value="gmail.com">gmail.com</option>
+			    		<option value="naver.com">naver.com</option>
+			    		<option value="daum.net">daum.net</option>
+			    		<option value="kakao.net">kakao.net</option>
+			    	
+			    	</select>
+			  	</div>
 				<small id="emailHelp" class="form-text text-muted">유효한 이메일을 입력해주세요.</small>
 			</div>
 			
@@ -76,7 +87,7 @@
 				<div class="col-md-7">
 					<div class="form-group">
 						<label for="signPic">프로필 사진</label>
-						<input type="file" class="form-control" id="signPic" name="signPic"/>
+						<input type="file" class="custom-file" id="signPic" name="signPic"/>
 						<small id="fileHelp" class="form-text text-muted">이미지 파일을 업로드해주세요.</small>
 					</div>
 				</div>
@@ -88,12 +99,11 @@
 			</div>
 			<div class="form-group">
 				<label for="">나이</label>
-				<select name="signAge" id="signAge" class="form-control">
+				<select name="signAge" id="signAge" class="custom-select">
 					<% for(int i=10; i<60; i++) { %>
 						<option value="<%=i%>"> <%=i %></option>
 					<% } %>
 				</select>
-				
 				<small id="ageHelp" class="form-text text-muted">나이를 선택해주세요. </small>
 			</div>
 			
