@@ -88,4 +88,20 @@ public class UserDao extends DB {
 	// 8. 아이디 찾기 메소드
 
 	// 9. 비밀번호 찾기 메소드
+
+	// 10. 아이디 중복 찾기 메소드
+	public boolean isIdExist(String id) {
+		String sql = "select * from user where user_id = " + id;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return true; // 이미 아이디가 존재함 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false; // 해당하는 아이디가 존재하지 않음 
+	}
 }

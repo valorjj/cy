@@ -35,7 +35,7 @@ ul.tabs li.current {
 .tab-content {
 	display: none;
 	background: #ededed;
-	padding: 15px;
+	padding: 10px;
 	height: 500px;
 }
 
@@ -59,29 +59,29 @@ ul.tabs li.current {
 					<%@ include file="main.jsp"%>
 				</div>
 
-				<div id="tab-2" class="tab-content">
+				<div id="tab-2" class="tab-content" style="overflow: auto;">
 					<!-- 프로필 페이지 호출  -->
 					<%@ include file="../user/viewUserProfile.jsp"%>
 				</div>
 
-				<div id="tab-3" class="tab-content">
+				<div id="tab-3" class="tab-content" style="overflow: auto;">
 					<!-- 다이어리 페이지 호출 -->
 					<%@ include file="../mypage/diary/viewDiary.jsp"%>
 				</div>
 
-				<div id="tab-4" class="tab-content">
+				<div id="tab-4" class="tab-content" style="overflow: auto;">
 					<!-- 게시판 페이지 호출 -->
 				</div>
 
-				<div id="tab-5" class="tab-content">
+				<div id="tab-5" class="tab-content" style="overflow: auto;">
 					<!-- 사진첩 페이지 호출 -->
 				</div>
 
-				<div id="tab-6" class="tab-content">
+				<div id="tab-6" class="tab-content" style="overflow: auto;">
 					<!-- 방명록 페이지 호출 -->
 				</div>
 
-				<div id="tab-7" class="tab-content">
+				<div id="tab-7" class="tab-content" style="overflow: auto;">
 					<!-- 본인 홈페이지에서만 관리 페이지 호출 -->
 				</div>
 
@@ -97,7 +97,7 @@ ul.tabs li.current {
 					<li class="tab-link" data-tab="tab-4">게시판</li>
 					<li class="tab-link" data-tab="tab-5">사진첩</li>
 					<li class="tab-link" data-tab="tab-6">방명록</li>
-					<li class="tab-link" data-tab="tab-7" style="">관리</li>
+					<li class="tab-link" data-tab="tab-7" style="display: none;">관리</li>
 				</ul>
 			</div>
 		</div>

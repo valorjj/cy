@@ -5,45 +5,88 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-</style>
-</head>
-<body>
-	
-	<div class="container">
-	
-			<!-- 상단에서 달력 출력 시작  -->
-			<div class="row col-md-8">
-				<h3>달력</h3>
-			</div>
-			<!-- 상단에서 달력 출력 종료 -->
+#diary-body {
+	height: 500px;
+}
 
-		<div class="row">
-		
-			<div class="col-md-3"> <!-- 왼쪽 메뉴 -->
-				<div class="nav flex-column nav-pills"> 
-					<!-- flex-column : 세로 메뉴 	// nav-pills : 액티브[클릭] 색상  -->
-					<a class="nav-link active" data-toggle="pill" href="#jj1"> 주문 목록 </a> 
-					<a class="nav-link" data-toggle="pill" href="#jj2"> 회원 정보 </a> 
-				</div>
+ul.diary-tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.diary-tabs li {
+	background: #00a8be;
+	color: #222;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.diary-tabs li.current {
+	background: #00a8be;
+	color: #ededed;
+}
+
+.diary-tab-content {
+	display: none;
+	background: #ededed;
+	height: 500px;
+}
+
+.diary-tab-content.current {
+	display: inherit;
+}
+</style>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row" id="diary-body">
+			<!-- 왼쪽 서브 폴더 메뉴 시작 -->
+			<div class="col-md-2 d-tabs-menu" id="">
+				<ul class="diary-tabs">
+					<li class="current tab-link" data-tab="diary-tab1">2021.12.23</li>
+					<li class="tab-link" data-tab="diary-tab2">2021.12.24</li>
+					<li class="tab-link" data-tab="diary-tab3">2021.12.25</li>
+				</ul>
 			</div>
-			
-			<div class="col-md-9">	<!-- 왼쪽에서 날짜 누르면 작성된 글 불러온다. -->
-				<div class="tab-content" id="pills-tabcontent">
-					<div class="tab-pane show active" id="jj1">	<!-- fade : 숨김  show : 열기   -->
-						<div class="container">
-							<h3>테스트1</h3>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="jj2">	<!-- fade : 숨김  show : 열기   -->
-						<div class="container">
-							<h3>테스트1</h3>
-						</div>
-					</div>
+			<!-- 왼쪽 서브 폴더 메뉴 종료  -->
+			<div class="col-md-10" id="diary-content-area">
+				<!-- 상단 달력 시작 -->
+				<div class="row">
+					<h6>달력 출력 될 부분</h6>
 				</div>
+				<!-- 상단 달력 종료 -->
+				<hr />
+				<!-- 탭 눌렀을 때 전환될 화면 시작 -->
+
+				<div id="diary-tab1" class="diary-tab-content current" style="overflow: auto;">
+					<%@ include file="viewDiaryList.jsp"%>
+				</div>
+				<div id="diary-tab2" class="diary-tab-content" style="overflow: auto;"></div>
+				<div id="diary-tab3" class="diary-tab-content" style="overflow: auto;"></div>
+
+				<!-- 탭 눌렀을 때 전환될 화면 종료 -->
 			</div>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('ul.diary-tabs li').click(function() {
+				var d_tab_id = $(this).attr('data-tab');
 
+				$('ul.diary-tabs li').removeClass('current');
+				$('.diary-tab-content').removeClass('current');
+
+				$(this).addClass('current');
+				$("#" + d_tab_id).addClass('current');
+			});
+		});
+	</script>
+
+	<script src="../../js/mypage/diary.js"></script>
 </body>
 </html>
