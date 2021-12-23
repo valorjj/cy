@@ -48,12 +48,13 @@ ul.tabs li.current {
 </head>
 <body>
 
-	<%@ include file="../common/header.jsp"%> 
-	
+	<%@ include file="../common/header.jsp"%>
+
 	<div class="container p-3" style="background-color: #263333;">
 		<div class="row no-gutters">
-			<div class="col-md-10"> <!-- 탭 눌렀을 때 전환될 화면 1 -->
-				<div id="tab-1" class="tab-content current">
+			<div class="col-md-10" style="height: 500px;">
+				<!-- 탭 눌렀을 때 전환될 화면 1 -->
+				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
 					<%@ include file="main.jsp"%>
 				</div>
@@ -76,8 +77,9 @@ ul.tabs li.current {
 
 				<div id="tab-7" class="tab-content"></div>
 
-			</div> <!-- 탭 눌렀을 때 전환될 화면 2 -->
-			
+			</div>
+			<!-- 탭 눌렀을 때 전환될 화면 2 -->
+
 
 			<div class="col-md-2">
 				<ul class="tabs">

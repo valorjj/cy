@@ -25,17 +25,16 @@ String nickname = multi.getParameter("signNickname");
 String info = multi.getParameter("signInfo");
 
 User user = new User(
-		
-		id, password, name, phone, email, gender, pic, age, nickname, info
-		
-		);
 
+		id, password, name, phone, email, gender, pic, age, nickname, info
+
+);
 
 boolean result = UserDao.getUserDao().createAccount(user);
 
-if(result){
+if (result) {
 	// 회원가입 성공 시 
-	response.sendRedirect("../main/test.jsp");
+	response.sendRedirect("../../main/test.jsp");
 } else {
 	out.println("<script> alert('오류가 발생했습니다. ');</script>");
 }
