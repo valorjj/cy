@@ -52,7 +52,7 @@ ul.tabs li.current {
 
 	<div class="container p-3" style="background-color: #263333;">
 		<div class="row no-gutters">
-			<div class="col-md-10" style="height: 500px;">
+			<div class="col-md-10">
 				<!-- 탭 눌렀을 때 전환될 화면 1 -->
 				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
@@ -69,13 +69,21 @@ ul.tabs li.current {
 					<%@ include file="../mypage/diary/viewDiary.jsp"%>
 				</div>
 
-				<div id="tab-4" class="tab-content"></div>
+				<div id="tab-4" class="tab-content">
+					<!-- 게시판 페이지 호출 -->
+				</div>
 
-				<div id="tab-5" class="tab-content"></div>
+				<div id="tab-5" class="tab-content">
+					<!-- 사진첩 페이지 호출 -->
+				</div>
 
-				<div id="tab-6" class="tab-content"></div>
+				<div id="tab-6" class="tab-content">
+					<!-- 방명록 페이지 호출 -->
+				</div>
 
-				<div id="tab-7" class="tab-content"></div>
+				<div id="tab-7" class="tab-content">
+					<!-- 본인 홈페이지에서만 관리 페이지 호출 -->
+				</div>
 
 			</div>
 			<!-- 탭 눌렀을 때 전환될 화면 2 -->
@@ -89,7 +97,7 @@ ul.tabs li.current {
 					<li class="tab-link" data-tab="tab-4">게시판</li>
 					<li class="tab-link" data-tab="tab-5">사진첩</li>
 					<li class="tab-link" data-tab="tab-6">방명록</li>
-					<li class="tab-link" data-tab="tab-7">관리</li>
+					<li class="tab-link" data-tab="tab-7" style="">관리</li>
 				</ul>
 			</div>
 		</div>
