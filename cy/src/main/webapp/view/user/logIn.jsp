@@ -20,12 +20,9 @@
 	.logInId{
 		outline:none;
 	}
-		
-		
 </style>
 </head>
 <body>
-
 	<%
 	// 1. 한가운데 동그라미에 로그인 창 출력
 	%>
