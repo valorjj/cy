@@ -11,7 +11,6 @@
 }
 
 /* 웰컴체 볼드 */
-
 @font-face {
 	font-family: 'OTWelcomeBA';
 	src:
@@ -24,5 +23,4 @@
 /* 일단은 테스트용으로 웰컴 레큘러, 각 요소에 border 를 쳐서 레이아웃 보기 용이게하게 했습니다. 나중에 지우시길 */
 * {
 	font-family: 'OTWelcomeRA';
-	border: 1px solid orange;
 }

@@ -20,7 +20,7 @@
 				<div class="col-md-6 input-group my-1 p-1">
 					<div class="row">
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="" name=""/>
+							<input type="text" class="form-control p-2" id="" name=""/>
 						</div>
 						<div class="col-md-4">
 							<input type="submit" class="form-control btn btn-outline-success" value="검색" />
