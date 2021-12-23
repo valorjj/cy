@@ -1,3 +1,4 @@
+<%@page import="dto.LogInSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +11,14 @@
 	<%@ include file="common.jsp"%>
 
 	<%
+	// user_no 필요해서 만듬 조지훈 12.23
+	LogInSession logInSession = (LogInSession)session.getAttribute("logInSession");
+	String loginid = null;
+	if(logInSession != null) {
+		loginid = logInSession.getUser_id();
+	}
+	// 조지훈 12.23 end
+	
 	// 유저 검색, 일촌 파도타기, 로그아웃
 	%>
 

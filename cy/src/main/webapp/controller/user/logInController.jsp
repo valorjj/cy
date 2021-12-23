@@ -1,3 +1,5 @@
+<%@page import="com.mysql.cj.Session"%>
+<%@page import="dto.LogInSession"%>
 <%@page import="dao.user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,6 +15,14 @@ String password = request.getParameter("loginPassword"); // 로그인 화면에�
 
 boolean result = UserDao.getUserDao().logInCheck(id, password);
 if (result) {
+	
+	// user_no가 필요해서 만듬 : 조지훈 12.23
+	int user_no = UserDao.getUserDao().getuser_no(id);
+		LogInSession logInSession = new LogInSession(user_no, id);
+		
+		session.setAttribute("logInSession", logInSession);
+	// 조지훈 끝 12.23
+	
 	// 로그인 성공했을 경우 메인 화면으로 이동 
 	response.sendRedirect("../../view/main/test.jsp");
 } else {

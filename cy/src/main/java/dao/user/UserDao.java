@@ -72,4 +72,15 @@ public class UserDao extends DB {
 	// 8. 아이디 찾기 메소드
 
 	// 9. 비밀번호 찾기 메소드
+	
+	// 10. user.no 검색 조지훈12.23
+	public int getuser_no( String user_id) {
+		String sql = "select user_no from user where user_id = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user_id);
+			rs = ps.executeQuery();
+			if(rs.next()) { return rs.getInt(1); }
+		} catch (Exception e) {} return 0;
+	}
 }

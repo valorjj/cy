@@ -7,4 +7,11 @@ public class VisitorDao extends DB {
 		super();
 	}
 
+	
+	// user_no 가져와보자
+	
+//	public boolean getuser_no() {
+//		
+//		
+//	}
 }
