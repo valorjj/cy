@@ -1,3 +1,5 @@
+<%@page import="javax.websocket.Session"%>
+<%@page import="dto.LogInSession"%>
 <%@page import="dao.user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,8 +13,16 @@ String password = request.getParameter("loginPassword"); // 로그인 화면에�
 
 // UserDao 에 접근해서 아이디, 비밀번호가 db 에 존재하는지 확인합니다. 
 
-boolean result = UserDao.getUserDao().logInCheck(id, password);
+boolean result = UserDao.getUserDao().logInCheck(id, password); // 로그인 성공 여부를 반환합니다. 
 if (result) {
+	// 로그인 성공 시 세션을 부여합니다. 
+	// 세션은 LogInSession 이라는 클래스 형태로 저장합니다.
+	int user_no = UserDao.getUserDao().getLogInIdNo(id);
+	// 세션에는 user_no, user_id 를 저장합니다. 
+	LogInSession logInSession = new LogInSession(user_no, id);
+	// 세션의 이름은 logIn 입니다.
+	// 세션 값을 가져올때는 getAttribute("logIn") 으로 가져옵니다. 
+	session.setAttribute("logIn", logInSession);
 	// 로그인 성공했을 경우 메인 화면으로 이동 
 	response.sendRedirect("../../view/main/test.jsp");
 } else {

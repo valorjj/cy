@@ -40,7 +40,7 @@ public class UserDao extends DB {
 		return false;
 	}
 
-	// 2. 아이디 체크 메소드
+	// 2.1 아이디 체크 메소드
 
 	public boolean logInCheck(String id, String password) {
 		String sql = "select * from user where user_id = ? and user_password = ?";
@@ -57,6 +57,22 @@ public class UserDao extends DB {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	// 2.2 아이디를 받아서 회원 고유 번호를 리턴하는 메소드
+	public int getLogInIdNo(String id) {
+		String sql = "select user_no from user where user_id = " + id;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
 	}
 
 	// 3. 하나의 회원 객체 가져오는 메소드
