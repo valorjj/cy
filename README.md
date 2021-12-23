@@ -1,3 +1,9 @@
+# figma 주소
+
+백엔드(이클립스 코드) : [백엔드 코드](https://www.figma.com/file/wopIL5BBgMOJZpkJP9LwWj/cy?node-id=0%3A1)   
+프론트엔드(실행화면 및 스케치) : [프론트엔드](https://www.figma.com/file/HQ5v1nr5u8iiX57ILyfofI/cyworld?node-id=0%3A1)   
+
+
 # 싸이월드 스타일 게시판 프로그램 
 
 ![image](https://user-images.githubusercontent.com/30681841/146957822-e1283865-fa68-40f6-858b-d6a2a6610689.png)
