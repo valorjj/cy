@@ -8,7 +8,7 @@ public class DSubDao extends DB{
 		super();
 	}
 	
-	// 1. 다이어리 안의 서브 다이어리를 
+	
 	
 	
 

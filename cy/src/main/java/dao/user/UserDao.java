@@ -17,9 +17,7 @@ public class UserDao extends DB {
 
 	// 1. 회원가입 메소드
 	public boolean createAccount(User user) {
-
 		String sql = "INSERT INTO user(user_id, user_password, user_name, user_phone, user_email, user_gender, user_pic, user_age, nickname, intro) VALUES(?,?,?,?,?,?,?,?,?,?)";
-
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUser_id());
@@ -43,6 +41,23 @@ public class UserDao extends DB {
 	}
 
 	// 2. 아이디 체크 메소드
+
+	public boolean logInCheck(String id, String password) {
+		String sql = "select * from user where user_id = ? and user_password = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	// 3. 하나의 회원 객체 가져오는 메소드
 
