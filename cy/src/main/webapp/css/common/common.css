@@ -66,6 +66,38 @@ align-self-center // 하위 아이템
 	overflow-y: hidden;
 }
 
+/* 회원가입페이지 배경 */
+.signupbackimg {
+	background-image: url(../../img/cyworld_back3.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.signform .form-group {
+	width: 80%;
+	margin: 0.3rem 0;
+}
+
+.signform label {
+	font-size: 12px;
+}
+
+.signform input, .custom-select {
+	height: 35px;
+}
+
+/* 로그인 페이지 */
+
+/* .signform {
+	background-image: url(../../img/cyworld_back2.jpg);
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0.5);
+} */
+
 /* 메인 */
 .category div {
 	height: 2rem;
@@ -73,8 +105,6 @@ align-self-center // 하위 아이템
 	border: 1px solid black;
 	margin-bottom: 10px;
 }
-
-
 
 /* 메인홈 사진존 */
 .homemid .photoitem {
@@ -112,11 +142,10 @@ align-self-center // 하위 아이템
 }
 
 .category div a:focus {
-	 background: #2c3e50;
+	background: #2c3e50;
 }
 
 /* 사이드 버튼 */
-
 
 /* 백그라운드드배경 */
 #main {

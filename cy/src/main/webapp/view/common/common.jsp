@@ -19,6 +19,9 @@
 	// 공통적으로 적용되는 css, js, api 를 한곳에 모아두는 곳 입니다.
 	// 4.x 부트스트랩, 부트스트랩 아이콘, jquery
 	%>
+	<!-- 1.회원가입js -->
+	<script src="../../js/common/user/sinUp.js"></script>
+	
 	<!-- 부트스트랩 4.x JS + jquery-->
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
