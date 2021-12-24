@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>탭 연습</title>
+<title>메인 화면</title>
 
 <style type="text/css">
 body {

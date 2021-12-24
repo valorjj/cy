@@ -10,17 +10,20 @@
 
 	<%
 	// 1. viewDiary.jsp 에서 인수를 받아옵니다.
-	// 1.1
+	// int dsub_no = Integer.parseInt(request.getParameter("idx"));
+	// out.println("<script> alert('dsub_no'); </script>");
 	%>
 
 	<div class="container">
+		
+		<button class="btn btn-success"> 다이어리 작성 </button>
+		<hr />
 		<div>
 			<h4>2021.12.23 다이어리</h4>
 		</div>
 
 		<div class="table-responsive" style="max-width: 100%;">
 			<table class="table table-hover">
-
 				<thead>
 					<tr>
 						<th>번호</th>
