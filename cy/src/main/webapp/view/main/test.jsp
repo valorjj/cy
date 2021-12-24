@@ -35,7 +35,7 @@ ul.tabs li.current {
 .tab-content {
 	display: none;
 	background: #ededed;
-	padding: 15px;
+	padding: 10px;
 	height: 500px;
 }
 
@@ -52,32 +52,39 @@ ul.tabs li.current {
 
 	<div class="container p-3" style="background-color: #263333;">
 		<div class="row no-gutters">
-			<div class="col-md-10" style="height: 500px;">
+			<div class="col-md-10">
 				<!-- 탭 눌렀을 때 전환될 화면 1 -->
 				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
 					<%@ include file="main.jsp"%>
 				</div>
 
-				<div id="tab-2" class="tab-content">
+				<div id="tab-2" class="tab-content" style="overflow: auto;">
 					<!-- 프로필 페이지 호출  -->
 					<%@ include file="../user/viewUserProfile.jsp"%>
 				</div>
 
-				<div id="tab-3" class="tab-content">
+				<div id="tab-3" class="tab-content" style="overflow: auto;">
 					<!-- 다이어리 페이지 호출 -->
 					<%@ include file="../mypage/diary/viewDiary.jsp"%>
 				</div>
 
-				<div id="tab-4" class="tab-content"></div>
+				<div id="tab-4" class="tab-content" style="overflow: auto;">
+					<!-- 게시판 페이지 호출 -->
+				</div>
 
-				<div id="tab-5" class="tab-content"></div>
+				<div id="tab-5" class="tab-content" style="overflow: auto;">
+					<!-- 사진첩 페이지 호출 -->
+				</div>
 
 				<div id="tab-6" class="tab-content">
 					<%@ include file="../mypage/visitor/viewLogList.jsp" %>
 				</div>
-					
-				<div id="tab-7" class="tab-content"></div>
+        
+				<div id="tab-7" class="tab-content" style="overflow: auto;">
+					<!-- 본인 홈페이지에서만 관리 페이지 호출 -->
+				</div>
+
 
 			</div>
 			<!-- 탭 눌렀을 때 전환될 화면 2 -->
@@ -91,7 +98,7 @@ ul.tabs li.current {
 					<li class="tab-link" data-tab="tab-4">게시판</li>
 					<li class="tab-link" data-tab="tab-5">사진첩</li>
 					<li class="tab-link" data-tab="tab-6">방명록</li>
-					<li class="tab-link" data-tab="tab-7">관리</li>
+					<li class="tab-link" data-tab="tab-7" style="display: none;">관리</li>
 				</ul>
 			</div>
 		</div>
