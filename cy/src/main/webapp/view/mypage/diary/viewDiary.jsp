@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <style type="text/css">
 #diary-body {
 	height: 500px;
@@ -49,6 +50,7 @@ ul.diary-tabs li.current {
 	// 1. db 에 있는 데이터를 호출해서 리스트에 저장합니다.
 	// 2. 리스트를 for 문을 이용해서 표시합니다.
 	ArrayList<DSub> dsubs = DSubDao.getdsubDao().getDSubList();
+	int dsub_no = -1;
 	%>
 
 	<div class="container">
@@ -63,18 +65,26 @@ ul.diary-tabs li.current {
 				*/
 				%>
 				<div class="row my-2">
-					<button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#diary-new-tab-modal">게시판 생성</button>
+					<button class="btn btn-secondary btn-sm" data-toggle="modal"
+						data-target="#diary-new-tab-modal">게시판 생성</button>
 				</div>
 
 				<!-- 만들어진 서브 게시판이 출력될 영역 시작 -->
-				<ul class="diary-tabs" id="diary-tabs">
+				<ul class="diary-tabs" id="diary-tabs" style="overflow: auto;">
 					<li class="current tab-link">폴더 목록</li>
-					<% int idx = 1; %>
-					<% for (DSub dsub : dsubs) { %>
-						<li><input type="hidden" id="<%=idx %>" value="<%=dsub.getDsub_no() %>"/></li>
-						<li class="tab-link" data-tab="diary-tab<%=idx %>" onclick="moveToDiaryList(<%=idx %>);"><%=dsub.getName()%></li>
-						
-					<% idx++; } %>
+					<%
+					// int idx = 1;
+					%>
+					<%
+					for (DSub dsub : dsubs) {
+					%>
+					<!-- 반복문을 돌면서, 만들어진 dsub 들을 모두 가져와서 출력한다.  -->
+					<li class="tab-link" data-tab="diary-tab<%=dsub.getDsub_no()%>"
+						onclick="moveToDiaryList(<%=dsub.getDsub_no()%>);"><%=dsub.getName()%></li>
+					<%
+					// idx++;
+					}
+					%>
 				</ul>
 				<!-- 만들어진 서브 게시판이 출력될 영역 종료 -->
 			</div>
@@ -87,13 +97,50 @@ ul.diary-tabs li.current {
 				<!-- 상단 달력 종료 -->
 				<hr />
 				<!-- 탭 눌렀을 때 전환될 화면 시작 -->
-				<% idx = 1; %>
-				<% for (DSub dsub : dsubs) { %>
-				<div id="diary-tab<%=idx%>" class="diary-tab-content current" style="overflow: auto;">
-					<!-- dsub_no 을 넘겨줘야 하는데 어떻게 할까? -->
-					<%@include file="viewDiaryList.jsp" %>
+
+				<!-- 선택된 게시판 번호에 해당하는 게시글만 가져와야한다.  -->
+
+				<%
+				// dsub_no 를 어떻게 받아오지?
+				%>
+
+				<div class="container">
+					<div id="diary-tab{]" class="diary-tab-content current"
+						style="overflow: auto;">
+						<button class="btn btn-success">다이어리 작성</button>
+						<hr />
+						<div>
+							<h4>2021.12.23 다이어리</h4>
+						</div>
+						<div class="table-responsive" style="max-width: 100%;">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>내용</th>
+										<th>작성일</th>
+										<th colspan="2"></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<%
+									// 1. for문 돌면서 db에서 데이터 가져오기
+									%>
+									<tr>
+
+										<td>1</td>
+										<td>내용</td>
+										<td>2021.12.23 15:50:00</td>
+										<td><button class="form-control">수정</button></td>
+										<td><button class="form-control">삭제</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
-				<% idx++; } %>
+
 
 				<!-- 탭 눌렀을 때 전환될 화면 종료 -->
 			</div>
@@ -140,8 +187,8 @@ ul.diary-tabs li.current {
 		function createNewFolder() {
 			var newName = document.getElementById('newName').value;
 			// 입력받은 폴더 값을 db에 저장한다. 
-			$.ajax(
-					{
+			$
+					.ajax({
 						url : '../../controller/mypage/diary/createNewTabController.jsp',
 						data : {
 							newName : newName
@@ -156,17 +203,41 @@ ul.diary-tabs li.current {
 						}
 					});
 		}
-	
+
 		// 특정 id 값을 가진 태그만 새로고침 하는 코드입니다.
 		// href 다음에 + '  ' 여기 시작에 꼭 한칸을 띄워야 합니다 .
 		function loadDiaryList() {
 			$('#diary-tabs').load(location.href + ' #diary-tabs');
 		}
-		
-		function moveToDiaryList(index){
+
+		function moveToDiaryList(dsub_no) {
 			// 다이어리 리스트를 출력하는 페이지를 로드하며 인수를 전달합니다. 
-			$('#diary-content-area').load(location.href + ' #diary-content-area?idx='+index);
+			// 아래 코드는 <div id="diary-content-area"> 를 새로고침 하는 코드입니다. 
+			// 그러니 일단 이 코드 실행전에 ArrayList 를 받는 코드가 실행되어야합니다. 
+			
+			$.ajax(
+					{
+						
+					url: '',
+					data : {},
+					success: function(result){
+						
+				}
+					
+						
+						
+					}
+				
+			);
+			
+			
+			$('#diary-content-area').load(
+					location.href + ' #diary-content-area');
+			
 		}
+		
+		
+		
 	</script>
 
 </body>

@@ -10,8 +10,8 @@
 
 	<%
 	// 1. viewDiary.jsp 에서 인수를 받아옵니다.
-	// int dsub_no = Integer.parseInt(request.getParameter("idx"));
-	// out.println("<script> alert('dsub_no'); </script>");
+	int dsub_no = Integer.parseInt(request.getParameter("idx"));
+	out.println("<script> alert('dsub_no'); </script>");
 	%>
 
 	<div class="container">
@@ -41,55 +41,9 @@
 						<td><button class="form-control">수정</button></td>
 						<td><button class="form-control">삭제</button></td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>내용</td>
-						<td>2021.12.23 15:50:00</td>
-						<td><button class="form-control">수정</button></td>
-						<td><button class="form-control">삭제</button></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>내용</td>
-						<td>2021.12.23 15:50:00</td>
-						<td><button class="form-control">수정</button></td>
-						<td><button class="form-control">삭제</button></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>내용</td>
-						<td>2021.12.23 15:50:00</td>
-						<td><button class="form-control">수정</button></td>
-						<td><button class="form-control">삭제</button></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>내용</td>
-						<td>2021.12.23 15:50:00</td>
-						<td><button class="form-control">수정</button></td>
-						<td><button class="form-control">삭제</button></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>내용</td>
-						<td>2021.12.23 15:50:00</td>
-						<td><button class="form-control">수정</button></td>
-						<td><button class="form-control">삭제</button></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>내용</td>
-						<td>2021.12.23 15:50:00</td>
-						<td><button class="form-control">수정</button></td>
-						<td><button class="form-control">삭제</button></td>
-					</tr>
-
-
 				</tbody>
-
 			</table>
 		</div>
-
 	</div>
 
 </body>
