@@ -37,4 +37,5 @@
 1. DB에 날짜가 자동으로 찍히지 않아 date컬럼에 now()를 설정
 ![DB](https://user-images.githubusercontent.com/88937233/147321237-8d64b0a4-2b52-4070-95b2-5b296e9c855a.png)
 
-
+2. 방명록 작성하면 DB에 저장완료 
+![방명록작성확인](https://user-images.githubusercontent.com/88937233/147321338-c900443d-8601-45e4-b215-2c8ee4d300dd.png)
