@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dao.user.UserDao;
+
 public class Post {
 	
 
@@ -14,6 +16,8 @@ public class Post {
 	private String content;
 	private String date;
 	private int view; 
+	private String writer;
+
 
 	public Post() {}
 	
@@ -26,7 +30,7 @@ public class Post {
 		this.content = content;
 		this.date = date;
 		// 1. 작성자 = 회원번호를 이용한 아이디 찾아서 대입
-		// this.b_writer = MemberDao.getMemberDao().getmemberid(m_num);
+		this.writer = UserDao.getUserDao().getUserId(user_no);
 		// 2. 등록날짜와 오늘날짜와 동일하면 시간 아니면 날짜 표시
 		Date today = new Date(); // 1. 오늘날짜 
 		SimpleDateFormat datetimeformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");	// 날짜,시간형식
@@ -111,6 +115,14 @@ public class Post {
 
 	public void setView(int view) {
 		this.view = view;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	

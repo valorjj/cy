@@ -75,6 +75,17 @@ public class UserDao extends DB {
 
 		return 0;
 	}
+	// 2.3 post에 writer를 사용하기 위한 메소드
+	public String getUserId(int user_no) {
+		
+		String sql ="select user_id from user where user_no=?";
+		try {
+			ps =con.prepareStatement(sql); ps.setInt(1, user_no);
+			rs = ps.executeQuery(); 
+			if( rs.next() ) { return rs.getString(1); }
+		}catch (Exception e) {} return null;
+		
+	}
 
 	// 3. 하나의 회원 객체 가져오는 메소드
 

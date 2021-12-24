@@ -29,7 +29,7 @@
 	Post post = new Post( title , content , user_no);
 	// DB처리
 	boolean result = PostDao.getPostDao().postwrite(post);	
-		out.print(result);
+	out.print(result);
 	
 	
 	

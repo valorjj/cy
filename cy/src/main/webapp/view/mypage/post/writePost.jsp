@@ -11,13 +11,10 @@
 </head>
 <body>
 	<div class="container">
-	
 			제목 : <input id="title" class="form-control" type="text" name="title"> <br>
 			내용 : <textarea id="content" class="form-control" rows="10" cols="20" name="content"></textarea> <br>
-			<button  onclick="writePost();">등록</button>
-		
+			<button onclick="writePost();">등록</button>
 	</div>
-
 
 	
 

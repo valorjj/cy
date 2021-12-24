@@ -3,6 +3,7 @@ package dao.mypage;
 import java.util.ArrayList;
 
 import dao.DB;
+
 import dto.Post;
 
 public class PostDao extends DB {
@@ -22,13 +23,13 @@ public class PostDao extends DB {
 			ps = con.prepareStatement(sql);	
 			ps.setString(1, post.getTitle() ); 	ps.setString(2, post.getContent());
 			ps.setInt(3, post.getUser_no());			
-			ps.executeUpdate();		return true;
+			ps.executeUpdate();	return true;
 		}catch (Exception e) { System.out.println(e);}	return false;	
 		
 	}
-
-public ArrayList<Post> postlist( ){
-		
+	// 모든 게시물 출력
+	public ArrayList<Post> postlist( ){
+			
 		ArrayList<Post> posts = new ArrayList<Post>(); 
 		String sql  ="select * from bpost order by bpost_no DESC";
 		
@@ -49,5 +50,16 @@ public ArrayList<Post> postlist( ){
 			}
 			return posts;
 		}catch (Exception e) {} return null;
+	}
+	
+
+	//게시물 총 개수 반환 메소드 
+	public int postcount() {
+		String sql="select count(*) from bpost";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();	
+			if( rs.next() ) { return rs.getInt(1); }
+		}catch (Exception e) {} return 0;
 	}
 }
