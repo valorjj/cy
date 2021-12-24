@@ -44,6 +44,7 @@
 ※ 다른 사람의 미니홈피로 들어갈때 내 정보를 가진 session과 다른 사람의 정보를 가진 session이 필요하다고 판단.
 
 4. 검색창에 id설정
+
 ![검색창id](https://user-images.githubusercontent.com/88937233/147335489-bc1fd9ac-3e82-442f-847b-8e6d4b23f519.png)
 
 5. dto other 생성
