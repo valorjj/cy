@@ -32,3 +32,9 @@
 
 ![세션](https://user-images.githubusercontent.com/88937233/147216706-6158a024-bbe9-480f-8547-c8627212a4a0.png)
 
+# 12.24
+
+1. DB에 날짜가 자동으로 찍히지 않아 date컬럼에 now()를 설정
+![DB](https://user-images.githubusercontent.com/88937233/147321237-8d64b0a4-2b52-4070-95b2-5b296e9c855a.png)
+
+
