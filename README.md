@@ -39,3 +39,5 @@
 
 2. 방명록 작성하면 DB에 저장완료 
 ![방명록작성확인](https://user-images.githubusercontent.com/88937233/147321338-c900443d-8601-45e4-b215-2c8ee4d300dd.png)
+
+3.
