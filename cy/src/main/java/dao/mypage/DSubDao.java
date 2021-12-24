@@ -12,12 +12,20 @@ public class DSubDao extends DB {
 		super();
 	}
 
+	public static DSubDao dsubDao = new DSubDao();
+
+	public static DSubDao getdsubDao() {
+		return dsubDao;
+	}
+
 	// 1. 다이어리 내에서 새로운 카테고리를 생성후 db에 집어넣는 메소드
-	public boolean createCategory() {
+	public boolean createCategory(int user_no, String name) {
 
 		String sql = "insert into dsub(user_no, name) values(?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			ps.setString(2, name);
 			ps.executeUpdate();
 			return true;
 

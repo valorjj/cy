@@ -61,9 +61,10 @@ public class UserDao extends DB {
 
 	// 2.2 아이디를 받아서 회원 고유 번호를 리턴하는 메소드
 	public int getLogInIdNo(String id) {
-		String sql = "select user_no from user where user_id = " + id;
+		String sql = "select user_no from user where user_id = ?";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
@@ -91,17 +92,18 @@ public class UserDao extends DB {
 
 	// 10. 아이디 중복 찾기 메소드
 	public boolean isIdExist(String id) {
-		String sql = "select * from user where user_id = " + id;
-
+		String sql = "select user_id from user where user_id = ?";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				return true; // 이미 아이디가 존재함 
+				return true; // 이미 아이디가 존재함
 			}
 		} catch (Exception e) {
+			System.out.println(e);
 			e.printStackTrace();
 		}
-		return false; // 해당하는 아이디가 존재하지 않음 
+		return false; // 해당하는 아이디가 존재하지 않음
 	}
 }
