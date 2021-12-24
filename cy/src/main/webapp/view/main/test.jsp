@@ -69,8 +69,10 @@ ul.tabs li.current {
 					<%@ include file="../mypage/diary/viewDiary.jsp"%>
 				</div>
 
-				<div id="tab-4" class="tab-content"></div>
-
+				<div id="tab-4" class="tab-content" style="overflow: auto;">
+					<%@ include file='../mypage/post/listPost.jsp'%>
+				</div>	
+				
 				<div id="tab-5" class="tab-content"></div>
 
 				<div id="tab-6" class="tab-content"></div>

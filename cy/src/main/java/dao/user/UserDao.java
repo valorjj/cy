@@ -17,9 +17,7 @@ public class UserDao extends DB {
 
 	// 1. 회원가입 메소드
 	public boolean createAccount(User user) {
-
 		String sql = "INSERT INTO user(user_id, user_password, user_name, user_phone, user_email, user_gender, user_pic, user_age, nickname, intro) VALUES(?,?,?,?,?,?,?,?,?,?)";
-
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUser_id());
@@ -42,7 +40,41 @@ public class UserDao extends DB {
 		return false;
 	}
 
-	// 2. 아이디 체크 메소드
+	// 2.1 아이디 체크 메소드
+
+	public boolean logInCheck(String id, String password) {
+		String sql = "select * from user where user_id = ? and user_password = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	// 2.2 아이디를 받아서 회원 고유 번호를 리턴하는 메소드
+	public int getLogInIdNo(String id) {
+		String sql = "select user_no from user where user_id = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
 
 	// 3. 하나의 회원 객체 가져오는 메소드
 
@@ -57,4 +89,21 @@ public class UserDao extends DB {
 	// 8. 아이디 찾기 메소드
 
 	// 9. 비밀번호 찾기 메소드
+
+	// 10. 아이디 중복 찾기 메소드
+	public boolean isIdExist(String id) {
+		String sql = "select user_id from user where user_id = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return true; // 이미 아이디가 존재함
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return false; // 해당하는 아이디가 존재하지 않음
+	}
 }
