@@ -4,6 +4,14 @@
 프론트엔드(실행화면 및 스케치) : [프론트엔드](https://www.figma.com/file/HQ5v1nr5u8iiX57ILyfofI/cyworld?node-id=0%3A1)   
 
 
+
+# 어려움을 겪고 있는 부분
+
+![image](https://user-images.githubusercontent.com/30681841/147357222-d5bebf01-f81a-4f76-b319-c2bbc2a5c714.png)
+
+
+
+
 # 싸이월드 스타일 게시판 프로그램 
 
 ![image](https://user-images.githubusercontent.com/30681841/146957822-e1283865-fa68-40f6-858b-d6a2a6610689.png)
