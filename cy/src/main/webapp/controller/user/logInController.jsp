@@ -1,4 +1,5 @@
-<%@page import="javax.websocket.Session"%>
+
+<%@page import="com.mysql.cj.Session"%>
 <%@page import="dto.LogInSession"%>
 <%@page import="dao.user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,6 +16,7 @@ String password = request.getParameter("loginPassword"); // 로그인 화면에�
 
 boolean result = UserDao.getUserDao().logInCheck(id, password); // 로그인 성공 여부를 반환합니다. 
 if (result) {
+
 	// 로그인 성공 시 세션을 부여합니다. 
 	// 세션은 LogInSession 이라는 클래스 형태로 저장합니다.
 	int user_no = UserDao.getUserDao().getLogInIdNo(id);
@@ -23,6 +25,7 @@ if (result) {
 	// 세션의 이름은 logIn 입니다.
 	// 세션 값을 가져올때는 getAttribute("logIn") 으로 가져옵니다. 
 	session.setAttribute("logIn", logInSession);
+  
 	// 로그인 성공했을 경우 메인 화면으로 이동 
 	response.sendRedirect("../../view/main/test.jsp");
 } else {

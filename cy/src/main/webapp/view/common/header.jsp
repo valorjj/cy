@@ -28,11 +28,13 @@
 						</div>
 						<div class="col-md-3">
 							<input type="submit" class="form-control btn btn-outline-success"
-								value="검색" /> <!-- ajax 거쳐서 다시 페이지를 로드하는데, 검색한 user_no 혹은 user_id 인수로 건네 받은채로 로드 -->
+								value="검색" />
+							<!-- ajax 거쳐서 다시 페이지를 로드하는데, 검색한 user_no 혹은 user_id 인수로 건네 받은채로 로드 -->
 						</div>
 						<div class="col-md-3">
-							<div class="row" style="font-size: 12px; font-weight: bold;">접속한 아이디</div>
-							<div class="row" style="color:orange;"><%=user_id%></div>
+							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
+								아이디</div>
+							<div class="row" style="color: orange;"><%=user_id%></div>
 						</div>
 					</div>
 				</div>
@@ -48,7 +50,8 @@
 							<a href="#" class="text-dark">일촌보기</a>
 						</div>
 						<div>
-							<a href="../../controller/user/logOutController.jsp" class="text-dark">로그아웃</a>
+							<a href="../../controller/user/logOutController.jsp"
+								class="text-dark">로그아웃</a>
 						</div>
 					</div>
 				</div>

@@ -9,8 +9,10 @@
 request.setCharacterEncoding("utf-8");
 
 String folderpath = request.getSession().getServletContext().getRealPath("/upload");
-MultipartRequest multi = new MultipartRequest(request, folderpath, 1024 * 1024 * 10, "UTF-8",
-		new DefaultFileRenamePolicy());
+/* MultipartRequest multi = new MultipartRequest(request, folderpath, 1024 * 1024 * 10, "UTF-8",
+		new DefaultFileRenamePolicy()); */
+MultipartRequest multi = new MultipartRequest( request ,  folderpath , 
+		1024*1024*10 ,"UTF-8" , new DefaultFileRenamePolicy() );
 
 String id = multi.getParameter("signId");
 String password = multi.getParameter("signPassword");

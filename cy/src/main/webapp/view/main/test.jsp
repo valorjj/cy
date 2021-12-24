@@ -61,7 +61,6 @@ ul.tabs li.current {
 
 				<div id="tab-2" class="tab-content" style="overflow: auto;">
 					<!-- 프로필 페이지 호출  -->
-					<%@ include file="../user/viewUserProfile.jsp"%>
 				</div>
 
 				<div id="tab-3" class="tab-content" style="overflow: auto;">
@@ -77,13 +76,14 @@ ul.tabs li.current {
 					<!-- 사진첩 페이지 호출 -->
 				</div>
 
-				<div id="tab-6" class="tab-content" style="overflow: auto;">
-					<!-- 방명록 페이지 호출 -->
+				<div id="tab-6" class="tab-content">
+					<%@ include file="../mypage/visitor/viewLogList.jsp" %>
 				</div>
-
+        
 				<div id="tab-7" class="tab-content" style="overflow: auto;">
 					<!-- 본인 홈페이지에서만 관리 페이지 호출 -->
 				</div>
+
 
 			</div>
 			<!-- 탭 눌렀을 때 전환될 화면 2 -->
