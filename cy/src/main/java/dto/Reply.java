@@ -1,6 +1,6 @@
 package dto;
 
-public class Comment {
+public class Reply {
 
 	// 댓글을 달면 생성되는 객체
 
@@ -11,7 +11,7 @@ public class Comment {
 	private String comment;
 	private String comment_date;
 
-	public Comment(int comment_no, int post_no, int user_no, String user_id, String comment, String comment_date) {
+	public Reply(int comment_no, int post_no, int user_no, String user_id, String comment, String comment_date) {
 		super();
 		this.comment_no = comment_no;
 		this.post_no = post_no;
