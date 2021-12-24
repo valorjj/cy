@@ -73,8 +73,10 @@ ul.tabs li.current {
 
 				<div id="tab-5" class="tab-content"></div>
 
-				<div id="tab-6" class="tab-content"></div>
-
+				<div id="tab-6" class="tab-content">
+					<%@ include file="../mypage/visitor/viewLogList.jsp" %>
+				</div>
+					
 				<div id="tab-7" class="tab-content"></div>
 
 			</div>

@@ -6,7 +6,7 @@ public class Visitor {
 	
 	private int visitor_no;
 	private int user_no;
-	private String log_content;
+	private String content;
 	private String log_date;
 
 	
@@ -15,17 +15,17 @@ public class Visitor {
 	}
 
 
-	public Visitor(int visitor_no, int user_no, String log_content, String log_date) {
+	public Visitor(int visitor_no, int user_no, String content, String log_date) {
 		this.visitor_no = visitor_no;
 		this.user_no = user_no;
-		this.log_content = log_content;
+		this.content = content;
 		this.log_date = log_date;
 	}
 
 		//방명록 등록시 생성자
-	public Visitor(int user_no, String log_content) {
+	public Visitor(int user_no, String content) {
 		this.user_no = user_no;
-		this.log_content = log_content;
+		this.content = content;
 	}
 
 
@@ -48,13 +48,13 @@ public class Visitor {
 	}
 
 
-	public String getLog_content() {
-		return log_content;
+	public String getcontent() {
+		return content;
 	}
 
 
-	public void setLog_content(String log_content) {
-		this.log_content = log_content;
+	public void setcontent(String content) {
+		this.content = content;
 	}
 
 

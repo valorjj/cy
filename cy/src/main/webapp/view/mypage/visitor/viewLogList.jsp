@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<%@include file="../../common/header.jsp" %>
+
 	<%
 		
 		// 방명록 출력 페이지
@@ -21,14 +21,14 @@
 	%>
 		<div class="container">
 			<!-- 방명록 작성 -->
-			<form action="../../controller/mypage/visitor/createLogController.jsp" method="get">
+			<form action="../../../controller/mypage/visitor/createLogController.jsp" method="get">
 			<div class="row">
 					<div class="col-md-4" style="height: 140px;" >
 						<img src="" class="form-control" style="height: 100%;">
 					</div>
 					<div class="col-md-8" style="height: 140px;">
 						<textarea rows="" cols="" class="form-control" style="height: 100%;" name="content"></textarea>
-						<input type="submit" value="등 록">
+						<input type="submit" value="확 인">
 					</div> 
 				</div><hr>
 			</form>
