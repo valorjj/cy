@@ -1,3 +1,4 @@
+<%@page import="dto.OtherSession"%>
 <%@page import="dto.LogInSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,17 +20,21 @@
 	}
 	// 조지훈 12.23 end
 	
+	// 검색한 아이디로 넘어갈때 조지훈 12.24
+	OtherSession otherSession = (OtherSession)session.getAttribute("other");
+	// 조지훈 12.24 end
+	
 	// 유저 검색, 일촌 파도타기, 로그아웃
 	%>
 
 	<div class="container" style="background-color: #cccccc">
 		<!-- 헤더 박스권 생성 -->
-		<form action="#" method="post"> <!-- 검색 후 검색 컨트롤러로 이동 -->
+		<form action="../../controller/user/searchUserController.jsp" method="post"> <!-- 검색 후 검색 컨트롤러로 이동 -->
 			<div class="row">
 				<div class="col-md-6 input-group my-1 p-1">
 					<div class="row">
 						<div class="col-md-8">
-							<input type="text" class="form-control p-2" id="" name=""/>
+							<input type="text" class="form-control p-2" id="other" name=""/>
 						</div>
 						<div class="col-md-4">
 							<input type="submit" class="form-control btn btn-outline-success" value="검색" />

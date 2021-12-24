@@ -1,6 +1,7 @@
 package dao.user;
 
 import dao.DB;
+import dto.OtherSession;
 import dto.User;
 
 public class UserDao extends DB {
@@ -85,7 +86,17 @@ public class UserDao extends DB {
 	// 6. 회원 탈퇴 메소드
 
 	// 7. 회원 아이디 검색 메소드
-
+	public OtherSession getother( String other) {
+		String sql = "select * from user where user_id like '%"+other+"%'";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				OtherSession otherSession = new OtherSession(rs.getInt(1), rs.getString(2));
+				return otherSession;
+			}
+		} catch (Exception e) { System.out.println("getother sql 오류 :" + e);} return null;
+	}
 	// 8. 아이디 찾기 메소드
 
 	// 9. 비밀번호 찾기 메소드
@@ -98,7 +109,10 @@ public class UserDao extends DB {
 			ps.setString(1, user_id);
 			rs = ps.executeQuery();
 			if(rs.next()) { return rs.getInt(1); }
-		} catch (Exception e) {} return 0;
+		} catch (Exception e) {} 
+		return 0;
+		
+	}
 
 	// 11. 아이디 중복 찾기 메소드
 	public boolean isIdExist(String id) {

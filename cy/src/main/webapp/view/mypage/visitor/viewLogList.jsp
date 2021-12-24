@@ -21,7 +21,7 @@
 	%>
 		<div class="container">
 			<!-- 방명록 작성 -->
-			<form action="../../../controller/mypage/visitor/createLogController.jsp" method="get">
+			<form action="../../controller/mypage/visitor/createLogController.jsp" method="get">
 			<div class="row">
 					<div class="col-md-4" style="height: 140px;" >
 						<img src="" class="form-control" style="height: 100%;">

@@ -10,7 +10,6 @@ public class LogInSession {
 	private String user_id;
 
 	public LogInSession(int user_no, String user_id) {
-		super();
 		this.user_no = user_no;
 		this.user_id = user_id;
 	}
