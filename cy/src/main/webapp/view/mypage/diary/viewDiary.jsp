@@ -79,7 +79,7 @@ ul.diary-tabs li.current {
 					for (DSub dsub : dsubs) {
 					%>
 					<!-- 반복문을 돌면서, 만들어진 dsub 들을 모두 가져와서 출력한다.  -->
-					<li class="tab-link" data-tab="diary-tab<%=dsub.getDsub_no()%>"
+					<li class="tab-link" data-tab="diary-tab-<%=dsub.getDsub_no()%>"
 						onclick="moveToDiaryList(<%=dsub.getDsub_no()%>);"><%=dsub.getName()%></li>
 					<%
 					// idx++;
@@ -101,48 +101,24 @@ ul.diary-tabs li.current {
 				<!-- 선택된 게시판 번호에 해당하는 게시글만 가져와야한다.  -->
 
 				<%
-				// dsub_no 를 어떻게 받아오지?
+				// 왼쪽 메뉴 클릭 후, dsub_no 를 어떻게 받아오지?
 				%>
 
 				<div class="container">
-					<div id="diary-tab{]" class="diary-tab-content current"
+					<div id="diary-tab-{dsub_no}" class="diary-tab-content current"
 						style="overflow: auto;">
-						<button class="btn btn-success">다이어리 작성</button>
-						<hr />
-						<div>
-							<h4>2021.12.23 다이어리</h4>
-						</div>
-						<div class="table-responsive" style="max-width: 100%;">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>번호</th>
-										<th>내용</th>
-										<th>작성일</th>
-										<th colspan="2"></th>
-									</tr>
-								</thead>
+						<%@ include file="viewDiaryList.jsp"%>
 
-								<tbody>
-									<%
-									// 1. for문 돌면서 db에서 데이터 가져오기
-									%>
-									<tr>
 
-										<td>1</td>
-										<td>내용</td>
-										<td>2021.12.23 15:50:00</td>
-										<td><button class="form-control">수정</button></td>
-										<td><button class="form-control">삭제</button></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+
+
+
+
+
 					</div>
 				</div>
-
-
 				<!-- 탭 눌렀을 때 전환될 화면 종료 -->
+
 			</div>
 		</div>
 	</div>
@@ -209,35 +185,27 @@ ul.diary-tabs li.current {
 		function loadDiaryList() {
 			$('#diary-tabs').load(location.href + ' #diary-tabs');
 		}
+		
+		function loadDiarys(dsub_no){
+			// 인수로 dsub_no 를 받아서 
+			// ajax 로 컨트롤러에서 dsub_no 에 해당하는 게시글을 table 형식으로 작성한 후 
+			// diary-tab-{dsub_no} 에 해당하는 div에 table 을 출력한다. 
+		}	
+	
 
-		function moveToDiaryList(dsub_no) {
-			// 다이어리 리스트를 출력하는 페이지를 로드하며 인수를 전달합니다. 
-			// 아래 코드는 <div id="diary-content-area"> 를 새로고침 하는 코드입니다. 
-			// 그러니 일단 이 코드 실행전에 ArrayList 를 받는 코드가 실행되어야합니다. 
+		function moveToDiaryList(no) {
 			
-			$.ajax(
-					{
-						
-					url: '',
-					data : {},
-					success: function(result){
-						
+			 $.ajax({
+				url: 'viewDiaryList.jsp',
+				data: {no: dsub_no},
+				success:function(result){
+					alert(result);
 				}
-					
-						
-						
-					}
-				
-			);
 			
-			
-			$('#diary-content-area').load(
-					location.href + ' #diary-content-area');
+			}); 
+			//$('#diary-content-area').load(location.href + ' #diary-content-area');
 			
 		}
-		
-		
-		
 	</script>
 
 </body>
