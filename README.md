@@ -40,4 +40,21 @@
 2. 방명록 작성하면 DB에 저장완료 
 ![방명록작성확인](https://user-images.githubusercontent.com/88937233/147321338-c900443d-8601-45e4-b215-2c8ee4d300dd.png)
 
-3.
+
+※ 다른 사람의 미니홈피로 들어갈때 내 정보를 가진 session과 다른 사람의 정보를 가진 session이 필요하다고 판단.
+
+4. 검색창에 id설정
+![검색창id](https://user-images.githubusercontent.com/88937233/147335489-bc1fd9ac-3e82-442f-847b-8e6d4b23f519.png)
+
+5. dto other 생성
+
+6. searchUserController에서 검색창에 입력한 값 요청 및 db
+![search](https://user-images.githubusercontent.com/88937233/147335785-6e6c1be0-f4c6-4669-a68c-3f320de7c4a3.png)
+
+7. UserDao에 sql문 작성
+![dao](https://user-images.githubusercontent.com/88937233/147335850-b5dfb9b4-ab12-4af4-a2b8-58fd893a1901.png)
+
+8. header에 적용 
+![header othersession](https://user-images.githubusercontent.com/88937233/147335875-1d354581-164d-4a93-9d0a-4b213e1fd044.png)
+
+
