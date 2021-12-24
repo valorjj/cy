@@ -30,11 +30,13 @@ body {
 					</div>
 					<div class="">
 						<!--  아이디 입력하는 부분 -->
-						<input type="text" class="form-control" id="logInId" name="logInId" placeholder="아이디" />
+						<input type="text" class="form-control" id="logInId"
+							name="logInId" placeholder="아이디" />
 					</div>
 					<div class="">
 						<!-- 비밀번호 입력하는 부분 -->
-						<input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="비밀번호" />
+						<input type="password" class="form-control" id="loginPassword"
+							name="loginPassword" placeholder="비밀번호" />
 					</div>
 					<input type="submit" class="form-control" value="로그인" />
 					<!-- 로그인 버튼 -->
