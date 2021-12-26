@@ -6,50 +6,51 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 스크립트/css/부트스트랩 호출 -->
-	<%@include file="common.jsp"%>
-	<%
-	// 유저 검색, 일촌 파도타기, 로그아웃
-	%>
-	<!-- 헤더시작 -->
-	<div class="wrap">
-		<div id="header" style="height: 5vh;">
-			<div class="container" style="background-color: #cccccc">
-				<!-- 헤더 박스권 생성 -->
-				<form action="#" method="post">
-					<!-- 검색 후 검색 컨트롤러로 이동 -->
-					<div class="row">
-						<div class="col-md-6 input-group my-1 p-1">
-							<div class="row">
-								<div class="col-md-8">
-									<input type="text" class="form-control" id="" name="" />
-								</div>
-								<div class="col-md-4">
-									<input type="submit" class="form-control btn btn-outline-success" value="검색" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 d-flex justify-content-around">
-							<div class="row">
-								<div>
-									<a href="#" class="text-dark">일촌 파도 타기</a>
-								</div>
-								<div>
-									<a href="#" class="text-dark">내 홈페이지</a>
-								</div>
-								<div>
-									<a href="#" class="text-dark">일촌보기</a>
-								</div>
-								<div>
-									<a href="#" class="text-dark">로그아웃</a>
-								</div>
-							</div>
-						</div>
+	<%@ include file="../common/common.jsp"%>
+	<!-- 헤더 고정 -->
+	<div id="header" class="wrap">
+		<div class="container-fluid">
+			<div class="row col-12 justify-content-end my-2">
+				<ul class="d-flex text-dark">
+					<li><a href="../user/login(kth).jsp">로그인</a></li>
+					<li class="mx-2">|</li>
+					<li><a href="">싸이월드</a></li>
+					<li class="mx-2">|</li>
+					<li><a href="">선물가게</a></li>
+					<li class="mx-2">|</li>
+					<li><a href="../user/signup(kth).jsp">회원가입</a></li>
+				</ul>
+			</div>
+			<div class="row col-12 border-bottom">
+				<div class="logo col-4 d-flex justify-content-center align-items-center">
+					<a href="/cy/view/common/home.jsp">
+						<img src="../../image/common/1.logo.png" alt="">
+					</a>
+				</div>
+				<div class="search col-6 boerer d-flex">
+					<div class="input-group rounded align-items-center">
+						<input type="search" class="serarchborder form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+						<span class="input-group-text border-0 ml-2 h-40" id="search-addon">
+							<i class="fas fa-search" style="cursor: pointer;"></i>
+						</span>
 					</div>
-				</form>
+				</div>
+				<div class="banner col-2">
+					<a class="d-flex justify-content-center align-items-center h-100" href="">
+						<img class="h-75 w-75" src="../../image/common/2.bn.PNG" alt="">
+					</a>
+				</div>
+			</div>
+			<div class="row col-12 border-bottom border-dark" style="height: 50px; line-height: 50px;">
+				<ul class="col-10 offset-1 d-flex justify-content-around">
+					<li><a href="">배경음악</a></li>
+					<li><a href="">스킨</a></li>
+					<li><a href="">글꼴</a></li>
+					<li><a href="">미니미</a></li>
+					<li><a href="">스토리룸</a></li>
+				</ul>
 			</div>
 		</div>
-	</div>
-	<!-- 헤더종료 -->
+		<!-- 헤더 고정 -->
 </body>
 </html>

@@ -11,6 +11,7 @@ public class User {
 	private String user_gender; // 회원 성별 [M, F]
 	private String user_pic; // 회원 프로필 사진
 	private int user_age; // 회원 나이
+	private int user_birth; // 회원 생년월일
 	private String nickname; // 홈페이지 별명
 	private String intro; // 홈페이지 소개글
 	private int view; // 조회수
@@ -22,7 +23,7 @@ public class User {
 	// 1. 전체 생성자
 	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
 			String user_email, String user_gender, String user_pic, int user_age, String nickname, String intro,
-			int view) {
+			int view, int user_birth) {
 		super();
 		this.user_no = user_no;
 		this.user_id = user_id;
@@ -36,10 +37,11 @@ public class User {
 		this.nickname = nickname;
 		this.intro = intro;
 		this.view = view;
+		this.user_birth = user_birth;
 	}
 	// 1. 홈페이지 별명, 홈페이지 소개글, 방문자 수 제외한 생성자
 	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
-			String user_email, String user_gender, String user_pic, int user_age) {
+			String user_email, String user_gender, String user_pic, int user_age, int user_birth) {
 		super();
 		this.user_no = user_no;
 		this.user_id = user_id;
@@ -50,12 +52,13 @@ public class User {
 		this.user_gender = user_gender;
 		this.user_pic = user_pic;
 		this.user_age = user_age;
+		this.user_birth = user_birth;
 	}
 	
 	
 	// 1. 유저 고유 번호, 방문자 수 제외한 생성자
 	public User(String user_id, String user_password, String user_name, String user_phone, String user_email,
-			String user_gender, String user_pic, int user_age, String nickname, String intro) {
+			String user_gender, String user_pic, int user_age, String nickname, String intro, int user_birth) {
 		super();
 		this.user_id = user_id;
 		this.user_password = user_password;
@@ -64,10 +67,12 @@ public class User {
 		this.user_email = user_email;
 		this.user_gender = user_gender;
 		this.user_pic = user_pic;
-		this.user_age = user_age;
+		this.user_age = user_age;		
 		this.nickname = nickname;
 		this.intro = intro;
+		this.user_birth = user_birth;
 	}
+	
 	public int getUser_no() {
 		return user_no;
 	}
@@ -163,5 +168,13 @@ public class User {
 	public void setView(int view) {
 		this.view = view;
 	}
+
+	public int getUser_birth() {
+		return user_birth;
+	}
+	public void setUser_birth(int user_birth) {
+		this.user_birth = user_birth;
+	}
+	
 
 }

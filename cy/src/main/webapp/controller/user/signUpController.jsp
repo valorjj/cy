@@ -2,8 +2,7 @@
 <%@page import="dto.User"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 // 회원가입 컨트롤러. 유효성 검사 후 db에 저장합니다. 
 request.setCharacterEncoding("utf-8");
@@ -23,18 +22,15 @@ String pic = multi.getFilesystemName("signPic");
 int age = Integer.parseInt(multi.getParameter("signAge"));
 String nickname = multi.getParameter("signNickname");
 String info = multi.getParameter("signInfo");
+int birth = Integer.parseInt(multi.getParameter("signBirth"));
 
-User user = new User(
-
-		id, password, name, phone, email, gender, pic, age, nickname, info
-
-);
+User user = new User(id, password, name, phone, email, gender, pic, age, nickname, info, birth);
 
 boolean result = UserDao.getUserDao().createAccount(user);
 
 if (result) {
 	// 회원가입 성공 시 
-	response.sendRedirect("../../main/test.jsp");
+	response.sendRedirect("../../view/main/main(kth).jsp");
 } else {
 	out.println("<script> alert('오류가 발생했습니다. ');</script>");
 }

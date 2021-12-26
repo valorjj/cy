@@ -17,7 +17,7 @@ public class UserDao extends DB {
 
 	// 1. 회원가입 메소드
 	public boolean createAccount(User user) {
-		String sql = "INSERT INTO user(user_id, user_password, user_name, user_phone, user_email, user_gender, user_pic, user_age, nickname, intro) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO user(user_id, user_password, user_name, user_phone, user_email, user_gender, user_pic, user_age, nickname, intro, user_birth) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUser_id());
@@ -30,6 +30,7 @@ public class UserDao extends DB {
 			ps.setInt(8, user.getUser_age());
 			ps.setString(9, user.getNickname());
 			ps.setString(10, user.getIntro());
+			ps.setInt(11, user.getUser_birth());
 			ps.executeUpdate();
 			return true;
 
