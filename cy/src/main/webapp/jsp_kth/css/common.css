@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/* 부트스트랩 작성시 참고
+
+그리드 gap
+<div class="grid" style="row-gap: 0;">
+
+// 간격
+ <div class="row gx-3 gy-3">
+
+flex-row
+flex-column
+d-flex justify-content-center  -around -space-between -space-evenly
+d-flex align-items-center // 1줄
+align-content-center // 2줄
+align-self-center // 하위 아이템
+
+// 가운데정렬
+부모 - position-relative
+자식 - position-absolute top-50 start-50 translate-middle
+자식 - 
+ top: 50%; left: 50%; transform: translate(-50%, -50%)
+
+
+이미지1 - <img class="rounded mx-auto d-block">
+이미지2
+<div class="text-center">
+  <img src="..." class="rounded" alt="...">
+</div>
+ */
+
+/* 웰컴체 레귤러 */
+@font-face {
+	font-family: "OTWelcomeRA";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2")
+		format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 웰컴체 볼드 */
+@font-face {
+	font-family: "OTWelcomeBA";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeBA.woff2")
+		format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 공통 */
+
+/* 미디어 쿼리*/
+/* col (xs) : ~ 575  : 폰 */
+/* col-sm : ~ 576   */
+/* col-md- : 768    : 태블릿 */
+/* col-lg- : 960   */
+/* col-xl- : 1140   : 전체 */
+
+/* 미디어쿼리1 (320 - 575) : mobile - col- */
+@media ( max-width : 575px) {
+	.wrap {
+		border: solid 5px red;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리2 (576 - 767) : tablet - col-sm */
+@media ( min-width : 576px) and (max-width: 767px) {
+	.wrap {
+		border: solid 5px green;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리3 (768 - 991) :tablet - col-md */
+@media ( min-width : 768px) {
+	.wrap {
+		border: solid 5px blue;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리3 (992 ~) : pc - col-lg */
+@media ( min-width : 992px) {
+	.wrap {
+		border: solid 5px purple;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미디어쿼리3 (1200 ~) : pc - col-xl */
+@media ( min-width : 1200px) {
+	.wrap {
+		border: solid 5px purple;
+		font-family: "OTWelcomeRA";
+	}
+}
+
+/* 미니홈 */
+#minihome {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+#minihome ul,li,ol {
+	list-style: none;
+}
+
+.bc-img {
+	background-image: url(../../img/gridback.png);
+	background-repeat: repeat;
+	background-size: 20px;
+}
