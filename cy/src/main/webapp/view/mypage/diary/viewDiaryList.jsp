@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%
 // 1. viewDiary.jsp 에서 인수를 받아옵니다.
-%>
+// 이유는 모르겠지만 dsub_no 를 받아오면 자꾸 에러 뱉어내서 어처구니 없게도 여기서 멈춰있습니다. null 예외처리를 해줘도 동일하게 오류 발생
+// 한줄 한줄 찍어보면서 한번 더 체크해야합니다.
 
+%>
 <div class="container">
-	<div id="rs"></div>
 	<button class="btn btn-success">다이어리 작성</button>
 	<hr />
 	<div>
