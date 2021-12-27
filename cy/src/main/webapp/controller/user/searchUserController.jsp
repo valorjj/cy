@@ -11,9 +11,8 @@
 	String other = request.getParameter("other");
 	OtherSession otherSession = UserDao.getUserDao().getother(other);
 	
-	System.out.print(otherSession);
 	session.setAttribute("other", otherSession);
-	
+	System.out.print(otherSession);
 	
 	
 %>

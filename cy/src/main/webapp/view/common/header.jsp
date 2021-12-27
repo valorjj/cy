@@ -34,7 +34,7 @@
 				<div class="col-md-6 input-group my-1 p-1">
 					<div class="row">
 						<div class="col-md-8">
-							<input type="text" class="form-control p-2" id="other" name=""/>
+							<input type="text" class="form-control p-2" id="other" name="other"/>
 						</div>
 						<div class="col-md-4">
 							<input type="submit" class="form-control btn btn-outline-success" value="검색" />
