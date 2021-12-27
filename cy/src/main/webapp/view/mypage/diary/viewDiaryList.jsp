@@ -2,9 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%
 // 1. viewDiary.jsp 에서 인수를 받아옵니다.
+
+
+
 %>
 
-<div class="container">
+<!-- <div class="container">
 	<div id="rs"></div>
 	<button class="btn btn-success">다이어리 작성</button>
 	<hr />
@@ -34,3 +37,4 @@
 		</table>
 	</div>
 </div>
+ -->

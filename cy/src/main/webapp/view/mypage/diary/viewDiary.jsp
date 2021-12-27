@@ -79,8 +79,9 @@ ul.diary-tabs li.current {
 					for (DSub dsub : dsubs) {
 					%>
 					<!-- 반복문을 돌면서, 만들어진 dsub 들을 모두 가져와서 출력한다.  -->
-					<li class="tab-link" data-tab="diary-tab-<%=dsub.getDsub_no()%>"
-						onclick="moveToDiaryList(<%=dsub.getDsub_no()%>);"><%=dsub.getName()%></li>
+					<li class="tab-link" data-tab="diary-tab"
+						onclick="moveToDiaryList(<%=dsub.getDsub_no()%>);"
+						id="tabs<%=dsub.getDsub_no()%>"><%=dsub.getName()%></li>
 					<%
 					// idx++;
 					}
@@ -108,9 +109,6 @@ ul.diary-tabs li.current {
 					<div id="diary-tab-{dsub_no}" class="diary-tab-content current"
 						style="overflow: auto;">
 						<%@ include file="viewDiaryList.jsp"%>
-
-
-
 
 
 
@@ -181,7 +179,7 @@ ul.diary-tabs li.current {
 		}
 
 		// 특정 id 값을 가진 태그만 새로고침 하는 코드입니다.
-		// href 다음에 + '  ' 여기 시작에 꼭 한칸을 띄워야 합니다 .
+		// href 다음에 + '  '  시작에 꼭 한칸을 띄워야 합니다 .
 		function loadDiaryList() {
 			$('#diary-tabs').load(location.href + ' #diary-tabs');
 		}
@@ -194,14 +192,18 @@ ul.diary-tabs li.current {
 	
 
 		function moveToDiaryList(no) {
-			
-			 $.ajax({
-				url: 'viewDiaryList.jsp',
-				data: {no: dsub_no},
+			var number = no;
+			alert(number);
+			var dsubNo = document.getElementById('tabs' + number).innerHTML;
+			alert(dsubNo);
+			alert('ajax 통신 시도');
+			$.ajax({
+				url: '../../controller/mypage/diary/createDiaryController.jsp',
+				data: {dno: number},
 				success:function(result){
 					alert(result);
 				}
-			
+				
 			}); 
 			//$('#diary-content-area').load(location.href + ' #diary-content-area');
 			

@@ -17,9 +17,6 @@ body {
 
 	<!-- 로그인 페이지에는 헤더 빼고 common 만 끌어온다. -->
 	<%@ include file="../common/common.jsp"%>
-
-	%>
-
 	<div class="container">
 		<div class="row">
 			<form action="../../controller/user/logInController.jsp" method="get">
