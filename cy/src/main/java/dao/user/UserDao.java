@@ -77,6 +77,37 @@ public class UserDao extends DB {
 	}
 
 	// 3. 하나의 회원 객체 가져오는 메소드
+	// 3.1 full 생성자를 통해 비밀번호를 제외한 모든 정보를 가져옵니다. 
+	public User user() {
+
+		String sql = "select * from user";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				User user = new User(
+					rs.getInt(1) ,
+					rs.getString(2) ,
+					"" ,
+					rs.getString(4) ,
+					rs.getString(5) ,
+					rs.getString(6) ,
+					rs.getString(7) ,
+					rs.getString(8) ,
+					rs.getInt(9) ,
+					rs.getString(10) ,
+					rs.getString(11) ,
+					rs.getInt(12)
+					
+				);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return null;
+	}
 
 	// 4. 전체 회원 리스트 가져오는 메소드
 

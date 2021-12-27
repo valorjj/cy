@@ -43,17 +43,13 @@ ul.tabs li.current {
 	display: inherit;
 }
 </style>
-
-
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp"%>
-
 	<div class="container p-3" style="background-color: #263333;">
 		<div class="row no-gutters">
 			<div class="col-md-10">
-				<!-- 탭 눌렀을 때 전환될 화면 1 -->
 				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
 					<%@ include file="main.jsp"%>
@@ -77,18 +73,15 @@ ul.tabs li.current {
 				</div>
 
 				<div id="tab-6" class="tab-content">
-					<%@ include file="../mypage/visitor/viewLogList.jsp" %>
+					<%@ include file="../mypage/visitor/viewLogList.jsp"%>
 				</div>
-        
+
 				<div id="tab-7" class="tab-content" style="overflow: auto;">
 					<!-- 본인 홈페이지에서만 관리 페이지 호출 -->
 				</div>
-
-
+				
+				<input type="button" value="팝업창 호출" onclick="showPopup();"/>
 			</div>
-			<!-- 탭 눌렀을 때 전환될 화면 2 -->
-
-
 			<div class="col-md-2">
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">홈</li>
@@ -102,6 +95,7 @@ ul.tabs li.current {
 			</div>
 		</div>
 	</div>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('ul.tabs li').click(function() {
@@ -114,6 +108,9 @@ ul.tabs li.current {
 				$("#" + tab_id).addClass('current');
 			});
 		});
+
+	  function showPopup() { window.open("main.jsp", "a", "width=800, height=500, left=100, top=50"); }
+
 	</script>
 </body>
 </html>

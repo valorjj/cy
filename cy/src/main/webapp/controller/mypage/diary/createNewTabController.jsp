@@ -6,7 +6,6 @@
 // 0. 세션에 저장된 사용자 아이디와 이름 호출
 LogInSession logInData = (LogInSession) session.getAttribute("logIn");
 int user_no = logInData.getUser_no();
-out.println("<script> alert('탭 생성 컨트롤러 접근?'); </script>");
 // 1. 사용자가 입력한 폴더 이름
 String newName = request.getParameter("newName");
 // 2. dao 통해 db 에 접근

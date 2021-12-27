@@ -54,11 +54,6 @@ ul.diary-tabs li.current {
 	// 1. db 에 있는 데이터를 호출해서 리스트에 저장합니다.
 	// 2. 리스트를 for 문을 이용해서 표시합니다.
 	ArrayList<DSub> dsubs = DSubDao.getdsubDao().getDSubList();
-	int dsub_no = -1;
-	// 3. dsub 에 있는 정보 중, dsub_no 만을 저장할 리스트를 만듭니다. 
-	ArrayList<Integer> dsubsNoList = new ArrayList<>();
-	// 4. dpost 정보를 불러옵니다. 
-	ArrayList<DPost> dPosts = DPostDao.getdPostDao().getDPostList();
 	%>
 
 	<div class="container">
@@ -71,21 +66,17 @@ ul.diary-tabs li.current {
 				</div>
 				<!-- 만들어진 서브 게시판이 출력될 영역 시작 -->
 				<ul class="diary-tabs" id="diary-tabs" style="overflow: auto;">
-					<li class="current tab-link" data-tab="diary-tab-0">폴더 목록</li>
+					<li class="current tab-link" data-tab="diary-tab current">폴더
+						목록</li>
 					<%
 					for (DSub dsub : dsubs) {
-						// dsub_no 를 넘기는 것에 문제가 있어서 일단 배열에 저장해둡니다. 
-						dsubsNoList.add(dsub.getDsub_no());
 					%>
 					<!-- 반복문을 돌면서, 만들어진 dsub 들을 모두 가져와서 출력한다.  -->
-					<<<<<<< HEAD
+
 					<li class="tab-link" data-tab="diary-tab"
-						onclick="moveToDiaryList(<%=dsub.getDsub_no()%>);"
-						id="tabs<%=dsub.getDsub_no()%>"><%=dsub.getName()%></li> =======
-					<!-- diary-tab-{dsub_no} 를 넣습니다.  -->
-					<li class="tab-link" data-tab="diary-tab"
-						onclick="moveToDiaryList(<%=dsub.getDsub_no()%>);"><%=dsub.getName()%></li>
-					>>>>>>> branch 'dev' of https://github.com/valorjj/cy.git
+						id="tabs<%=dsub.getDsub_no()%>"
+						onclick="dsubNoDeliver(<%=dsub.getDsub_no()%>);"><%=dsub.getName()%></li>
+
 					<%
 					}
 					%>
@@ -94,7 +85,12 @@ ul.diary-tabs li.current {
 			</div>
 			<!-- 왼쪽 서브 폴더 메뉴 종료  -->
 
+			<!-- diary-content-area 가 실행됨과 동시에 dsub_no 를 받은채로 실행되어야합니다.  -->
+
+
 			<div class="col-md-10" id="diary-content-area">
+
+				<%@ include file="viewDiaryList.jsp"%>
 				<!-- 상단 달력 시작 -->
 				<div class="row">
 					<h6>달력 출력 될 부분</h6>
@@ -103,23 +99,26 @@ ul.diary-tabs li.current {
 				<hr />
 				<!-- 탭 눌렀을 때 전환될 화면 시작 -->
 				<div class="container">
-					<button type="button" class="form-control" onclick=""
-						data-toggle="modal" data-target="#diary-new-post-modal">글등록</button>
+
+					<!-- <button type="button" class="form-control" onclick=""
+						data-toggle="modal" data-target="#diary-new-post-modal"
+						id="postNewDiaryBtn" name="postNewDiaryBtn">글등록</button> -->
+					<button type="button" class="form-control" id="postNewDiaryBtn"
+						name="postNewDiaryBtn">글등록</button>
+
 					<button type="button" class="form-control">삭제</button>
-
-					<%@ include file="viewDiaryList.jsp"%>
-
-					<<<<<<< HEAD
+					<div id="dList"></div>
+					<%-- <%@ include file="viewDiaryList.jsp"%> --%>
 
 
 				</div>
-				======= >>>>>>> branch 'dev' of https://github.com/valorjj/cy.git
+
 			</div>
 			<!-- 탭 눌렀을 때 전환될 화면 종료 -->
 		</div>
 
 	</div>
-	</div>
+
 
 	<div class="modal fade" id="diary-new-tab-modal" tabindex="-1"
 		aria-hidden="true">
@@ -146,7 +145,7 @@ ul.diary-tabs li.current {
 		</div>
 	</div>
 
-	<div class="modal fade" id="diary-new-post-modal" tabindex="-1"
+	<!-- 	<div class="modal fade" id="diary-new-post-modal" tabindex="-1"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -160,8 +159,6 @@ ul.diary-tabs li.current {
 				<div class="modal-body">
 					<textarea name="newDiaryPost" id="newDiaryPost" cols="30" rows="10"
 						class="form-control"></textarea>
-					<!-- <input type="text" name="newDiaryPost" class="form-control"
-						id="newDiaryPost" /> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -172,13 +169,12 @@ ul.diary-tabs li.current {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
 	<script type="text/javascript">
-
 		// tab 전환 이벤트 
-		$(window).ready(function() {
+		$(document).ready(function() {
 			$('ul.diary-tabs li').click(function() {
 				var d_tab_id = $(this).attr('data-tab');
 				$('ul.diary-tabs li').removeClass('current');
@@ -187,13 +183,12 @@ ul.diary-tabs li.current {
 				$("#" + d_tab_id).addClass('current');
 			})
 		});
-		
-		// 폴더 별 전환 이벤트 
-		
-		
+
+
 		// 새로운 게시판을 만드는 함수
 		// 게시판 생성 버튼을 누르면, 컨트롤러를 통해 db 에 등록 후 
 		function createNewFolder() {
+
 			var newName = document.getElementById('newName').value;
 			// 입력받은 폴더 값을 db에 저장한다. 
 			$
@@ -205,7 +200,8 @@ ul.diary-tabs li.current {
 						success : function(result) {
 							if (result == 1) {
 								// 폴더 생성 완료
-								loadDiaryList();
+								alert('폴더 생성 완료되었습니다. ');
+								refreshDiaryList();
 							} else if (result == 2) {
 								// 폴더 생성 실패 [db 연동 오류, 혹은 유효성 검사에서 탈락]
 							}
@@ -213,81 +209,108 @@ ul.diary-tabs li.current {
 					});
 		}
 
-
 		// href 다음에 + '  '  시작에 꼭 한칸을 띄워야 합니다 .
-		function loadDiaryList() {
-			$('#diary-tabs').load(location.href + ' #diary-tabs');
+		function refreshDiaryList() {
+			$('#diary-tabs').load(window.location.href + ' #diary-tabs');
 		}
+
+		/* 		function loadDiarys(dsub_no){
+		 // 인수로 dsub_no 를 받아서 
+		 // ajax 로 컨트롤러에서 dsub_no 에 해당하는 게시글을 table 형식으로 작성한 후 
+		 // diary-tab-{dsub_no} 에 해당하는 div에 table 을 출력한다. 
+		 }	 */
+
+		// 서브 폴더 클릭 시 dusb_no 에 해당하는 정보만 불러옵니다. 
+		/* 		function moveToDiaryList(no) {
+		 var number = no; // 함수에 건네 받은 인수를 변수에 할당합니다. 
+		 alert(number); // 잘 넘어오는지 확인합니다. 
+		 var dsubNo = document.getElementById('tabs' + number).innerHTML;
+		 alert(dsubNo);
+		 alert('ajax 통신 시도');
+		 $.ajax({
+		 url: '../../controller/mypage/diary/createDiaryController.jsp',
+		 data: {dno: number},
+		 success:function(result){
+		 alert(result);
+		 }
 		
-		function loadDiarys(dsub_no){
-			// 인수로 dsub_no 를 받아서 
-			// ajax 로 컨트롤러에서 dsub_no 에 해당하는 게시글을 table 형식으로 작성한 후 
-			// diary-tab-{dsub_no} 에 해당하는 div에 table 을 출력한다. 
-		}	
-	
+		 }); 
+		 //$('#diary-content-area').load(location.href + ' #diary-content-area');
 
-		function moveToDiaryList(no) {
+		 } */
 
+		/* 		$(window).ready(function() {
+		 function loadDiaryList() {
+		 $('#diary-tabs').load(location.href + ' #diary-tabs');
+		 }
+
+		 }); */
+
+		function createNewDiaryPost(no) {
 			var number = no;
-			alert(number);
-			var dsubNo = document.getElementById('tabs' + number).innerHTML;
-			alert(dsubNo);
+			var idval = 'tab' + number;
+			var dsubNo = document.getElementById(idval).innerHTML;
 			alert('ajax 통신 시도');
+			var newDiaryPost = document.getElementById('newDiaryPost').value;
+			$
+					.ajax({
+						url : '../../controller/mypage/diary/createNewPostController.jsp',
+						data : {
+							newDiaryPost : newDiaryPost,
+							dno : number
+						},
+						success : function(result) {
+							alert(result);
+							if (result == 1) {
+								alert('글 등록이 완료되었습니다. ');
+								$('#diary-content-area').load(
+										window.location.href
+												+ ' #diary-content-area');
+							} else if (result == 2) {
+								alert('글 등록 실패 ');
+							}
+						}
+
+					});
+		}
+		 
+		function dsubNoDeliver(dsubNo){
+			// 동일한 서브폴더 내에서 계속 이동해야합니다.
+			// 이동할 때, dsubNo 값을 가지고 이동해야합니다. 
+			
+			// 폴더 이름을 클릭하면 dsubNo 을 전달하며 게시물 목록을 가져옵니다. 
+			var dsubNo = dsubNo;
+			document.getElementById('diary-content-area').innerHTML += "<button id='testBtn' class=''> 버튼테스트</button>";
+			$('#testBtn').click(function(){
+				// 버튼 눌렀을 때 글 작성 
+				document.getElementById('dList').innerHTML += "<input type='text' class='form-control'>  "
+				document.getElementById('dList').innerHTML += "<textarea name='newDiaryPost' id='newDiaryPost' cols='30' rows='10' class='form-control'></textarea> "
+				
+				
+				
+			});
+			
+			// 번호 전달해서 리스트 가져오기 
 			$.ajax({
-				url: '../../controller/mypage/diary/createDiaryController.jsp',
-				data: {dno: number},
+				url: '../../controller/mypage/diary/loadDiaryListController.jsp',
+				data: {dsubNo : dsubNo},
 				success:function(result){
 					alert(result);
-					if(result==1){
-						
-						
-						
-						$('#diary-content-area').load(location.href + ' #diary-content-area');
-					} else if(result==2){
-						
-					}
-					
 				}
 				
-			}); 
-			//$('#diary-content-area').load(location.href + ' #diary-content-area');
-
-		}
-
-		$(window).ready(function() {
-			function loadDiaryList() {
-				$('#diary-tabs').load(location.href + ' #diary-tabs');
-			}
-
-		});
-
- 		function createNewDiaryPost() {
-			var newDiaryPost = document.getElementById('newDiaryPost').value;
-			$.ajax({
-				url : '../../controller/mypage/diary/createNewPostController.jsp',
-				data : {
-					newDiaryPost : newDiaryPost
-				},
-				success : function(result) {
-					if (result == 1) {
-						alert('글 등록이 완료되었습니다. ');
-						$('#diary-content-area').load(
-								location.href + ' #diary-content-area');
-					} else if (result == 2) {
-
-					}
-				}
-
 			});
+			
+			
 		}
-		
-/* 		$(document).on("click", ".open-AddBookDialog", function () {
-		     var myBookId = $(this).data('id');
-		     $(".modal-body #bookId").val( myBookId );
-		     // As pointed out in comments, 
-		     // it is unnecessary to have to manually call the modal.
-		     // $('#addBookDialog').modal('show');
-		}); */
+
+		// 함수 사용 예제
+		/* 		$(document).on("click", ".open-AddBookDialog", function () {
+		 var myBookId = $(this).data('id');
+		 $(".modal-body #bookId").val( myBookId );
+		 // As pointed out in comments, 
+		 // it is unnecessary to have to manually call the modal.
+		 // $('#addBookDialog').modal('show');
+		 }); */
 	</script>
 
 </body>

@@ -9,3 +9,4 @@ int dsub_no = Integer.parseInt(request.getParameter("dno"));
 System.out.println("dsub_no 는 : " + dsub_no + "입니다. ");
 
 %>
+

@@ -2,5 +2,12 @@
     pageEncoding="UTF-8"%>
 <%
 
+int dsubNo = Integer.parseInt(request.getParameter("dsubNo"));
+out.print(dsubNo);
 
 %>
+
+<table>
+	
+
+</table>

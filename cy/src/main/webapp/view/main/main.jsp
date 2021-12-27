@@ -7,7 +7,6 @@
 <title>메인 페이지</title>
 </head>
 <body>
-
 	<!-- 메인 페이지 시작 -->
 	<div class="container">
 		<div class="row">
@@ -44,7 +43,7 @@
 					<div class="col-md-3">
 						<!-- 프로필 사진 부분 -->
 						<img src="../../image/default-profile-photo.png" alt=""
-							class="img-thumbnail" />
+							class="img-thumbnail" style="max-width: 100%;" />
 						<hr />
 						<div>
 							<h3>홈페이지 소개</h3>
