@@ -59,9 +59,9 @@ public class DPostDao extends DB {
 	}
 
 	// 1.2 특정 게시판 다이어리 데이터 가져오기
-	public DPost getDPost(int dsub_no) {
+	public ArrayList<DPost> getDPost(int dsub_no) {
 
-		DPost dPost;
+		ArrayList<DPost> dposts = new ArrayList<>();
 
 		String sql = "select * from dpost where dsub_no=?";
 		try {
@@ -69,9 +69,10 @@ public class DPostDao extends DB {
 			ps.setInt(1, dsub_no);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				dPost = new DPost(rs.getInt(1), rs.getString(4), rs.getString(5));
-				return dPost;
+				DPost dPost = new DPost(rs.getInt(1), rs.getString(4), rs.getString(5));
+				dposts.add(dPost);
 			}
+			return dposts;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

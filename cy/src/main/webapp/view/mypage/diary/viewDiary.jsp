@@ -90,7 +90,7 @@ ul.diary-tabs li.current {
 
 			<div class="col-md-10" id="diary-content-area">
 
-				<%@ include file="viewDiaryList.jsp"%>
+				<%-- <%@ include file="viewDiaryList.jsp"%> --%>
 				<!-- 상단 달력 시작 -->
 				<div class="row">
 					<h6>달력 출력 될 부분</h6>
@@ -103,10 +103,11 @@ ul.diary-tabs li.current {
 					<!-- <button type="button" class="form-control" onclick=""
 						data-toggle="modal" data-target="#diary-new-post-modal"
 						id="postNewDiaryBtn" name="postNewDiaryBtn">글등록</button> -->
-					<button type="button" class="form-control" id="postNewDiaryBtn"
-						name="postNewDiaryBtn">글등록</button>
+					<!-- <button type="button" class="form-control" id="postNewDiaryBtn"
+						name="postNewDiaryBtn">글등록</button> -->
 
 					<button type="button" class="form-control">삭제</button>
+
 					<div id="dList"></div>
 					<%-- <%@ include file="viewDiaryList.jsp"%> --%>
 
@@ -145,33 +146,6 @@ ul.diary-tabs li.current {
 		</div>
 	</div>
 
-	<!-- 	<div class="modal fade" id="diary-new-post-modal" tabindex="-1"
-		aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="diary-new-tab-modal-label">다이어리 내용</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<textarea name="newDiaryPost" id="newDiaryPost" cols="30" rows="10"
-						class="form-control"></textarea>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">취소</button>
-					<button type="button" id="createNewPostBtn" name="createNewPostBtn"
-						onclick="createNewDiaryPost();" class="btn btn-primary"
-						data-dismiss="modal">생성</button>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-
 	<script type="text/javascript">
 		// tab 전환 이벤트 
 		$(document).ready(function() {
@@ -182,6 +156,7 @@ ul.diary-tabs li.current {
 				$(this).addClass('current');
 				$("#" + d_tab_id).addClass('current');
 			})
+			
 		});
 
 
@@ -214,93 +189,86 @@ ul.diary-tabs li.current {
 			$('#diary-tabs').load(window.location.href + ' #diary-tabs');
 		}
 
-		/* 		function loadDiarys(dsub_no){
-		 // 인수로 dsub_no 를 받아서 
-		 // ajax 로 컨트롤러에서 dsub_no 에 해당하는 게시글을 table 형식으로 작성한 후 
-		 // diary-tab-{dsub_no} 에 해당하는 div에 table 을 출력한다. 
-		 }	 */
-
-		// 서브 폴더 클릭 시 dusb_no 에 해당하는 정보만 불러옵니다. 
-		/* 		function moveToDiaryList(no) {
-		 var number = no; // 함수에 건네 받은 인수를 변수에 할당합니다. 
-		 alert(number); // 잘 넘어오는지 확인합니다. 
-		 var dsubNo = document.getElementById('tabs' + number).innerHTML;
-		 alert(dsubNo);
-		 alert('ajax 통신 시도');
-		 $.ajax({
-		 url: '../../controller/mypage/diary/createDiaryController.jsp',
-		 data: {dno: number},
-		 success:function(result){
-		 alert(result);
-		 }
-		
-		 }); 
-		 //$('#diary-content-area').load(location.href + ' #diary-content-area');
-
-		 } */
-
-		/* 		$(window).ready(function() {
-		 function loadDiaryList() {
-		 $('#diary-tabs').load(location.href + ' #diary-tabs');
-		 }
-
-		 }); */
-
-		function createNewDiaryPost(no) {
-			var number = no;
-			var idval = 'tab' + number;
-			var dsubNo = document.getElementById(idval).innerHTML;
-			alert('ajax 통신 시도');
-			var newDiaryPost = document.getElementById('newDiaryPost').value;
-			$
-					.ajax({
-						url : '../../controller/mypage/diary/createNewPostController.jsp',
-						data : {
-							newDiaryPost : newDiaryPost,
-							dno : number
-						},
-						success : function(result) {
-							alert(result);
-							if (result == 1) {
-								alert('글 등록이 완료되었습니다. ');
-								$('#diary-content-area').load(
-										window.location.href
-												+ ' #diary-content-area');
-							} else if (result == 2) {
-								alert('글 등록 실패 ');
-							}
-						}
-
-					});
-		}
-		 
 		function dsubNoDeliver(dsubNo){
+
 			// 동일한 서브폴더 내에서 계속 이동해야합니다.
 			// 이동할 때, dsubNo 값을 가지고 이동해야합니다. 
-			
 			// 폴더 이름을 클릭하면 dsubNo 을 전달하며 게시물 목록을 가져옵니다. 
 			var dsubNo = dsubNo;
-			document.getElementById('diary-content-area').innerHTML += "<button id='testBtn' class=''> 버튼테스트</button>";
-			$('#testBtn').click(function(){
-				// 버튼 눌렀을 때 글 작성 
-				document.getElementById('dList').innerHTML += "<input type='text' class='form-control'>  "
-				document.getElementById('dList').innerHTML += "<textarea name='newDiaryPost' id='newDiaryPost' cols='30' rows='10' class='form-control'></textarea> "
+			
+			$(window).ready(function(){
+				$.ajax({
+					url: '../../controller/mypage/diary/loadDiaryListController.jsp',
+					data: {dsubNo : dsubNo},
+					success:function(result){
+						alert(result);
+						document.getElementById('diary-content-area').innerHTML += result;
+						// $('#diary-content-area').load(window.location.href + ' #diary-content-area');
+						// $('#dList').load('viewDiaryList.jsp');
+						
+					}
+				});
 				
 				
 				
 			});
 			
-			// 번호 전달해서 리스트 가져오기 
-			$.ajax({
+			document.getElementById('diary-content-area').innerHTML += "<button type='button' id='testBtn' class='btn btn-secondary btn-sm'> 글등록</button>";
+			
+/* 			$.ajax({
 				url: '../../controller/mypage/diary/loadDiaryListController.jsp',
 				data: {dsubNo : dsubNo},
 				success:function(result){
 					alert(result);
+					document.getElementById('diary-content-area').innerHTML += result;
+					// $('#diary-content-area').load(window.location.href + ' #diary-content-area');
+					// $('#dList').load('viewDiaryList.jsp');
+					
 				}
+			}); */
+			
+			
+			$('#testBtn').click(function(){
 				
+				
+				// 버튼 눌렀을 때 글 작성 
+				// db에서 일부러 제목 작성은 빼버렸다. 다이어리의 의도는 그 순간 순간 메모장, 낙서장이기 때문에
+				// 작성한 시간 자체를 제목으로 하려고 한다. 
+				// document.getElementById('dList').innerHTML += "제목 : <input type='text' class='form-control'>  <br>"
+				document.getElementById('dList').innerHTML += "내용 : <textarea id='newDiaryPost' cols='30' rows='10' class='form-control'> </textarea> "
+				document.getElementById('dList').innerHTML += "<button class='btn btn-secondary' id='createDiary' name='createDiary' > 확인 </button>";
+ 				
+				$("#createDiary").click(function(){
+					var dcontent = document.getElementById("newDiaryPost").value;
+					$.ajax({
+						url: "../../controller/mypage/diary/createDiaryController.jsp",
+						data: {dsubNo : dsubNo, dcontent : dcontent},
+						success: function(result){
+							if(result==1){
+								// 등록 성공
+								$('#diary-content-area').load(window.location.href + ' #diary-content-area');
+							} else if (result==2){
+								// 등록 실패
+								location.reload();
+							}
+						}
+					});
+				});
 			});
 			
-			
+			// 번호 전달해서 리스트 가져오기 
+			// 컨트롤러 통해 db 접근 후, 반복문으로 모든 데이터를 가져와서 출력해야 합니다
+			$.ajax({
+				url: 'viewDiaryList.jsp',
+				data: {dsubNo : dsubNo},
+				success:function(result){
+					/* alert(result);
+					document.getElementById('diary-content-area').innerHTML += result; */
+					// $('#diary-content-area').load(window.location.href + ' #diary-content-area');
+					$('#dList').load('viewDiaryList.jsp');
+					
+				}
+			});
 		}
 
 		// 함수 사용 예제
