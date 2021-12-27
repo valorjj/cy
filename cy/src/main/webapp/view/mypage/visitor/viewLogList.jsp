@@ -16,22 +16,22 @@
 		// viewLogList.jsp 페이지가 로드됨과 동시에 viewLogListController.jsp 에서 DB 에 접근 후, ArrayList<Visitor> 리스트로 불러옵니다. 
 		// 리스트 호출 후, 레이아웃에 맞게 [글내용] [작성자] [작성일] [수정] [삭제] 요소를 출력합니다. 
 		
+		//<form action="../../controller/mypage/visitor/createLogController.jsp" method="get">
 		
-	
 	%>
-		<div class="container">
+		<div class="container" id="visitorcontainer">
 			<!-- 방명록 작성 -->
-			<form action="../../controller/mypage/visitor/createLogController.jsp" method="get">
+			
 			<div class="row">
 					<div class="col-md-4" style="height: 140px;" >
 						<img src="" class="form-control" style="height: 100%;">
 					</div>
 					<div class="col-md-8" style="height: 140px;">
-						<textarea rows="" cols="" class="form-control" style="height: 100%;" name="content"></textarea>
-						<input type="submit" value="확 인">
+						<textarea rows="" cols="" class="form-control" style="height: 100%;" id="content"></textarea>
+						<button id="btnwrite" onclick="visitorwrite();"> 작성 </button>
 					</div> 
 				</div><hr>
-			</form>
+			
 			<!-- 방명록 작성 end -->
 			<!-- 방명록 list -->
 			<div class="row form-control">
@@ -48,5 +48,26 @@
 				</div><hr>
 			</div>
 		</div>
+		
+		<script type="text/javascript">
+		function visitorwrite() {
+			var visitor = document.getElementById('content').value;
+			alert(visitor);
+			
+				$.ajax({
+					url : "../../controller/mypage/visitor/createLogController.jsp",
+					data : { content : visitor },
+					success : function(result) {
+						if(result == 1 ) {
+							$("#visitorcontainer").load("../mypage/visitor/viewLogList.jsp");
+						}
+						else {
+							alert("작성실패");
+						}
+					}
+				});
+		}
+		
+		</script>
 </body>
 </html>

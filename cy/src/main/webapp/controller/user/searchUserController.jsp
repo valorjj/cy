@@ -9,11 +9,9 @@
 	// text에 입력한 값 요청 및 변수저장
 	// 변수로 sql에 검색 요청 
 	String other = request.getParameter("other");
+	OtherSession otherSession = UserDao.getUserDao().getother(other);
 	
-	OtherSession otherSession = new OtherSession();
-			
-			UserDao.getUserDao().getother(other);
-	
+	System.out.print(otherSession);
 	session.setAttribute("other", otherSession);
 	
 	

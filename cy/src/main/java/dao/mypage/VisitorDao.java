@@ -21,6 +21,7 @@ public class VisitorDao extends DB {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, visitor.getUser_no());
 			ps.setString(2, visitor.getcontent());
+			ps.setString(3, visitor.getUser_id());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {System.out.println("방명록 작성 실패 :" + e);} return false;
@@ -28,14 +29,10 @@ public class VisitorDao extends DB {
 	//-----------------------------------------------------------------------------------------
 	
 	
-//	// 전체 게시물 조회
+	// 전체 게시물 조회
 //	public ArrayList<Visitor> visitorlist(int user_no) {
 //		ArrayList<Visitor> visitors = new ArrayList<Visitor>();
 //		String sql = "select * from visitor where ";
 //	}
 	
-//	public boolean getuser_no() {
-//		
-//		
-//	}
 }

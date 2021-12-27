@@ -85,7 +85,7 @@ public class UserDao extends DB {
 
 	// 6. 회원 탈퇴 메소드
 
-	// 7. 회원 아이디 검색 메소드
+	// 7. 회원 아이디 검색 메소드 [ 다른 사람 페이지로 넘어갈때 ]
 	public OtherSession getother( String other) {
 		String sql = "select * from user where user_id like '%"+other+"%'";
 		try {
@@ -97,6 +97,20 @@ public class UserDao extends DB {
 			}
 		} catch (Exception e) { System.out.println("getother sql 오류 :" + e);} return null;
 	}
+	
+	// 7.1 방명록 작성시 회원 아이디 넣기 위한 sql [ 조지훈 12.27 ]
+	public String getid(int user_no) {
+		String sql = "select user_id from user where user_no = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {System.out.println("회원아이디 가져오기 실패 :" + e);}return null;
+	}
+	// 7.1 끝
 	// 8. 아이디 찾기 메소드
 
 	// 9. 비밀번호 찾기 메소드
