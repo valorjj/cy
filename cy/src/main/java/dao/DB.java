@@ -22,7 +22,7 @@ public class DB {
 
 
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cy?serverTimezone=UTC", "root", "1234");
-			// DriverManager.getConnection("jdbc:mysql://localhost:3307/cy?serverTimezone=UTC","root","1234");
+			// DriverManager.getConnection("jdbc:mysql://localhost:3306/cy?serverTimezone=UTC","root","1234");
 
 			System.out.println("[mysql DB 연동성공]");
 
