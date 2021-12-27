@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>탭 연습</title>
+<title>메인 화면</title>
 
 <style type="text/css">
 body {
@@ -61,7 +61,6 @@ ul.tabs li.current {
 
 				<div id="tab-2" class="tab-content" style="overflow: auto;">
 					<!-- 프로필 페이지 호출  -->
-					<%@ include file="../user/viewUserProfile.jsp"%>
 				</div>
 
 				<div id="tab-3" class="tab-content" style="overflow: auto;">

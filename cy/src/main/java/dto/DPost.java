@@ -16,6 +16,26 @@ public class DPost {
 		this.date = date;
 	}
 
+	public DPost(int dsub_no, int user_no, String content) {
+		super();
+		this.dsub_no = dsub_no;
+		this.user_no = user_no;
+		this.content = content;
+	}
+
+	public DPost(String content, String date) {
+		super();
+		this.content = content;
+		this.date = date;
+	}
+
+	public DPost(int dpost_no, String content, String date) {
+		super();
+		this.dpost_no = dpost_no;
+		this.content = content;
+		this.date = date;
+	}
+
 	public int getDpost_no() {
 		return dpost_no;
 	}
