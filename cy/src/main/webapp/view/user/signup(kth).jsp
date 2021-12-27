@@ -1,3 +1,4 @@
+<%@page import="dto.LogInSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,13 @@
 <body>
 	<%@ include file="../common/common.jsp"%>
 	<%@ include file="../common/header(kth).jsp"%>
+<%-- 	<%
+		// 로그인[세션]이 되어 있는경우
+		if( LogInSessionid!= null ){
+			out.print("<script>alert('로그인이 되어있습니다.');</script>");
+			out.println("<script>location.href='../main.jsp';</script>");
+		}
+	%> --%>
 	<!-- 회원가입 페이지 -->
 	<div id="signup" class=wrap>
 		<div class="container">
@@ -27,7 +35,7 @@
 						</p>
 					</div>
 					<div class="h5">기본정보입력</div>
-					<form id="signupform" action="../../controller/user/signUpController.jsp" class="signform col-12 border border-dark pt-2 pb-2 rounded d-flex flex-column justify-content-center" action="" method="post" enctype="multipart/form-data" onsubmit="return signupcheck()" style="width: 80%">
+					<form id="signupform" action="../../controller/user/signUpController.jsp" class="signform col-12 border border-dark pt-2 pb-2 rounded d-flex flex-column justify-content-center" method="post" enctype="multipart/form-data" onsubmit="return signupcheck()" style="width: 80%">
 						<div class="form-group">
 							<label for="signId">아이디</label>
 							<span id="idresult" style="font-size: 12px;"></span>

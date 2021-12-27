@@ -59,6 +59,16 @@ public class UserDao extends DB {
 		}
 		return false;
 	}
+	
+	// 로그인 체크 메소드
+	public boolean logIn(String id , String password) {
+		String sql = "select * from user where user_id =? and user_password = ? ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id); 		ps.setString(2, password);
+			rs = ps.executeQuery(); 	if( rs.next() ) { return true; }
+		}catch (Exception e) {}  return false;
+	}
 
 	// 3. 하나의 회원 객체 가져오는 메소드
 
