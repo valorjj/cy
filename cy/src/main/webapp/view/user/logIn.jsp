@@ -17,6 +17,7 @@ body {
 
 	<!-- 로그인 페이지에는 헤더 빼고 common 만 끌어온다. -->
 	<%@ include file="../common/common.jsp"%>
+
 	<div class="container">
 		<div class="row">
 			<form action="../../controller/user/logInController.jsp" method="get">
@@ -25,12 +26,12 @@ body {
 						<!-- 싸이월드 로고, 이미지 출력하는 부분 -->
 						<img src="../../image/cy_logo2.jpg" alt="" />
 					</div>
-					<div class="">
+					<div class="my-2 input-group-lg">
 						<!--  아이디 입력하는 부분 -->
 						<input type="text" class="form-control" id="logInId"
 							name="logInId" placeholder="아이디" />
 					</div>
-					<div class="">
+					<div class="my-2 input-group-lg">
 						<!-- 비밀번호 입력하는 부분 -->
 						<input type="password" class="form-control" id="loginPassword"
 							name="loginPassword" placeholder="비밀번호" />

@@ -11,9 +11,7 @@
 <title>다이어리 작성</title>
 </head>
 <body>
-	
-	
-	
+
 	<div class="container">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -26,10 +24,8 @@
 
 	</div>
 
-
-
 	<script type="text/javascript">
-		// 1. 입력한 값을 ajax 를 통해서 컨트롤러 - db 에 연결합니다.
+		
 	</script>
 
 </body>
