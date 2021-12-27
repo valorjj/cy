@@ -56,7 +56,7 @@ ul.tabs li.current {
 				<!-- 탭 눌렀을 때 전환될 화면 1 -->
 				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
-					<%@ include file="main.jsp"%>
+					<%@ include file="../user/viewUserHome.jsp"%>
 				</div>
 
 				<div id="tab-2" class="tab-content">

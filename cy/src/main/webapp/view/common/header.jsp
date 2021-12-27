@@ -32,7 +32,7 @@
 						<div><a href="#" class="text-dark">일촌 파도 타기</a></div>
 						<div><a href="#" class="text-dark">내 홈페이지</a></div>
 						<div><a href="#" class="text-dark">일촌보기</a></div>
-						<div><a href="#" class="text-dark">로그아웃</a></div>
+						<div><a href="../../controller/user/logOutController.jsp" class="text-dark">로그아웃</a></div>
 					</div>
 				</div>
 			</div>

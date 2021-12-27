@@ -9,13 +9,13 @@
 <body>
 	<%@ include file="../common/common.jsp"%>
 	<%@ include file="../common/header(kth).jsp"%>
-	<%-- 	<%
+	<%-- 		<%
 		// 로그인[세션]이 되어 있는경우
-		if( LogInSessionid!= null ){
+		if( logInid!= null ){
 			out.print("<script>alert('로그인이 되어있습니다.');</script>");
-			out.println("<script>location.href='../main.jsp';</script>");
-		}
-	%> --%>
+			out.println("<script>location.href='../main(kth).jsp';</script>");
+		} --%>
+	%>
 	<!-- 회원가입 페이지 -->
 	<div id="signup" class=wrap>
 		<div class="container">
@@ -52,23 +52,23 @@
 						</div>
 						<div class="form-group">
 							<label for="signPasswordConfirm">비밀번호 확인</label>
-							<input type="password" class="form-control" id="signPasswordConfirm" name="signPasswordConfirm" style="font-family: '고딕';"  onchange="signupcheck();"/>
+							<input type="password" class="form-control" id="signPasswordConfirm" name="signPasswordConfirm" style="font-family: '고딕';" onchange="signupcheck();" />
 							<small id="passwordHelp" class="" style="color: orange"></small>
 						</div>
 						<div class="form-group">
 							<label for="signName">이름</label>
-							<input type="text" class="form-control" id="signName" name="signName" onchange="signupcheck();"/>
+							<input type="text" class="form-control" id="signName" name="signName" onchange="signupcheck();" />
 							<small id="nameHelp" class="" style="color: orange">이름엔 특수문자가 들어갈 수 없고 최대 10글자를 넘을 수 없습니다.</small>
 						</div>
 						<div class="form-group">
 							<label for="signPhone">핸드폰번호</label>
-							<input type="text" class="form-control" id="signPhone" name="signPhone" placeholder="핸드폰 번호를 입력하세요. " onchange="signupcheck();"/>
+							<input type="text" class="form-control" id="signPhone" name="signPhone" placeholder="핸드폰 번호를 입력하세요. " onchange="signupcheck();" />
 							<small id="phoneHelp" class="form-text text-muted">000-0000-0000 형식으로 입력해주세요.</small>
 						</div>
 						<div class="form-group">
 							<label for="signEmail">이메일주소</label>
 							<div class="input-group-append">
-								<input type="text" class="form-control" id="signEmail" name="signEmail" placeholder="이메일주소" onchange="signupcheck();"/>
+								<input type="text" class="form-control" id="signEmail" name="signEmail" placeholder="이메일주소" onchange="signupcheck();" />
 								<span class="input-group-text" id="basic-addon2">@</span>
 								<select class="custom-select" name="postAddress" id="postAddress">
 									<option value="메일을 선택하세요"></option>
@@ -86,7 +86,7 @@
 								<label for="genderCheck1">남성</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="genderCheck" id="genderCheck2" value="F"  onchange="signupcheck();"/>
+								<input class="form-check-input" type="radio" name="genderCheck" id="genderCheck2" value="F" onchange="signupcheck();" />
 								<label for="genderCheck2">여성</label>
 							</div>
 							<small id="genderHelp" class="" style="color: orange">성별을 선택해주세요.</small>
@@ -95,7 +95,7 @@
 							<div class="col-md-7">
 								<div class="form-group">
 									<label for="signPic">프로필 사진</label>
-									<input type="file" class="custom-file" id="signPic" name="signPic" onchange="signupcheck();"/>
+									<input type="file" class="custom-file" id="signPic" name="signPic" onchange="signupcheck();" />
 									<small id="fileHelp" class="" style="color: orange">이미지 파일을 업로드해주세요.</small>
 								</div>
 							</div>
@@ -120,7 +120,7 @@
 						</div>
 						<div class="form-group">
 							<label for="">홈페이지 별명</label>
-							<input type="text" class="form-control" id="signNickname" name="signNickname" onchange="signupcheck();"/>
+							<input type="text" class="form-control" id="signNickname" name="signNickname" onchange="signupcheck();" />
 							<small id="nicknameHelp" class="" style="color: orange">홈페이지에 멋진 별명을 붙여주세요 !</small>
 						</div>
 						<div class="form-group">
@@ -228,6 +228,31 @@
 		}
 
 	}
+    </script>
+	<!-- 로그인 중복체크 스크립트 -->
+	<script type="text/javascript">
+    /* 아이디 중복체크 [ ajax ] */
+	$( function(){
+		
+		$("#id").change( function() { 
+			
+			$.ajax({ 
+				url : "idCheck.jsp" ,	
+			
+				data :{userid:document.getElementById("signupform").signId.value} , 	
+			
+				success : function( result ){ 
+			
+					if( result == 1 ){ 	// js 변수는 자료형 없다
+						document.getElementById("idHelp").innerHTML = "사용중인 아이디";
+					}else{
+						
+					}
+				}
+			});
+		});
+	});
+/* 아이디 중복체크 end */
     </script>
 	<!-- 업로드 -->
 	<script type="text/javascript">
