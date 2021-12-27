@@ -59,4 +59,7 @@
 
 ![header othersession](https://user-images.githubusercontent.com/88937233/147335875-1d354581-164d-4a93-9d0a-4b213e1fd044.png)
 
+# 12.27
 
+1. form 태그를 사용해 방명록을 등록했었으나, 프로젝트 특성상 ajax를 사용해야 해서 수정함
+2. 작성 / DB 처리 / 작성후 페이지 전환 완료
