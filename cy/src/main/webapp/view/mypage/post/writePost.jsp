@@ -1,5 +1,6 @@
 <%@page import="dao.mypage.PostDao"%>
 <%@page import="dto.Post"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,19 +44,11 @@ ul.tabs li.current {
 .tab-content.current {
    display: inherit;
 }
-</style>
+	
+	</style>
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
-	<%
-
-	int bpost_no = Integer.parseInt(request.getParameter("bpost_no"));
-	Post post = PostDao.getPostDao().getPost(bpost_no); // 수정할 게시물
-	post.setContent(post.getContent().replaceAll("<br>", "\n")); // <br> => \n
-	
-	%>
-
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
@@ -64,10 +57,12 @@ ul.tabs li.current {
 						<img alt="" src="">
 					</div>
 					<div class="col-md-10">
-						<form action="../../../controller/mypage/post/updatePostController.jsp" method="post">
-							<input type="hidden" name="bpost_no" value="<%=bpost_no%>">
-							제목 : <input class="form-control" type="text" name="title" value="<%=post.getTitle()%>"> <br>
-							내용 : <textarea class="form-control" rows="10" cols="20" name="content"><%=post.getContent()%></textarea> <br>
+						<form action="../../../controller/mypage/post/writePostController.jsp" method="post">
+							제목 : <input id="title" class="form-control" type="text" name="title"><br> 
+							내용 :
+							<textarea id="content" class="form-control" rows="10" cols="20"
+								name="content"></textarea>
+							<br>
 							<input type="submit" value="등 록">
 						</form>
 					</div>
@@ -85,6 +80,8 @@ ul.tabs li.current {
 			</div>
 		</div>
 	</div>
+
+
 
 </body>
 </html>

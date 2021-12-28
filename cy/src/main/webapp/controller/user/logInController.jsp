@@ -1,6 +1,7 @@
 
 <%@page import="dto.LogInSession"%>
 <%@page import="dao.user.UserDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -16,6 +17,7 @@ String password = request.getParameter("loginPassword"); // 로그인 화면에�
 boolean result = UserDao.getUserDao().logInCheck(id, password); // 로그인 성공 여부를 반환합니다. 
 if (result) {
 
+
 	// 로그인 성공 시 세션을 부여합니다. 
 	// 세션은 LogInSession 이라는 클래스 형태로 저장합니다.
 	int user_no = UserDao.getUserDao().getLogInIdNo(id);
@@ -27,6 +29,7 @@ if (result) {
 
 	// 로그인 성공했을 경우 메인 화면으로 이동 
 	response.sendRedirect("../../view/main/newMain.jsp");
+
 } else {
 	// 로그인 실패 했을 경우, 아이디나 비밀번호가 틀렸을 경우 혹은 아예 계정이 존재하지 않을 때 
 	out.print("<script> alert('아이디 혹은 비밀번호가 틀렸습니다. '); </script>");

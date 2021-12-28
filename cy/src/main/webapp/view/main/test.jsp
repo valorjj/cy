@@ -1,7 +1,7 @@
 <%@page import="dao.user.UserDao"%>
 <%@page import="dto.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,39 +10,41 @@
 
 <style type="text/css">
 body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6;
-	height: 500px;
+   margin-top: 100px;
+   font-family: 'Trebuchet MS', serif;
+   line-height: 1.6;
+   height: 500px;
 }
 
 ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
+   margin: 0px;
+   padding: 0px;
+   list-style: none;
 }
 
 ul.tabs li {
-	background: #00a8be;
-	color: #222;
-	padding: 10px 15px;
-	cursor: pointer;
+   background: #00a8be;
+   color: #222;
+   padding: 10px 15px;
+   cursor: pointer;
 }
 
 ul.tabs li.current {
-	background: #00a8be;
-	color: #ededed;
+   background: #00a8be;
+   color: #ededed;
 }
 
 .tab-content {
-	display: none;
-	background: #ededed;
-	padding: 10px;
-	height: 500px;
+
+   display: none;
+   background: #ededed;
+   padding: 10px;
+   height: 500px;
+
 }
 
 .tab-content.current {
-	display: inherit;
+   display: inherit;
 }
 </style>
 </head>
@@ -561,5 +563,6 @@ ul.tabs li.current {
 		 "width=800, height=500, left=100, top=50");
 		 } */
 	</script>
+
 </body>
 </html>

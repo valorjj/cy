@@ -77,6 +77,19 @@ public class UserDao extends DB {
 		return 0;
 	}
 
+	// 2.3 post에 writer를 사용하기 위한 메소드
+	public String getUserId(int user_no) {
+		
+		String sql ="select user_id from user where user_no=?";
+		try {
+			ps =con.prepareStatement(sql); ps.setInt(1, user_no);
+			rs = ps.executeQuery(); 
+			if( rs.next() ) { return rs.getString(1); }
+		}catch (Exception e) {} return null;
+		
+	}
+
+
 	// 3. 하나의 회원 객체 가져오는 메소드
 	// 3.1 full 생성자를 통해 비밀번호를 제외한 모든 정보를 가져옵니다. 
 	public User getUser(int user_no) {
@@ -112,6 +125,7 @@ public class UserDao extends DB {
 
 		return null;
 	}
+
 
 	// 4. 전체 회원 리스트 가져오는 메소드
 
@@ -182,4 +196,6 @@ public class UserDao extends DB {
 		}
 		return false; // 해당하는 아이디가 존재하지 않음
 	}
+
 }
+
