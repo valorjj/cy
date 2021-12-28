@@ -21,8 +21,7 @@
 	
 	Visitor visitor = new Visitor(user_no, content, user_id);
 	
-	boolean result =  VisitorDao.getvisitorDao().visitorwrite(visitor);
-	if( result ){ out.print(1); }
+	response.sendRedirect("../../view/mypage/visitor/viewLogList.jsp");
 	
 	
 %>

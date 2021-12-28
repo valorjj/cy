@@ -13,7 +13,7 @@
 
 	<%
 	// user_no 필요해서 만듬 조지훈 12.23
-	LogInSession logInSession = (LogInSession)session.getAttribute("logInSession");
+	LogInSession logInSession = (LogInSession)session.getAttribute("logIn");
 	String loginid = null;
 	if(logInSession != null) {
 		loginid = logInSession.getUser_id();
