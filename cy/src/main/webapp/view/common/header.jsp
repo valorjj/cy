@@ -1,3 +1,4 @@
+<%@page import="dto.LogInSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,9 +9,12 @@
 <body>
 
 	<%@ include file="common.jsp"%>
-
 	<%
-	// 유저 검색, 일촌 파도타기, 로그아웃
+	LogInSession logInSession = (LogInSession)session.getAttribute("logIn");
+	String loginid = null; 
+	// 세션이 있을경우
+	if( logInSession != null ) {	loginid = logInSession.getUser_id();	}
+
 	%>
 
 	<div class="container" style="background-color: #cccccc">
@@ -38,7 +42,8 @@
 			</div>
 		</form>
 	</div>
-
+	
+	
 
 
 </body>
