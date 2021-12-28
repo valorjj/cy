@@ -32,3 +32,36 @@
 
 ![세션](https://user-images.githubusercontent.com/88937233/147216706-6158a024-bbe9-480f-8547-c8627212a4a0.png)
 
+# 12.24
+
+1. DB에 날짜가 자동으로 찍히지 않아 date컬럼에 now()를 설정
+![DB](https://user-images.githubusercontent.com/88937233/147321237-8d64b0a4-2b52-4070-95b2-5b296e9c855a.png)
+
+2. 방명록 작성하면 DB에 저장완료 
+![방명록작성확인](https://user-images.githubusercontent.com/88937233/147321338-c900443d-8601-45e4-b215-2c8ee4d300dd.png)
+
+
+※ 다른 사람의 미니홈피로 들어갈때 내 정보를 가진 session과 다른 사람의 정보를 가진 session이 필요하다고 판단.
+
+4. 검색창에 id설정
+
+![검색창id](https://user-images.githubusercontent.com/88937233/147335489-bc1fd9ac-3e82-442f-847b-8e6d4b23f519.png)
+
+5. dto other 생성
+
+6. searchUserController에서 검색창에 입력한 값 요청 및 db
+![search](https://user-images.githubusercontent.com/88937233/147335785-6e6c1be0-f4c6-4669-a68c-3f320de7c4a3.png)
+
+7. UserDao에 sql문 작성
+![dao](https://user-images.githubusercontent.com/88937233/147335850-b5dfb9b4-ab12-4af4-a2b8-58fd893a1901.png)
+
+8. header에 적용 
+
+![header othersession](https://user-images.githubusercontent.com/88937233/147335875-1d354581-164d-4a93-9d0a-4b213e1fd044.png)
+
+# 12.27
+
+1. form 태그를 사용해 방명록을 등록했었으나, 프로젝트 특성상 ajax를 사용해야 해서 수정함
+2. 작성 / DB 처리 / 작성후 페이지 전환 완료
+
+다음: 방명록 출력 및 페이징 처리

@@ -1,3 +1,4 @@
+<%@page import="dao.user.UserDao"%>
 <%@page import="dao.mypage.VisitorDao"%>
 <%@page import="dto.Visitor"%>
 <%@page import="dto.LogInSession"%>
@@ -10,14 +11,17 @@
 
 	content = content.replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>");
 
-	LogInSession logInSession = (LogInSession)session.getAttribute("logInSession");
-	System.out.print(logInSession);
+	LogInSession logInSession = (LogInSession)session.getAttribute("logIn");
 	int user_no = logInSession.getUser_no();
+	String user_id = UserDao.getUserDao().getid(user_no);
+			
+	// 내꺼 불러올 때
+	// 남의 꺼 불러올 떄 
 	
-	Visitor visitor = new Visitor(user_no, content);
 	
-	VisitorDao.getvisitorDao().visitorwrite(visitor);
+	Visitor visitor = new Visitor(user_no, content, user_id);
 	
 	response.sendRedirect("../../view/mypage/visitor/viewLogList.jsp");
-	 
+	
+	
 %>
