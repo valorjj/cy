@@ -10,11 +10,10 @@
 
 	<%@ include file="common.jsp"%>
 
-	<%
-	LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
-	String user_id = logInSession.getUser_id();
-	int user_no = logInSession.getUser_no();
-	%>
+	<%LogInSession logInSession = (LogInSession) session.getAttribute("logIn");%>
+
+	<%int user_no = logInSession.getUser_no();%>
+	<%String user_id = logInSession.getUser_id();%>
 
 	<div class="container" style="background-color: #cccccc">
 		<!-- 헤더 박스권 생성 -->

@@ -11,10 +11,6 @@
 </head>
 <body>
 
-	<%
-	// header 에 있는 세션값을 불러오면 왜 오류가 나는거죠?
-			
-	%>
 	<!-- 메인 페이지 시작 -->
 	<div class="container">
 		<div class="row">
@@ -58,7 +54,7 @@
 		<hr />
 		<!-- 메인 페이지 시작 -->
 		<div class="row" style="height: 500px; overflow: auto;">
-			<div class="col-md-12 no-gutters">
+			<div class="no-gutters">
 				<div class="row">
 					<div class="col-md-3">
 						<!-- 프로필 사진 부분 -->
@@ -66,7 +62,7 @@
 						<%
 						// 서버에 저장된 이미지를 user_no 를 이용해서 불러옵니다.
 						%>
-					
+
 						<img src="../../image/default-profile-photo.png" alt=""
 							class="img-thumbnail" style="max-width: 100%;" />
 						<hr />
@@ -187,7 +183,7 @@
 							</div>
 						</div>
 						<hr />
-						<span style="color:orange; ">사진첩</span>
+						<span style="color: orange;">사진첩</span>
 						<hr />
 						<div class="row">
 							<!-- 메인 페이지 중앙에 출력되는 이미지 혹은 동영상 혹은 미니룸 -->

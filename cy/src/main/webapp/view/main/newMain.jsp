@@ -6,16 +6,18 @@
 <meta charset="UTF-8">
 <title>새로운 형식 테스트</title>
 <style type="text/css">
-
 </style>
 </head>
 <body>
 
 	<%@ include file="../common/newHeader.jsp"%>
 
-	<div class="container">
-		<h3>메인페이지</h3>
-	
+	<div class="container ">
+		<div>
+			<h3>메인페이지</h3>
+		</div>
+
+
 	</div>
 
 	<%@ include file="../common/footer.jsp"%>
