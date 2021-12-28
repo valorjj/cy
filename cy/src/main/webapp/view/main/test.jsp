@@ -141,7 +141,7 @@ ul.tabs li.current {
 										</div>
 										<div class="my-2">
 											<h6>
-												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=user_id%></span>)
+												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=loginid%></span>)
 											</h6>
 										</div>
 									</div>
@@ -292,7 +292,7 @@ ul.tabs li.current {
 					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp">다이어리</a></li>
 					<li class="tab-link">게시판</li>
 					<li class="tab-link">사진첩</li>
-					<li class="tab-link">방명록</li>
+					<li class="tab-link"><a href="../mypage/visitor/viewLogList.jsp">방명록</a></li>
 					<li class="tab-link" style="display: none;">관리</li>
 				</ul>
 			</div>
@@ -382,7 +382,7 @@ ul.tabs li.current {
 										</div>
 										<div class="my-2">
 											<h6>
-												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=user_id%></span>)
+												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=loginid%></span>)
 											</h6>
 										</div>
 									</div>
@@ -533,7 +533,7 @@ ul.tabs li.current {
 					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp">다이어리</a></li>
 					<li class="tab-link">게시판</li>
 					<li class="tab-link">사진첩</li>
-					<li class="tab-link">방명록</li>
+					<li class="tab-link"><a href="../mypage/visitor/viewLogList.jsp">방명록</a></li>
 					<li class="tab-link" style="display: none;">관리</li>
 				</ul>
 			</div>
