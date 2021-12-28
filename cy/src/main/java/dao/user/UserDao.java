@@ -194,19 +194,36 @@ public class UserDao extends DB {
 		}
 		return false; // 해당하는 아이디가 존재하지 않음
 	}
-	
-	// 12. 홈페이지 조회수 증가 메소드 
-	// 해당 유저 홈페이지에 접근하면 조회수를 증가시킵니다. 
-	
+
+	// 12. 홈페이지 조회수 증가 메소드
+	// 해당 유저 홈페이지에 접근하면 조회수를 증가시킵니다.
 	public boolean updateViewCount(int user_no) {
-		String sql = "UPDATE user SET view = view + 1 WEHRE user_no = ?";
+		String sql = "UPDATE user SET view = view + 1 WHERE user_no = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, user_no);
+			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+		return false;
+	}
+
+	// 12. 자기 소개 글 수정 메소드
+	public boolean updateUserIntro(String intro, int user_no) {
+
+		String sql = "update user set intro = ? where user_no = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, intro);
+			ps.setInt(2, user_no);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return false;
 	}
 

@@ -17,8 +17,8 @@
 	%>
 
 	<div class="container">
-		<div>
-			싸이월드 이미지<img src="" alt="" />
+		<div class="d-flex justify-content-start">
+			<img src="../../image/cy_logo2.jpg" alt="" style="height: 150px;" />
 		</div>
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,18 +31,18 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">홈
-							<span class="sr-only">(current)</span>
+					<li class="nav-item active"><a class="nav-link"
+						href="newMain.jsp">홈 <span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="miniHome.jsp">미니홈피</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">스킨</a></li>
+					<li class="nav-item"><a class="nav-link" href="../main/homeSkinList.jsp">스킨</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">주크박스</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">도토리결제</a></li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
+				<form class="form-inline my-2 my-lg-0" action="" method="get">
 					<input class="form-control mr-sm-2" type="search"
 						placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 				</form>
 			</div>
 		</nav>

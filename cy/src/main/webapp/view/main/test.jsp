@@ -52,10 +52,26 @@ ul.tabs li.current {
 
 	<%
 	int otherUserNo = -1; // 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
-	if (request.getParameter("userNo") != null) {
-		otherUserNo = Integer.parseInt(request.getParameter("userNo"));
-		
+
+	// 검색 후 메인 화면이 로드되면 검색한 유저의 user_no 값을 넣습니다. 
+	if (request.getParameter("userSearch") != null) {
+		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
+
+		if (otherUserNo == user_no) {
+			// 검색 대상이 본인 아이디인 경우
+		} else {
+			// 검색 대상이 남의 아이디인 경우
+			UserDao.getUserDao().updateViewCount(otherUserNo); // 방문한 사람의 홈페이지 조회수를 +1 시킵니다.
+			String visitor = user_no + ":" + otherUserNo; // 로그인 한 계정 번호:찾아서 들어간 사람정보
+			if (session.getAttribute(visitor) == null) {
+		session.setAttribute(visitor, true); // 조회수 증가 방지 
+		session.setMaxInactiveInterval(60 * 60 * 24); // 세션 유효시간을 하루로 설정합니다. 
+			}
+
+		}
+
 	} else {
+		// 검색값이 로그인 한 유저와 동일한 경우입니다. 
 		otherUserNo = user_no;
 	}
 
@@ -75,17 +91,6 @@ ul.tabs li.current {
 						<div class="row">
 							<div class="col-md-4">
 								<div class="row mainViewCount p-1" style="font-size: 0.4rem;">
-									<%
-									// 세션값을 확인해서, 홈페이지 주인 user_no 와 일치하지 않으면 방문자수를 증가시킵니다. [미구현]
-									// 방문자수는 하루에 1번만 늘어날 수 있습니다. [미구현]
-									// 방문한 사람 user_no 값을 방문자 세션에 저장해야합니다. [미구현]
-									// 방문한 사람의 세션은 VisitorSession 객체에 리스트로 저장합니다.  [미구현]
-									// 비회원 전용 기능은 아예 없으므로, 무조건 로그인 페이지에서 로그인 해야만 검색할 수 있게 막아둡니다. [미구현]
-
-									// 1. 본인 계정으로 로그인 했을 때
-
-									// 2. 다른 사람 계정 탐방할 때
-									%>
 									<div class="col-md-4">
 										Today: <span style="color: red;">(?)</span>
 									</div>
@@ -114,24 +119,19 @@ ul.tabs li.current {
 						<div class="row" style="height: 500px; overflow: auto;">
 							<div class="col-md-12 no-gutters">
 								<div class="row">
-									<div class="col-md-3">
-										<!-- 프로필 사진 부분 -->
-
-										<%
-										// 서버에 저장된 이미지를 user_no 를 이용해서 불러옵니다.
-										%>
-
+									<div class="col-md-3" style="overflow: auto;">
 										<img src="../../upload/<%=user.getUser_pic()%>" alt=""
 											class="img-thumbnail" style="max-width: 100%;" />
 										<hr />
 										<div>
-											<span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
+											<span> <%=user.getIntro()%>
+											</span>
 										</div>
 										<hr />
-										<div class="row text-center">
+										<div class="d-flex justify-content-center">
 											<button type="button" class="btn btn-secondary btn-sm"
-												value="">소개글 수정</button>
-
+												data-toggle="modal" data-target="#updateIntroModal">소개글
+												수정</button>
 										</div>
 										<hr />
 										<!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
@@ -141,7 +141,7 @@ ul.tabs li.current {
 										</div>
 										<div class="my-2">
 											<h6>
-												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=loginid%></span>)
+												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=user.getUser_id()%></span>)
 											</h6>
 										</div>
 									</div>
@@ -152,14 +152,7 @@ ul.tabs li.current {
 											<div class="col-md-6">
 												<span style="color: orange;">updated news</span>
 												<hr />
-												<%
-												// DB 에서 게시글 조회 수 가장 최근 게시글 4개 끌어와서 출력합니다.
-												// for(int i=0; i<4 ; i++) { ... }
-												// dao 에서 쿼리문을 여러번 사용해서 최신순으로 정렬합니다. 
-												// (inner) join 을 사용해서 한 테이블로 가져와서 글 4개만 출력합니다. 
-												// db 에 각 게시판의 고유 번호를 부여하지 않았으니 dto 에서 강제로 값을 넣어줘야 할 것 같습니다. 
-												// 처음에 dao 에 등록할 때, 생성자 자체에 category='게시판' or category='사진첩' 이런식으로다가
-												%>
+
 												<div class="row">
 													<div class="col-md-4">
 														<div>사진첩</div>
@@ -187,26 +180,12 @@ ul.tabs li.current {
 													</div>
 												</div>
 											</div>
-
-
-
 											<div class="col-md-6">
-												<!-- 게시판 리스트 시작-->
-
-
-												<%
-												// 각 게시판에 해당하는 dao 를 돌면서 총 글 갯수를 긁어옵니다. 이건 금방할듯 
-												// 대신 게시판 등록, 수정, 삭제가 문제없이 돌아가야해서 완성되고 해도 될 것 같음
-												%>
-
 												<span style="color: orange;">boardlist</span>
 												<hr />
 												<div class="row">
 													<div class="col-md-12">
 														<div class="row">
-															<!-- <div class="col-md-6">
-												<a href="">다이어리 </a>
-											</div> -->
 															<div class="col-md-6">
 																<span> 1 / 100 </span>
 															</div>
@@ -289,8 +268,6 @@ ul.tabs li.current {
 				<ul class="tabs">
 					<li class="tab-link current">홈</li>
 					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
-					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp"
-						class="text-white">다이어리</a></li>
 					<li class="tab-link"><a href="../mypage/post/listPost.jsp"
 						class="text-white">게시판</a></li>
 					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
@@ -307,7 +284,6 @@ ul.tabs li.current {
 	// 로그인 된 계정과 다른 유저의 미니 홈페이지에 방문하는 경우
 	// 관리 페이지를 숨긴다. 
 	User user = UserDao.getUserDao().getUser(otherUserNo);
-	
 	%>
 
 
@@ -320,17 +296,6 @@ ul.tabs li.current {
 						<div class="row">
 							<div class="col-md-4">
 								<div class="row mainViewCount p-1" style="font-size: 0.4rem;">
-									<%
-									// 세션값을 확인해서, 홈페이지 주인 user_no 와 일치하지 않으면 방문자수를 증가시킵니다. [미구현]
-									// 방문자수는 하루에 1번만 늘어날 수 있습니다. [미구현]
-									// 방문한 사람 user_no 값을 방문자 세션에 저장해야합니다. [미구현]
-									// 방문한 사람의 세션은 VisitorSession 객체에 리스트로 저장합니다.  [미구현]
-									// 비회원 전용 기능은 아예 없으므로, 무조건 로그인 페이지에서 로그인 해야만 검색할 수 있게 막아둡니다. [미구현]
-
-									// 1. 본인 계정으로 로그인 했을 때
-
-									// 2. 다른 사람 계정 탐방할 때
-									%>
 									<div class="col-md-4">
 										Today: <span style="color: red;">(?)</span>
 									</div>
@@ -360,11 +325,6 @@ ul.tabs li.current {
 							<div class="col-md-12 no-gutters">
 								<div class="row">
 									<div class="col-md-3">
-										<!-- 프로필 사진 부분 -->
-
-										<%
-										// 서버에 저장된 이미지를 user_no 를 이용해서 불러옵니다.
-										%>
 
 										<img src="../../upload/<%=user.getUser_pic()%>" alt=""
 											class="img-thumbnail" style="max-width: 100%;" />
@@ -373,10 +333,9 @@ ul.tabs li.current {
 											<span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
 										</div>
 										<hr />
-										<div class="row text-center">
+										<div class="d-flex justify-content-center">
 											<button type="button" class="btn btn-secondary btn-sm"
 												value="">소개글 수정</button>
-
 										</div>
 										<hr />
 										<!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
@@ -386,7 +345,7 @@ ul.tabs li.current {
 										</div>
 										<div class="my-2">
 											<h6>
-												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=loginid%></span>)
+												홈페이지 주소(http://cyworld/<span style="color: blue;"><%=user.getUser_id()%></span>)
 											</h6>
 										</div>
 									</div>
@@ -397,14 +356,6 @@ ul.tabs li.current {
 											<div class="col-md-6">
 												<span style="color: orange;">updated news</span>
 												<hr />
-												<%
-												// DB 에서 게시글 조회 수 가장 최근 게시글 4개 끌어와서 출력합니다.
-												// for(int i=0; i<4 ; i++) { ... }
-												// dao 에서 쿼리문을 여러번 사용해서 최신순으로 정렬합니다. 
-												// (inner) join 을 사용해서 한 테이블로 가져와서 글 4개만 출력합니다. 
-												// db 에 각 게시판의 고유 번호를 부여하지 않았으니 dto 에서 강제로 값을 넣어줘야 할 것 같습니다. 
-												// 처음에 dao 에 등록할 때, 생성자 자체에 category='게시판' or category='사진첩' 이런식으로다가
-												%>
 												<div class="row">
 													<div class="col-md-4">
 														<div>사진첩</div>
@@ -432,26 +383,13 @@ ul.tabs li.current {
 													</div>
 												</div>
 											</div>
-
-
-
 											<div class="col-md-6">
-												<!-- 게시판 리스트 시작-->
-
-
-												<%
-												// 각 게시판에 해당하는 dao 를 돌면서 총 글 갯수를 긁어옵니다. 이건 금방할듯 
-												// 대신 게시판 등록, 수정, 삭제가 문제없이 돌아가야해서 완성되고 해도 될 것 같음
-												%>
 
 												<span style="color: orange;">boardlist</span>
 												<hr />
 												<div class="row">
 													<div class="col-md-12">
 														<div class="row">
-															<!-- <div class="col-md-6">
-												<a href="">다이어리 </a>
-											</div> -->
 															<div class="col-md-6">
 																<span> 1 / 100 </span>
 															</div>
@@ -511,10 +449,6 @@ ul.tabs li.current {
 										<hr />
 										<span style="color: orange; font-size: 12px;"> 일촌평</span>
 										<div>
-											<!-- 일촌평 시작 -->
-											<%
-											// 1. DB 에서 가져와서 가장 최근 5개만 출력되도록 한다.
-											%>
 											<h6>일촌평입니다...</h6>
 											<h6>일촌평입니다...</h6>
 											<h6>일촌평입니다...</h6>
@@ -534,8 +468,6 @@ ul.tabs li.current {
 				<ul class="tabs">
 					<li class="tab-link current">홈</li>
 					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
-					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp"
-						class="text-white">다이어리</a></li>
 					<li class="tab-link"><a href="../mypage/post/listPost.jsp"
 						class="text-white">게시판</a></li>
 					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
@@ -549,24 +481,35 @@ ul.tabs li.current {
 	<%
 	}
 	%>
+
+	<!-- Modal -->
+	<div class="modal fade" id="updateIntroModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form action="../../controller/user/updateUserIntro.jsp" method="get">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">홈페이지 소개</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" id="" name="newIntro" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-sm"
+							data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-secondary btn-sm" name="" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
 	<script type="text/javascript">
-		/* 		$(document).ready(function() {
-		 $('ul.tabs li').click(function() {
-		 var tab_id = $(this).attr('data-tab');
-
-		 $('ul.tabs li').removeClass('current');
-		 $('.tab-content').removeClass('current');
-
-		 $(this).addClass('current');
-		 $("#" + tab_id).addClass('current');
-		 });
-		 });
-
-		 function showPopup() {
-		 window.open("main.jsp", "a",
-		 "width=800, height=500, left=100, top=50");
-		 } */
+		
 	</script>
-
 </body>
 </html>

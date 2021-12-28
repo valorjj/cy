@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>새로운 형식 테스트</title>
+<title>새로운 메인 페이지</title>
 <style type="text/css">
 </style>
 </head>

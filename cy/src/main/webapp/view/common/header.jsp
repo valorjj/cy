@@ -7,51 +7,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+</style>
 </head>
 <body>
 
 	<%@ include file="common.jsp"%>
 	<%
-	// user_no 필요해서 만듬 조지훈 12.23
-	LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
-	String loginid = null;
+	// [팝업-미니홈페이지] 에서 모든 페이지에 포함 될 헤더파일에서 로그인 세션을 담습니다.
+		// 어짜피 홈페이지를 한번 거쳐서 들어오기 때문에 null 처리는 생략했습니다. 
+		LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
+		String loginid = null;
 
-	loginid = logInSession.getUser_id();
-	int user_no = logInSession.getUser_no();
-
-	// 조지훈 12.23 end
-
-	// 검색한 아이디로 넘어갈때 조지훈 12.24
-	OtherSession otherSession = (OtherSession) session.getAttribute("other");
-	// 조지훈 12.24 end
-
-	// 유저 검색, 일촌 파도타기, 로그아웃
+		loginid = logInSession.getUser_id(); // 로그인 아이디 
+		int user_no = logInSession.getUser_no();
+		// OtherSession otherSession = (OtherSession) session.getAttribute("other");
 	%>
 
-	<div class="container" style="background-color: #cccccc">
-		<!-- 헤더 박스권 생성 -->
-
-		<!-- <form action="../../controller/user/searchUserController.jsp" method="post"> <!-- 검색 후 검색 컨트롤러로 이동 -->
-		<!-- 			<div class="row">
-				<div class="col-md-6 input-group my-1 p-1">
-					<div class="row">
-						<div class="col-md-8">
-							<input type="text" class="form-control p-2" id="other" name="other"/> -->
-
-
+	<div class="container" style="background-color: #eeeeee">
 		<form action="../main/test.jsp" method="post">
-			<!-- 검색 후 검색 컨트롤러로 이동 -->
-			<div class="row">
-				<div class="col-md-6 input-group my-1 p-1">
+			<div class="row my-3 p-1">
+				<div class="col-md-5">
 					<div class="row">
 						<div class="col-md-6">
-							<input type="text" class="form-control p-2" id="" name="userNo" />
+							<input type="text" class="form-control" id="userSearch"
+								name="userSearch" />
 						</div>
 						<div class="col-md-3">
-							<input type="submit" class="form-control btn btn-outline-success"
-								value="검색" />
-							<!-- ajax 거쳐서 다시 페이지를 로드하는데, 검색한 user_no 혹은 user_id 인수로 건네 받은채로 로드 -->
-
+							<input type="submit"
+								class="form-control btn btn-secondary btn-sm" value="검색" />
 						</div>
 						<div class="col-md-3">
 							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
@@ -60,20 +44,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 d-flex justify-content-around">
+				<div class="col-md-7 d-flex justify-content-around">
 					<div class="row">
-						<div>
-							<a href="#" class="text-dark">일촌 파도 타기</a>
+						<div class="col-md-3">
+							<a href="#" class="text-dark" style="font-size: 1.2rem;">일촌
+								파도 타기</a>
 						</div>
-						<div>
-							<a href="#" class="text-dark">내 홈페이지</a>
+						<div class="col-md-3">
+							<a href="" class="text-dark" style="font-size: 1.2rem;">마이홈</a>
 						</div>
-						<div>
-							<a href="#" class="text-dark">일촌보기</a>
+						<div class="col-md-3">
+							<a href="#" class="text-dark" style="font-size: 1.2rem;">일촌보기</a>
 						</div>
-						<div>
+						<div class="col-md-3">
 							<a href="../../controller/user/logOutController.jsp"
-								class="text-dark">로그아웃</a>
+								class="text-dark" style="font-size: 1.2rem;">로그아웃</a>
 						</div>
 					</div>
 				</div>
