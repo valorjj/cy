@@ -19,7 +19,7 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	// 1. 전체 생성자
+	// 1. full 생성자
 	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
 			String user_email, String user_gender, String user_pic, int user_age, String nickname, String intro,
 			int view) {
@@ -68,10 +68,28 @@ public class User {
 		this.nickname = nickname;
 		this.intro = intro;
 	}
+	
+	
+	// 1. view 만 제외한 풀 생성자 
+	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
+			String user_email, String user_gender, String user_pic, int user_age, String nickname, String intro) {
+		this.user_no = user_no;
+		this.user_id = user_id;
+		this.user_password = user_password;
+		this.user_name = user_name;
+		this.user_phone = user_phone;
+		this.user_email = user_email;
+		this.user_gender = user_gender;
+		this.user_pic = user_pic;
+		this.user_age = user_age;
+		this.nickname = nickname;
+		this.intro = intro;
+	}
 	public int getUser_no() {
 		return user_no;
 	}
 
+	
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}

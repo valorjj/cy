@@ -3,12 +3,13 @@ package dto;
 public class DSub {
 
 	private int dsub_no;
-	private int diary_no;
+	private int user_no;
+	private String name;
 
-	public DSub(int dsub_no, int diary_no) {
-		super();
+	public DSub(int dsub_no, int user_no, String name) {
 		this.dsub_no = dsub_no;
-		this.diary_no = diary_no;
+		this.user_no = user_no;
+		this.name = name;
 	}
 
 	public int getDsub_no() {
@@ -19,12 +20,20 @@ public class DSub {
 		this.dsub_no = dsub_no;
 	}
 
-	public int getDiary_no() {
-		return diary_no;
+	public int getUser_no() {
+		return user_no;
 	}
 
-	public void setDiary_no(int diary_no) {
-		this.diary_no = diary_no;
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -4,13 +4,36 @@ public class DPost {
 
 	private int dpost_no;
 	private int dsub_no;
+	private int user_no;
 	private String content;
+	private String date;
 
-	public DPost(int dpost_no, int dsub_no, String content) {
-		super();
+	public DPost(int dpost_no, int dsub_no, int user_no, String content, String date) {
 		this.dpost_no = dpost_no;
 		this.dsub_no = dsub_no;
+		this.user_no = user_no;
 		this.content = content;
+		this.date = date;
+	}
+
+	public DPost(int dsub_no, int user_no, String content) {
+		super();
+		this.dsub_no = dsub_no;
+		this.user_no = user_no;
+		this.content = content;
+	}
+
+	public DPost(String content, String date) {
+		super();
+		this.content = content;
+		this.date = date;
+	}
+
+	public DPost(int dpost_no, String content, String date) {
+		super();
+		this.dpost_no = dpost_no;
+		this.content = content;
+		this.date = date;
 	}
 
 	public int getDpost_no() {
@@ -29,12 +52,28 @@ public class DPost {
 		this.dsub_no = dsub_no;
 	}
 
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
 	public String getContent() {
 		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }
