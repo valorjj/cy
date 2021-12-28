@@ -90,24 +90,25 @@ ul.tabs li.current {
 							</form>
 						</div>
 						<hr>
-
 						<!-- 방명록 작성 end -->
 						<!-- 방명록 list -->
+						
+
+						<div class="row form-control">
 						<%
 						for (Visitor visitor : visitors) {
 						%>
-
-						<div class="row form-control">
 							<div class="col-md-12">
-								<span><%=visitor.getVisitor_no()%></span> <span><%=visitor.getUser_id()%></span>
-								<span><%=visitor.getdate()%></span>
-								<button>수정</button>
-								<button>삭제</button>
+								<span>no : <%=visitor.getVisitor_no()%></span> <span>작성자 : <%=visitor.getUser_id()%></span>
+								<span>작성일 : <%=visitor.getdate()%></span>
+								<input type="submit" value="수정">
+								<input type="submit" value="삭제">
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-md-4" style="height: 140px;">
-									<img src="" class="form-control" style="height: 100%;">
+									<!-- 작성자 아이디를 가지고 가져오기 -->
+									<img src="../../../upload/<%=user.getUser_pic()%>" class="form-control" style="height: 100%;">
 								</div>
 								<div class="col-md-8" style="height: 140px;">
 									<textarea rows="" cols="" class="form-control"
@@ -117,10 +118,9 @@ ul.tabs li.current {
 								</div>
 							</div>
 							<hr>
+							<%}	%>
 						</div>
-						<%
-						}
-						%>
+						
 
 					</div>
 				</div>
