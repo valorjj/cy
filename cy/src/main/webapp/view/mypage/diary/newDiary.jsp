@@ -48,21 +48,29 @@ ul.tabs li.current {
 
 	<%@ include file="../../common/header.jsp"%>
 
-	<div class="container">
+	<div class="container" style="background-color: #263333;">
 
-		<div class="row">
+		<div class="row no-gutters">
 			<div class="col-md-10">
-				<h3>다이어리 내용 / 게시판 형태와 동일하게 갑니다. </h3>
+				<div id="tab-1" class="tab-content current" style="overflow: auto;">
+					<div class="container">
+						<!-- 다이어리  -->
+
+
+
+					</div>
+				</div>
 			</div>
+
 			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">홈</li>
-					<li class="tab-link" data-tab="tab-2"><a href="#">프로필</a></li>
-					<li class="tab-link" data-tab="tab-3"><a href="newDiary.jsp">다이어리</a></li>
-					<li class="tab-link" data-tab="tab-4">게시판</li>
-					<li class="tab-link" data-tab="tab-5">사진첩</li>
-					<li class="tab-link" data-tab="tab-6">방명록</li>
-					<li class="tab-link" data-tab="tab-7" style="display: none;">관리</li>
+					<li class="tab-link">홈</li>
+					<li class="tab-link"><a href="#">프로필</a></li>
+					<li class="tab-link current"><a href="newDiary.jsp">다이어리</a></li>
+					<li class="tab-link">게시판</li>
+					<li class="tab-link">사진첩</li>
+					<li class="tab-link">방명록</li>
+					<li class="tab-link" style="display: none;">관리</li>
 				</ul>
 			</div>
 
@@ -73,6 +81,5 @@ ul.tabs li.current {
 
 
 	</div>
-
 </body>
 </html>

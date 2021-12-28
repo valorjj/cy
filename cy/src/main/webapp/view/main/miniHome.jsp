@@ -12,13 +12,13 @@
 	<!-- 버튼을 누르면 미니 홈페이지를 출력합니다. -->
 	<div class="container">
 		<div class="row my-2 p-2">
-			<div class="col-md-6">
+			<div class="col-md-3 my3 p-3">
 				<a href="javascript:openWindowPop('test.jsp', 'popup');"><button
 						id="miniBtn" type="button" class="btn btn-secondary btn-lg"
-						value="미니홈피">내 미니홈피 바로가기</button></a>
+						value="미니홈피" style="padding: 1rem;">내 미니홈피 바로가기</button></a>
 
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-9">
 				<div class="row">
 					<div class="col-md-6">
 						<img src="../../image/cy_logo.jpg" alt="..."

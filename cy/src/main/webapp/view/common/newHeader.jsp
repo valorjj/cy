@@ -1,3 +1,4 @@
+<%@page import="dto.LogInSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,13 @@
 </head>
 <body>
 	<%@ include file="common.jsp"%>
+
+	<%
+	LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
+	int user_no = logInSession.getUser_no();
+	String user_id = logInSession.getUser_id();
+	%>
+
 	<div class="container">
 		<div>
 			싸이월드 이미지<img src="" alt="" />

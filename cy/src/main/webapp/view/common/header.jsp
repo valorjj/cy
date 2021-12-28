@@ -10,10 +10,14 @@
 
 	<%@ include file="common.jsp"%>
 
-	<%LogInSession logInSession = (LogInSession) session.getAttribute("logIn");%>
+	<%
+	// 1. 로그인한 유저의 세션
+	LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
+	int user_no = logInSession.getUser_no();
+	String user_id = logInSession.getUser_id();
 
-	<%int user_no = logInSession.getUser_no();%>
-	<%String user_id = logInSession.getUser_id();%>
+	// 2. 검색한 유저의 세션
+	%>
 
 	<div class="container" style="background-color: #cccccc">
 		<!-- 헤더 박스권 생성 -->
@@ -23,7 +27,7 @@
 				<div class="col-md-6 input-group my-1 p-1">
 					<div class="row">
 						<div class="col-md-6">
-							<input type="text" class="form-control p-2" id="" name="" />
+							<input type="text" class="form-control p-2" id="" name="userNo" />
 						</div>
 						<div class="col-md-3">
 							<input type="submit" class="form-control btn btn-outline-success"
