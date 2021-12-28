@@ -98,12 +98,16 @@ ul.tabs li.current {
 						<%
 						for (Visitor visitor : visitors) {
 						%>
+						<form action="viewLoglist.jsp" method="get">
 							<div class="col-md-12">
 								<span>no : <%=visitor.getVisitor_no()%></span> <span>작성자 : <%=visitor.getUser_id()%></span>
-								<span>작성일 : <%=visitor.getdate()%></span>
+								<span>작성일 : <%=visitor.getDate()%></span>
 								<%if(loginid != null && loginid.equals(visitor.getUser_id() ) ) { %>
-								<input type="submit" value="수정">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  								수정
+								</button>
 								<input type="submit" value="삭제">
+								
 								<%} %>
 							</div>
 							<hr>
@@ -113,21 +117,79 @@ ul.tabs li.current {
 									<img src="../../../upload/<%=user.getUser_pic()%>" class="form-control" style="height: 100%;">
 								</div>
 								<div class="col-md-8" style="height: 140px;">
-									<textarea rows="" cols="" class="form-control"
-										style="height: 100%;">
+									<textarea rows="" cols="" class="form-control" style="height: 100%;" disabled>
 							<%=visitor.getContent()%>
 						</textarea>
 								</div>
 							</div>
 							<hr>
 							<%}	%>
+						</form>
 						</div>
 						
+						<!-- Button trigger modal -->
+
+
+
 
 					</div>
 				</div>
 			</div>
-
+			
+			<!-- Modal -->
+								<form action="../../../controller/mypage/visitor/updateLogController.jsp" method="get">	
+									<input type="hidden" value="" name="visitor_no">
+									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h6 class="modal-title" id="exampleModalLabel">
+									        no :
+									        작성자 :
+									        작성일 :
+									        </h6>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">
+									        <textarea rows="" cols="" class="form-control" name="content"></textarea>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+									        <input type="submit" class="btn btn-primary" value="수정">
+									      </div>
+									    </div>
+									  </div>
+									</div>
+								</form>
+								<%-- <!-- Modal -->
+								<form action="../../../controller/mypage/visitor/updateLogController.jsp" method="get">	
+									<input type="hidden" value="<%=visitor.getVisitor_no()%>" name="visitor_no">
+									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h6 class="modal-title" id="exampleModalLabel">
+									        no : <%=visitor.getVisitor_no()%> 
+									        작성자 : <%=visitor.getUser_id()%>
+									        작성일 : <%=visitor.getDate()%>
+									        </h6>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">
+									        <textarea rows="" cols="" class="form-control" name="content"></textarea>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+									        <input type="submit" class="btn btn-primary" value="수정">
+									      </div>
+									    </div>
+									  </div>
+									</div>
+								</form> --%>
 			<div class="col-md-2">
 				<ul class="tabs">
 					<li class="tab-link"><a href="/cy/view/main/test.jsp">홈</a></li>

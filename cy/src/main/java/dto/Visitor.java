@@ -35,16 +35,36 @@ public class Visitor {
 		this.user_id = user_id;
 	}
 	
+	// 방명록 수정시 생성자
+	public Visitor(int visitor_no, String content) {
+		this.visitor_no = visitor_no;
+		this.content = content;
+	}
+
 	
-	
-	
+
 	public String getContent() {
 		return content;
 	}
 
+
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 
 
 	public String getUser_id() {
@@ -76,24 +96,6 @@ public class Visitor {
 	}
 
 
-	public String getcontent() {
-		return content;
-	}
-
-
-	public void setcontent(String content) {
-		this.content = content;
-	}
-
-
-	public String getdate() {
-		return date;
-	}
-
-
-	public void setdate(String date) {
-		this.date = date;
-	}
 	
 	
 	

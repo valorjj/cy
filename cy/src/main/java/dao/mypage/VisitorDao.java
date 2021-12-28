@@ -20,7 +20,7 @@ public class VisitorDao extends DB {
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, visitor.getUser_no());
-			ps.setString(2, visitor.getcontent());
+			ps.setString(2, visitor.getContent());
 			ps.setString(3, visitor.getUser_id());
 			ps.executeUpdate();
 			return true;
@@ -44,6 +44,20 @@ public class VisitorDao extends DB {
 			}
 			return visitors;
 		} catch (Exception e) {System.out.println("전체 게시물조회 실패 : " + e);} return null;
+	}
+	
+	//방명록 수정
+	public boolean updatevisitor(Visitor visitor) {
+		String sql = "update visitor set content = ? where visitor_no = ?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, visitor.getContent());
+			ps.setInt(2, visitor.getVisitor_no());
+			ps.executeUpdate();
+			
+			return true;
+		} catch (Exception e) {System.out.println("방명록 수정 실패 : " + e);} return false;
 	}
 	
 }
