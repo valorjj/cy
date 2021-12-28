@@ -61,8 +61,8 @@ ul.tabs li.current {
 
 	// 헤더에 로그인 세션이 있는데 여기서도 호출해야하나 ??
 	// 만약 중복되서 안된다면 user_no 또는 id를 어떻게 가져와야하나
-
-	ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(1);
+	
+	ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(user_no);
 
 	User user = UserDao.getUserDao().getUser(user_no);
 	%>
@@ -84,7 +84,7 @@ ul.tabs li.current {
 								method="get">
 								<div class="col-md-8">
 									<textarea rows="7" cols="70" class="form-control w-auto"
-										style="height: 100%;" id="content"></textarea>
+										style="height: 100%;" name="content"></textarea>
 									<input type="submit" value="작성">
 								</div>
 							</form>
