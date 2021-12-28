@@ -30,9 +30,20 @@ public class VisitorDao extends DB {
 	
 	
 	// 전체 게시물 조회
-//	public ArrayList<Visitor> visitorlist(int user_no) {
-//		ArrayList<Visitor> visitors = new ArrayList<Visitor>();
-//		String sql = "select * from visitor where ";
-//	}
+	public ArrayList<Visitor> visitorlist(int user_no) {
+		ArrayList<Visitor> visitors = new ArrayList<Visitor>();
+		String sql = "select * from visitor where user_no = ?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			rs =ps.executeQuery();
+			while(rs.next()) {
+				Visitor visitor = new Visitor(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				visitors.add(visitor);
+			}
+			return visitors;
+		} catch (Exception e) {System.out.println("전체 게시물조회 실패 : " + e);} return null;
+	}
 	
 }

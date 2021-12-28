@@ -15,20 +15,27 @@ public class Visitor {
 	}
 
 
-	public Visitor(int visitor_no, int user_no, String content, String date) {
+	
+	//풀생성
+	public Visitor(int visitor_no, int user_no, String content, String date, String user_id) {
 		this.visitor_no = visitor_no;
 		this.user_no = user_no;
 		this.content = content;
 		this.date = date;
+		this.user_id = user_id;
 	}
 
-		//방명록 등록시 생성자
+
+
+
+	//방명록 등록시 생성자
 	public Visitor(int user_no, String content, String user_id) {
 		this.user_no = user_no;
 		this.content = content;
 		this.user_id = user_id;
 	}
-
+	
+	
 	
 	
 	public String getContent() {
