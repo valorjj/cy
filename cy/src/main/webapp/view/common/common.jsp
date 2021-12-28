@@ -18,15 +18,13 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+
 <body>
 
 	<%
 	// 공통적으로 적용되는 css, js, api 를 한곳에 모아두는 곳 입니다.
 	// 4.x 부트스트랩, 부트스트랩 아이콘, jquery
 	%>
-
-
-
 
 	<!-- 부트스트랩 4.x JS + jquery-->
 	<script

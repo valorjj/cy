@@ -1,6 +1,9 @@
 package dao.mypage;
 
+import java.util.ArrayList;
+
 import dao.DB;
+import dto.DSub;
 
 public class DSubDao extends DB {
 
@@ -20,7 +23,6 @@ public class DSubDao extends DB {
 
 	// 1. 다이어리 내에서 새로운 카테고리를 생성후 db에 집어넣는 메소드
 	public boolean createCategory(int user_no, String name) {
-
 		String sql = "insert into dsub(user_no, name) values(?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
@@ -38,7 +40,6 @@ public class DSubDao extends DB {
 
 	// 2. 카테고리를 삭제하는 메소드
 	public boolean deleteCategory() {
-
 		String sql = "";
 		try {
 			ps = con.prepareStatement(sql);
@@ -59,6 +60,28 @@ public class DSubDao extends DB {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	// 4. 전체 카테고리를 리스트로 반환하는 메소드
+	public ArrayList<DSub> getDSubList() {
+		ArrayList<DSub> dsubs = new ArrayList<DSub>();
+		String sql = "select * from dsub";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				DSub dsub = new DSub(rs.getInt(1), rs.getInt(2), rs.getString(3));
+				dsubs.add(dsub);
+			}
+			return dsubs;
+
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+
+		return null;
+
 	}
 
 }

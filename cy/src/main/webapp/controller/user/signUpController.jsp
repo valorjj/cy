@@ -36,7 +36,7 @@ boolean result = UserDao.getUserDao().createAccount(user);
 
 if (result) {
 	// 회원가입 성공 시 
-	response.sendRedirect("../../view/main/test.jsp");
+	response.sendRedirect("../../view/user/logIn.jsp");
 } else {
 	out.println("<script> alert('오류가 발생했습니다. ');</script>");
 }

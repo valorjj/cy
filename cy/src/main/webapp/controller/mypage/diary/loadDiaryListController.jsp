@@ -1,12 +1,26 @@
+<%@page import="dto.DPost"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.mypage.DPostDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
 
-</body>
-</html>
+<%-- <%@ include file="../../../view/common/common.jsp"%> --%>
+
+<%
+int dsubNo = Integer.parseInt(request.getParameter("dsubNo"));
+System.out.println(dsubNo);
+ArrayList<DPost> dPosts = DPostDao.getdPostDao().getDPost(dsubNo);
+%>
+<table class="table">
+	<%
+	for (DPost dpost : dPosts) {
+	%>
+	<tr>
+		<td><%=dpost.getDpost_no()%></td>
+		<td><%=dpost.getContent()%></td>
+		<td><%=dpost.getDate()%></td>
+	</tr>
+	<%
+	}
+	%>
+</table>
