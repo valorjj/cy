@@ -101,8 +101,10 @@ ul.tabs li.current {
 							<div class="col-md-12">
 								<span>no : <%=visitor.getVisitor_no()%></span> <span>작성자 : <%=visitor.getUser_id()%></span>
 								<span>작성일 : <%=visitor.getdate()%></span>
+								<%if(loginid != null && loginid.equals(visitor.getUser_id() ) ) { %>
 								<input type="submit" value="수정">
 								<input type="submit" value="삭제">
+								<%} %>
 							</div>
 							<hr>
 							<div class="row">
