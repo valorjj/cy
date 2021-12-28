@@ -18,7 +18,7 @@
 
 	<div class="container" style="background-color: #cccccc">
 		<!-- 헤더 박스권 생성 -->
-		<form action="#" method="post">
+		<form action="../main/test.jsp" method="post">
 			<!-- 검색 후 검색 컨트롤러로 이동 -->
 			<div class="row">
 				<div class="col-md-6 input-group my-1 p-1">

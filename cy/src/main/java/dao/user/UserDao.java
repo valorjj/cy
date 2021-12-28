@@ -78,11 +78,12 @@ public class UserDao extends DB {
 
 	// 3. 하나의 회원 객체 가져오는 메소드
 	// 3.1 full 생성자를 통해 비밀번호를 제외한 모든 정보를 가져옵니다. 
-	public User user() {
+	public User getUser(int user_no) {
 
-		String sql = "select * from user";
+		String sql = "select * from user where user_no = ?";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				User user = new User(
@@ -100,10 +101,12 @@ public class UserDao extends DB {
 					rs.getInt(12)
 					
 				);
+				return user;
 			}
+			
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		return null;

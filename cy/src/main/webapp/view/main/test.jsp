@@ -47,12 +47,14 @@ ul.tabs li.current {
 <body>
 
 	<%@ include file="../common/header.jsp"%>
+	
 	<div class="container p-3" style="background-color: #263333;">
 		<div class="row no-gutters">
 			<div class="col-md-10">
 				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
 					<%@ include file="main.jsp"%>
+					
 				</div>
 
 				<div id="tab-2" class="tab-content" style="overflow: auto;">

@@ -68,7 +68,7 @@ public class DPostDao extends DB {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, dsub_no);
 			rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				DPost dPost = new DPost(rs.getInt(1), rs.getString(4), rs.getString(5));
 				dposts.add(dPost);
 			}

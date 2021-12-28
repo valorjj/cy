@@ -25,9 +25,9 @@ if (result) {
 	// 세션의 이름은 logIn 입니다.
 	// 세션 값을 가져올때는 getAttribute("logIn") 으로 가져옵니다. 
 	session.setAttribute("logIn", logInSession);
-  
+
 	// 로그인 성공했을 경우 메인 화면으로 이동 
-	response.sendRedirect("../../view/main/test.jsp");
+	response.sendRedirect("../../view/main/newMain.jsp");
 } else {
 	// 로그인 실패 했을 경우, 아이디나 비밀번호가 틀렸을 경우 혹은 아예 계정이 존재하지 않을 때 
 	out.print("<script> alert('아이디 혹은 비밀번호가 틀렸습니다. '); </script>");
