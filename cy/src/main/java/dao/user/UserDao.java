@@ -79,19 +79,23 @@ public class UserDao extends DB {
 
 	// 2.3 post에 writer를 사용하기 위한 메소드
 	public String getUserId(int user_no) {
-		
-		String sql ="select user_id from user where user_no=?";
+
+		String sql = "select user_id from user where user_no=?";
 		try {
-			ps =con.prepareStatement(sql); ps.setInt(1, user_no);
-			rs = ps.executeQuery(); 
-			if( rs.next() ) { return rs.getString(1); }
-		}catch (Exception e) {} return null;
-		
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+		}
+		return null;
+
 	}
 
-
 	// 3. 하나의 회원 객체 가져오는 메소드
-	// 3.1 full 생성자를 통해 비밀번호를 제외한 모든 정보를 가져옵니다. 
+	// 3.1 full 생성자를 통해 비밀번호를 제외한 모든 정보를 가져옵니다.
 	public User getUser(int user_no) {
 
 		String sql = "select * from user where user_no = ?";
@@ -100,24 +104,13 @@ public class UserDao extends DB {
 			ps.setInt(1, user_no);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				User user = new User(
-					rs.getInt(1) ,
-					rs.getString(2) ,
-					"" ,
-					rs.getString(4) ,
-					rs.getString(5) ,
-					rs.getString(6) ,
-					rs.getString(7) ,
-					rs.getString(8) ,
-					rs.getInt(9) ,
-					rs.getString(10) ,
-					rs.getString(11) ,
-					rs.getInt(12)
-					
+				User user = new User(rs.getInt(1), rs.getString(2), "", rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getString(10),
+						rs.getString(11), rs.getInt(12)
+
 				);
 				return user;
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,7 +119,6 @@ public class UserDao extends DB {
 		return null;
 	}
 
-
 	// 4. 전체 회원 리스트 가져오는 메소드
 
 	// 5. 회원 정보 수정 메소드
@@ -134,18 +126,21 @@ public class UserDao extends DB {
 	// 6. 회원 탈퇴 메소드
 
 	// 7. 회원 아이디 검색 메소드 [ 다른 사람 페이지로 넘어갈때 ]
-	public OtherSession getother( String other) {
-		String sql = "select * from user where user_id like '%"+other+"%'";
+	public OtherSession getother(String other) {
+		String sql = "select * from user where user_id like '%" + other + "%'";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				OtherSession otherSession = new OtherSession(rs.getInt(1), rs.getString(2));
 				return otherSession;
 			}
-		} catch (Exception e) { System.out.println("getother sql 오류 :" + e);} return null;
+		} catch (Exception e) {
+			System.out.println("getother sql 오류 :" + e);
+		}
+		return null;
 	}
-	
+
 	// 7.1 방명록 작성시 회원 아이디 넣기 위한 sql [ 조지훈 12.27 ]
 	public String getid(int user_no) {
 		String sql = "select user_id from user where user_no = ?";
@@ -153,10 +148,13 @@ public class UserDao extends DB {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, user_no);
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				return rs.getString(1);
 			}
-		} catch (Exception e) {System.out.println("회원아이디 가져오기 실패 :" + e);}return null;
+		} catch (Exception e) {
+			System.out.println("회원아이디 가져오기 실패 :" + e);
+		}
+		return null;
 	}
 	// 7.1 끝
 	// 8. 아이디 찾기 메소드
@@ -196,6 +194,20 @@ public class UserDao extends DB {
 		}
 		return false; // 해당하는 아이디가 존재하지 않음
 	}
+	
+	// 12. 홈페이지 조회수 증가 메소드 
+	// 해당 유저 홈페이지에 접근하면 조회수를 증가시킵니다. 
+	
+	public boolean updateViewCount(int user_no) {
+		String sql = "UPDATE user SET view = view + 1 WEHRE user_no = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			return true;
+		} catch (Exception e) {
+		}
+		
+		return false;
+	}
 
 }
-

@@ -1,7 +1,7 @@
 <%@page import="dao.user.UserDao"%>
 <%@page import="dto.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,41 +10,39 @@
 
 <style type="text/css">
 body {
-   margin-top: 100px;
-   font-family: 'Trebuchet MS', serif;
-   line-height: 1.6;
-   height: 500px;
+	margin-top: 100px;
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6;
+	height: 500px;
 }
 
 ul.tabs {
-   margin: 0px;
-   padding: 0px;
-   list-style: none;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
 }
 
 ul.tabs li {
-   background: #00a8be;
-   color: #222;
-   padding: 10px 15px;
-   cursor: pointer;
+	background: #00a8be;
+	color: #222;
+	padding: 10px 15px;
+	cursor: pointer;
 }
 
 ul.tabs li.current {
-   background: #00a8be;
-   color: #ededed;
+	background: #00a8be;
+	color: #ededed;
 }
 
 .tab-content {
-
-   display: none;
-   background: #ededed;
-   padding: 10px;
-   height: 500px;
-
+	display: none;
+	background: #ededed;
+	padding: 10px;
+	height: 500px;
 }
 
 .tab-content.current {
-   display: inherit;
+	display: inherit;
 }
 </style>
 </head>
@@ -53,10 +51,10 @@ ul.tabs li.current {
 	<%@ include file="../common/header.jsp"%>
 
 	<%
-	int otherUserNo = -1;
-	// 메인 페이지를 호출하면서 유저 고유 번호를 인수로 넘겨받아야합니다. 
+	int otherUserNo = -1; // 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
 	if (request.getParameter("userNo") != null) {
 		otherUserNo = Integer.parseInt(request.getParameter("userNo"));
+		
 	} else {
 		otherUserNo = user_no;
 	}
@@ -290,12 +288,15 @@ ul.tabs li.current {
 			<div class="col-md-2">
 				<ul class="tabs">
 					<li class="tab-link current">홈</li>
-					<li class="tab-link"><a href="#">프로필</a></li>
-					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp">다이어리</a></li>
-					<li class="tab-link">게시판</li>
-					<li class="tab-link">사진첩</li>
-					<li class="tab-link"><a href="../mypage/visitor/viewLogList.jsp">방명록</a></li>
-					<li class="tab-link" style="display: none;">관리</li>
+					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
+					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp"
+						class="text-white">다이어리</a></li>
+					<li class="tab-link"><a href="../mypage/post/listPost.jsp"
+						class="text-white">게시판</a></li>
+					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
+					<li class="tab-link"><a
+						href="../mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+					<li class="tab-link"><a href="#" class="text-white">관리</a></li>
 				</ul>
 			</div>
 		</div>
@@ -306,6 +307,7 @@ ul.tabs li.current {
 	// 로그인 된 계정과 다른 유저의 미니 홈페이지에 방문하는 경우
 	// 관리 페이지를 숨긴다. 
 	User user = UserDao.getUserDao().getUser(otherUserNo);
+	
 	%>
 
 
@@ -531,12 +533,14 @@ ul.tabs li.current {
 			<div class="col-md-2">
 				<ul class="tabs">
 					<li class="tab-link current">홈</li>
-					<li class="tab-link"><a href="#">프로필</a></li>
-					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp">다이어리</a></li>
-					<li class="tab-link">게시판</li>
-					<li class="tab-link">사진첩</li>
-					<li class="tab-link"><a href="../mypage/visitor/viewLogList.jsp">방명록</a></li>
-					<li class="tab-link" style="display: none;">관리</li>
+					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
+					<li class="tab-link"><a href="../mypage/diary/newDiary.jsp"
+						class="text-white">다이어리</a></li>
+					<li class="tab-link"><a href="../mypage/post/listPost.jsp"
+						class="text-white">게시판</a></li>
+					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
+					<li class="tab-link"><a
+						href="../mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
 				</ul>
 			</div>
 		</div>
