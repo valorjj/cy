@@ -227,4 +227,23 @@ public class UserDao extends DB {
 		return false;
 	}
 
+	// 13. 프로필 사진 업데이트 메소드
+
+	public boolean updateUserPic(String file, int user_no) {
+
+		String sql = "UPDATE user SET user_pic = ? WHERE user_no = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, file);
+			ps.setInt(2, user_no);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
+
 }

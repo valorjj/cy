@@ -15,13 +15,15 @@
 	<%@ include file="common.jsp"%>
 	<%
 	// [팝업-미니홈페이지] 에서 모든 페이지에 포함 될 헤더파일에서 로그인 세션을 담습니다.
-		// 어짜피 홈페이지를 한번 거쳐서 들어오기 때문에 null 처리는 생략했습니다. 
-		LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
-		String loginid = null;
+	if (session.getAttribute("logIn") == null) {
+		out.println("<script> window.close(); </script>");
+	}
+	LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
+	String loginid = null;
 
-		loginid = logInSession.getUser_id(); // 로그인 아이디 
-		int user_no = logInSession.getUser_no();
-		// OtherSession otherSession = (OtherSession) session.getAttribute("other");
+	loginid = logInSession.getUser_id(); // 로그인 아이디 
+	int user_no = logInSession.getUser_no();
+	// OtherSession otherSession = (OtherSession) session.getAttribute("other");
 	%>
 
 	<div class="container" style="background-color: #eeeeee">

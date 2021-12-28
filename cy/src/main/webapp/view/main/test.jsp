@@ -1,3 +1,4 @@
+<%@page import="dao.user.FriendDao"%>
 <%@page import="dao.user.UserDao"%>
 <%@page import="dto.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,7 +53,7 @@ ul.tabs li.current {
 
 	<%
 	int otherUserNo = -1; // 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
-
+	User myself = UserDao.getUserDao().getUser(user_no);
 	// 검색 후 메인 화면이 로드되면 검색한 유저의 user_no 값을 넣습니다. 
 	if (request.getParameter("userSearch") != null) {
 		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
@@ -135,9 +136,10 @@ ul.tabs li.current {
 										</div>
 										<hr />
 										<!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
-										<div class="">
+										<div class="d-flex justify-content-center">
 											<button type="button" class="btn btn-secondary btn-sm"
-												value="">프로필 사진 수정</button>
+												data-toggle="modal" data-target="#updateUserPicModal">프로필
+												사진 수정</button>
 										</div>
 										<div class="my-2">
 											<h6>
@@ -313,7 +315,7 @@ ul.tabs li.current {
 
 							<div class="col-md-4">
 								<div class="col-md-8">
-									<span>사이트주소</span>
+									http://cyworld/<span style="color: blue;"><%=user.getUser_id()%></span>
 								</div>
 							</div>
 
@@ -329,19 +331,43 @@ ul.tabs li.current {
 										<img src="../../upload/<%=user.getUser_pic()%>" alt=""
 											class="img-thumbnail" style="max-width: 100%;" />
 										<hr />
-										<div>
-											<span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
+										<div class="">
+											<span> <%=user.getIntro()%>
+											</span>
 										</div>
 										<hr />
 										<div class="d-flex justify-content-center">
+											<%
+											// 이미 일촌인 경우와 아닌 경우를 나눕니다.
+											int friend_no = user.getUser_no();
+											boolean isFriend = FriendDao.getFriendDao().isFriend(friend_no, user_no);
+											if (!isFriend) {
+											%>
+											<button type="button" class="btn btn-warning btn-sm" value=""
+												id="ilchonBtn"
+												onclick="becomeFriend(<%=user.getUser_no()%>, <%=friend_no%>);">일촌맺기</button>
+
+											<%
+											} else {
+											%>
+											<button type="button" class="btn btn-warning btn-sm" value=""
+												id="ilchonBtn"
+												onclick="becomeFriend(<%=user.getUser_no()%>, <%=friend_no%>);">일촌끊기</button>
+											<%
+											}
+											%>
+										</div>
+										<hr />
+										<div class="d-flex justify-content-center"
+											style="display: none">
 											<button type="button" class="btn btn-secondary btn-sm"
-												value="">소개글 수정</button>
+												value="" style="display: none">소개글 수정</button>
 										</div>
 										<hr />
 										<!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
 										<div class="">
 											<button type="button" class="btn btn-secondary btn-sm"
-												value="">프로필 사진 수정</button>
+												value="" style="display: none">프로필 사진 수정</button>
 										</div>
 										<div class="my-2">
 											<h6>
@@ -508,7 +534,82 @@ ul.tabs li.current {
 		</form>
 	</div>
 
+	<div class="modal fade" id="updateUserPicModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form action="../../controller/user/updateUserPic.jsp" method="post"
+			enctype="multipart/form-data">
+			<input type="hidden" name="userNo" value="<%=user_no%>" /> 
+			<input type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">프로필 사진</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">사진업로드</span>
+							</div>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="newPic"
+									name="newPic" onchange="readURL(this);" /> <label for="newPic"
+									class="custom-file-label">Choose file</label>
+							</div>
+						</div>
+						<div>
+							<img class="" id="imagePreview" style="max-width: 100%;">
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-sm"
+							data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-secondary btn-sm" name="" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
 	<script type="text/javascript">
+		function becomeFriend(friend_no, user_no) {
+			var you = friend_no;
+			var me = user_no;
+			$.ajax({
+				url : '../../controller/user/ilchonController.jsp',
+				data : {
+					friend_no : you, user_no : me
+				},
+				success : function(result) {
+					if(result==1){
+						document.getElementById("ilchonBtn").innerHTML="일촌맺기";
+					} else {
+						document.getElementById("ilchonBtn").innerHTML="일촌끊기";
+					}
+				}
+
+			});
+		}
+		
+		function readURL(input){
+			  if (input.files && input.files[0]) {
+				    var reader = new FileReader();
+				    reader.onload = function(e) {
+				      document.getElementById('imagePreview').src = e.target.result;
+				    };
+				    reader.readAsDataURL(input.files[0]);
+				  } else {
+				    document.getElementById('imagePreview').src = "";
+				  }
+			
+		}
+		
 		
 	</script>
 </body>

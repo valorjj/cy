@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="common.jsp"%>
 
 	<%
 	LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
+	if (session.getAttribute("logIn") == null) {
+		response.sendRedirect("../user/logIn.jsp");
+	}
 	int user_no = logInSession.getUser_no();
 	String user_id = logInSession.getUser_id();
 	%>
@@ -35,7 +37,8 @@
 						href="newMain.jsp">홈 <span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="miniHome.jsp">미니홈피</a></li>
-					<li class="nav-item"><a class="nav-link" href="../main/homeSkinList.jsp">스킨</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../main/homeSkinList.jsp">스킨</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">주크박스</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">도토리결제</a></li>
 				</ul>
