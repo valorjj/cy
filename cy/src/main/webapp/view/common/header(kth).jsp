@@ -7,6 +7,12 @@
 </head>
 <body>
 	<%@ include file="../common/common.jsp"%>
+	<%
+		LogInSession logIn = (LogInSession)session.getAttribute("logIn");
+		String logInId = null; 
+		// 세션이 있을경우
+		if( logIn != null ) {	logInId = logIn.getUser_id();	}
+	%>
 	<!-- 헤더 고정 -->
 	<div id="header" class="wrap">
 		<div class="container-fluid">
@@ -18,7 +24,7 @@
 					<li class="mx-2">|</li>
 					<li><a href="">선물가게</a></li>
 					<li class="mx-2">|</li>
-					<li><a href="../user/signup(kth).jsp">회원가입</a></li>
+					<li><a href="../user/signUp.jsp">회원가입</a></li>
 				</ul>
 			</div>
 			<div class="row col-12 border-bottom">

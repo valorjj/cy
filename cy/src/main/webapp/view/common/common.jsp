@@ -1,3 +1,5 @@
+<%@page import="dto.LogInSession"%>
+<%@page import="dto.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +19,14 @@
 <!-- 본인 js 호출 -->
 <script src="../../js/user/js/signUp.js"></script>
 <body>
+	<%
+	LogInSession logIn = (LogInSession) session.getAttribute("logIn");
+	String logInId = null;
+	// 세션이 있을경우
+	if (logIn != null) {
+		logInId = logIn.getUser_id();
+	}
+	%>
 	<%
 	// 공통적으로 적용되는 css, js, api 를 한곳에 모아두는 곳 입니다.
 	// 4.x 부트스트랩, 부트스트랩 아이콘, jquery

@@ -7,6 +7,8 @@
 </head>
 <body>
 	<%@ include file="../common/common.jsp"%>
+	
+
 	<div id="minihome">
 		<div class="conatiner d-flex flex-column justify-content-center align-content-center">
 			<div class="row col-12 d-flex justify-content-center align-content-center bc-img  p-1">

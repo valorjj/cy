@@ -9,12 +9,12 @@
 <body>
 	<%@ include file="../common/common.jsp"%>
 	<%@ include file="../common/header(kth).jsp"%>
-	<%-- 		<%
-		// 로그인[세션]이 되어 있는경우
-		if( logInid!= null ){
-			out.print("<script>alert('로그인이 되어있습니다.');</script>");
-			out.println("<script>location.href='../main(kth).jsp';</script>");
-		} --%>
+	<%
+	// 로그인[세션]이 되어 있는경우
+	if (logInId != null) {
+		out.print("<script>alert('로그인이 되어있습니다.');</script>");
+		out.println("<script>location.href='../main(kth).jsp';</script>");
+	}
 	%>
 	<!-- 회원가입 페이지 -->
 	<div id="signup" class=wrap>

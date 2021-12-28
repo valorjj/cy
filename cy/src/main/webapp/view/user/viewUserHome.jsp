@@ -1,4 +1,5 @@
 
+<%@page import="dao.user.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,9 @@
 </head>
 <body>
 	<%@include file="../common/common.jsp"%>
+<%-- 	<%
+	User user = UserDao.getUserDao().getuser(logInId);
+	%> --%>
 	<!-- 메인 페이지 시작 -->
 	<div class="container">
 		<div class="row">
@@ -30,7 +34,10 @@
 			</div>
 			<div class="col-md-4">
 				<div class="col-md-8">
-					<span>사이트주소</span>
+					<span>
+						www.cyworld.com/
+						<%-- <%=user.getUser_id() %> --%>
+					</span>
 				</div>
 			</div>
 		</div>

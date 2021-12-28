@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="dao.user.UserDao"%>
+<%@page import="dto.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>탭 연습</title>
-
 <style type="text/css">
 body {
 	margin-top: 100px;
@@ -43,44 +43,38 @@ ul.tabs li.current {
 	display: inherit;
 }
 </style>
-
-
 </head>
 <body>
-
+	<%@ include file="../common/common.jsp"%>
 	<%@ include file="../common/header.jsp"%>
-
-	<div class="container p-3" style="background-color: #263333;">
+	<%-- <%
+	User user = UserDao.getUserDao().getuser(logInId);
+	%> --%>
+	<div id="themechange" class="container themechange p-3" style="background: grey">
 		<div class="row no-gutters">
 			<div class="col-md-10" style="height: 500px;">
 				<!-- 탭 눌렀을 때 전환될 화면 1 -->
 				<div id="tab-1" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
-					<%@ include file="../user/viewUserHome.jsp"%>
+					<%-- <%@ include file="../user/viewUserHome.jsp"%> --%>
 				</div>
-
 				<div id="tab-2" class="tab-content">
 					<!-- 프로필 페이지 호출  -->
 					<%@ include file="../user/viewUserProfile.jsp"%>
 				</div>
-
 				<div id="tab-3" class="tab-content">
 					<!-- 다이어리 페이지 호출 -->
 					<%@ include file="../mypage/diary/viewDiary.jsp"%>
 				</div>
-
 				<div id="tab-4" class="tab-content"></div>
-
 				<div id="tab-5" class="tab-content"></div>
-
 				<div id="tab-6" class="tab-content"></div>
-
-				<div id="tab-7" class="tab-content"></div>
-
+				<div id="tab-7" class="tab-content">
+					<!-- 관리 페이지 호출 -->
+					<%@ include file="../mypage/setting/viewSetting.jsp"%>
+				</div>
 			</div>
 			<!-- 탭 눌렀을 때 전환될 화면 2 -->
-
-
 			<div class="col-md-2">
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">홈</li>

@@ -14,11 +14,11 @@ String password = request.getParameter("loginPassword"); // 로그인 화면에�
 boolean result = UserDao.getUserDao().logInCheck(id, password);
 if (result) {
 	// 로그인 성공했을 경우 메인 화면으로 이동 
-	response.sendRedirect("../../view/main/test.jsp");
+	response.sendRedirect("../../view/main/main(kth).jsp");
 } else {
 	// 로그인 실패 했을 경우, 아이디나 비밀번호가 틀렸을 경우 혹은 아예 계정이 존재하지 않을 때 
 	out.print("<script> alert('아이디 혹은 비밀번호가 틀렸습니다. '); </script>");
-	out.println("<script> location.href='../../view/user/logIn.jsp'; </script>");
+	out.println("<script> location.href='../../view/user/logIn(kth).jsp'; </script>");
 
 }
 %>

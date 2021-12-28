@@ -66,6 +66,10 @@ align-self-center // 하위 아이템
 	overflow-y: hidden;
 }
 
+ol, li, ul {
+	list-style: none;
+}
+
 /* 회원가입페이지 배경 */
 .signupbackimg {
 	background-image: url(../../img/cyworld_back3.jpg);
