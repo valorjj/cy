@@ -9,6 +9,8 @@
 
 ![image](https://user-images.githubusercontent.com/30681841/146957822-e1283865-fa68-40f6-858b-d6a2a6610689.png)
 
+> 인스타로 시작해서 모든 정보가 연관되어있는 걸 
+
 
 # 주제 선정 이유 : 
 
@@ -26,16 +28,10 @@
 
 
 # db : 
-![image](https://user-images.githubusercontent.com/30681841/147034604-8ed8d348-ccb8-40aa-a013-a732d7354124.png)
+![image](https://user-images.githubusercontent.com/30681841/147674095-ecc8e753-b40d-4172-88f2-16bce00c284e.png)
 
 # front : 
-![image](https://user-images.githubusercontent.com/30681841/146956318-b92a322e-a44e-4814-88a2-274f0d8481e5.png)
-![image](https://user-images.githubusercontent.com/30681841/146957186-946f5be4-f2d4-4c7d-a7d7-0c0b1609f66f.png)
-![image](https://user-images.githubusercontent.com/30681841/146957216-4e5074d8-bf69-4f2a-a68f-290d2ca65d43.png)
-![image](https://user-images.githubusercontent.com/30681841/146957265-f0f52806-8c33-4199-8cc7-cff9d22df0b8.png)
-![image](https://user-images.githubusercontent.com/30681841/146957338-ad77fa70-1687-48ba-81d2-a8013bb3bd1c.png)
-![image](https://user-images.githubusercontent.com/30681841/146957359-f49e9b20-3f2f-433c-8df2-cc5b6e2eba2e.png)
-![image](https://user-images.githubusercontent.com/30681841/146957376-ee86e44c-6296-4c60-bd7d-b8e60d742955.png)
+
 
 # 팀원 : 
 
