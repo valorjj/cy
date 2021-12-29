@@ -8,7 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <style>
+
 </style>
+<link rel="stylesheet" href="../../css/common/common.css" />
 </head>
 <body>
 
@@ -27,13 +29,13 @@
 	%>
 
 	<div class="container" style="background-color: #eeeeee">
-		<form action="../main/test.jsp" method="post">
+		<form action="../main/test.jsp" method="post" onsubmit="return detectSpace();">
 			<div class="row my-3 p-1">
 				<div class="col-md-5">
 					<div class="row">
 						<div class="col-md-6">
 							<input type="text" class="form-control" id="userSearch"
-								name="userSearch" onchange="detectAnyInput();" />
+								name="userSearch" />
 						</div>
 						<div class="col-md-3">
 							<input id="searchBtn" type="submit"
@@ -49,18 +51,18 @@
 				<div class="col-md-7 d-flex justify-content-around">
 					<div class="row">
 						<div class="col-md-3">
-							<a href="#" class="text-dark" style="font-size: 1.2rem;">일촌
+							<a href="#" class="text-dark" style="font-size: 1rem;">일촌
 								파도 타기</a>
 						</div>
 						<div class="col-md-3">
-							<a href="" class="text-dark" style="font-size: 1.2rem;">마이홈</a>
+							<a href="" class="text-dark" style="font-size: 1rem;">마이홈</a>
 						</div>
 						<div class="col-md-3">
-							<a href="#" class="text-dark" style="font-size: 1.2rem;">일촌보기</a>
+							<a href="#" class="text-dark" style="font-size: 1rem;">일촌보기</a>
 						</div>
 						<div class="col-md-3">
 							<a href="../../controller/user/logOutController.jsp"
-								class="text-dark" style="font-size: 1.2rem;">로그아웃</a>
+								class="text-dark" style="font-size: 1rem;">로그아웃</a>
 						</div>
 					</div>
 				</div>
@@ -69,14 +71,32 @@
 	</div>
 
 	<script type="text/javascript">
-		function detectAnyInput() {
+		function detectSpace() {
 
-/* 			if ($("#userSearch").val().trim() == "") {
-				$("#searchBtn").attr('disabled', 'disabled');
-			} else {
-				$("#searchBtn").attr('disabled', '');
-			} */
+			var blank_pattern = /^\s+|\s+$/g;
+			var str = document.getElementById("userSearch");
 
+			if (str.value == '' || str.value == null) {
+				alert('값을 입력해주세요');
+				return false;
+			}
+
+			var blank_pattern = /^\s+|\s+$/g;
+			if (str.value.replace(blank_pattern, '') == "") {
+				alert(' 공백만 입력되었습니다 ');
+				return false;
+			}
+			var blank_pattern = /[\s]/g;
+			if (blank_pattern.test(str.value) == true) {
+				alert(' 공백은 사용할 수 없습니다. ');
+				return false;
+			}
+			var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+
+			if (special_pattern.test(str.value) == true) {
+				alert('특수문자는 사용할 수 없습니다.');
+				return false;
+			}
 		}
 	</script>
 
