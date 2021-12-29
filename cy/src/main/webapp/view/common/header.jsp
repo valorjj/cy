@@ -33,10 +33,10 @@
 					<div class="row">
 						<div class="col-md-6">
 							<input type="text" class="form-control" id="userSearch"
-								name="userSearch" />
+								name="userSearch" onchange="detectAnyInput();" />
 						</div>
 						<div class="col-md-3">
-							<input type="submit"
+							<input id="searchBtn" type="submit"
 								class="form-control btn btn-secondary btn-sm" value="검색" />
 						</div>
 						<div class="col-md-3">
@@ -67,6 +67,18 @@
 			</div>
 		</form>
 	</div>
+
+	<script type="text/javascript">
+		function detectAnyInput() {
+
+/* 			if ($("#userSearch").val().trim() == "") {
+				$("#searchBtn").attr('disabled', 'disabled');
+			} else {
+				$("#searchBtn").attr('disabled', '');
+			} */
+
+		}
+	</script>
 
 
 

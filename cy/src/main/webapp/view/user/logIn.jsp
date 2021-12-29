@@ -20,7 +20,7 @@ body {
 	<%@ include file="../common/common.jsp"%>
 
 	<div class="container">
-		<div class="row">
+		<div class="row offset-3 my-4 p-1">
 			<form action="../../controller/user/logInController.jsp" method="get">
 				<div>
 					<div class="">
@@ -41,10 +41,10 @@ body {
 					<!-- 로그인 버튼 -->
 					<div class="row">
 						<!-- 아이디, 비밀번호 찾기와 회원가입 부분 -->
-						<div class="col-md-6">
+						<div class="col-md-6 my-4 p-1 text-center">
 							<a href="#" class="text-info">아이디/비밀번호 찾기</a>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-6 my-4 p-1 text-center">
 							<a href="signUp.jsp" class="text-success">회원가입</a>
 						</div>
 					</div>

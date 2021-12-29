@@ -34,22 +34,23 @@ public class PostDao extends DB {
 		
 		try {
 			ps = con.prepareStatement(sql);
-			
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				
 				Post post = new Post( 
 						rs.getInt(1), 
 						rs.getInt(2), 
-						rs.getInt(3),
-						rs.getString(4), 
+						rs.getString(3), 
+						rs.getString(4),
 						rs.getString(5),
-						rs.getString(6),
-						rs.getInt(7));
+						rs.getInt(6));
 				posts.add(post);
 			}
 			return posts;
-		}catch (Exception e) {} return null;
+		}catch (Exception e) {
+			e.printStackTrace();
+			
+		} return null;
 	}
 	
 
@@ -60,17 +61,21 @@ public class PostDao extends DB {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();	
 			if( rs.next() ) { return rs.getInt(1); }
-		}catch (Exception e) {} return 0;
+		}catch (Exception e) {
+			e.printStackTrace();
+		} return 0;
 	}
 	
-	// 게시물번호의 해당 게시물 가져오기 
+	
 	public boolean postcount( int bpost_no) {
-		String sql = "update post set view = view+1 where bpost_no = ?";
+		String sql = "update bpost set view = view+1 where bpost_no = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, bpost_no); 	ps.executeUpdate();
 			return true;
-		}catch (Exception e) {} return false;
+		}catch (Exception e) {
+			e.printStackTrace();
+		} return false;
 	}
 	
 	
@@ -86,11 +91,10 @@ public class PostDao extends DB {
 					Post post = new Post( 
 							rs.getInt(1), 
 							rs.getInt(2), 
-							rs.getInt(3),
-							rs.getString(4), 
+							rs.getString(3), 
+							rs.getString(4),
 							rs.getString(5),
-							rs.getString(6),
-							rs.getInt(7));
+							rs.getInt(6));
 					return post;
 				}
 			}catch (Exception e) {} return null;

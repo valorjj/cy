@@ -1,24 +1,33 @@
 package dto;
 
+import dao.user.UserDao;
+
 public class Comment {
 
 	// 댓글을 달면 생성되는 객체
 
 	private int comment_no;
-	private int post_no;
+	private int bpost_no;
 	private int user_no;
-	private String user_id;
-	private String comment;
-	private String comment_date;
+	private String content;
+	private String date;
+	private String writer;
+	
+	public Comment() {}
 
-	public Comment(int comment_no, int post_no, int user_no, String user_id, String comment, String comment_date) {
-		super();
+	public Comment(int comment_no, int bpost_no,int user_no, String content, String date) {
 		this.comment_no = comment_no;
-		this.post_no = post_no;
+		this.bpost_no = bpost_no;
 		this.user_no = user_no;
-		this.user_id = user_id;
-		this.comment = comment;
-		this.comment_date = comment_date;
+		this.content = content;
+		this.date =date;
+		this.writer = UserDao.getUserDao().getUserId(user_no);
+	}
+	
+	public Comment(int user_no, int bpost_no, String content) {
+		this.user_no = user_no;
+		this.bpost_no = bpost_no;
+		this.content = content;
 	}
 
 	public int getComment_no() {
@@ -29,13 +38,14 @@ public class Comment {
 		this.comment_no = comment_no;
 	}
 
-	public int getPost_no() {
-		return post_no;
+	public int getBpost_no() {
+		return bpost_no;
 	}
 
-	public void setPost_no(int post_no) {
-		this.post_no = post_no;
+	public void setBpost_no(int bpost_no) {
+		this.bpost_no = bpost_no;
 	}
+
 
 	public int getUser_no() {
 		return user_no;
@@ -45,28 +55,32 @@ public class Comment {
 		this.user_no = user_no;
 	}
 
-	public String getUser_id() {
-		return user_id;
+	public String getContent() {
+		return content;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getDate() {
+		return date;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public String getComment_date() {
-		return comment_date;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setComment_date(String comment_date) {
-		this.comment_date = comment_date;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
+
+	
+	
+	
 }

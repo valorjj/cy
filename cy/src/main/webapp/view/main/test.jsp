@@ -53,13 +53,15 @@ ul.tabs li.current {
 
 	<%
 	int otherUserNo = -1; // 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
-	User myself = UserDao.getUserDao().getUser(user_no);
-	// 검색 후 메인 화면이 로드되면 검색한 유저의 user_no 값을 넣습니다. 
-	if (request.getParameter("userSearch") != null) {
-		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
+	User myself = UserDao.getUserDao().getUser(user_no); // 로그인한 사람의 정보를 미리 저장해둡니다. 
 
+	if (request.getParameter("userSearch") != null) { // 검색이 존재하는 경우입니다. 
+		// 검색한 유저의 번호를 otherUserNo 라는 변수에 초기화시킵니다. 
+		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
+		session.setAttribute("other", otherUserNo); // 일단 otherSession 클래스는 버리고 번호 하나만 세션에 저장합니다. 
 		if (otherUserNo == user_no) {
 			// 검색 대상이 본인 아이디인 경우
+			otherUserNo = user_no;
 		} else {
 			// 검색 대상이 남의 아이디인 경우
 			UserDao.getUserDao().updateViewCount(otherUserNo); // 방문한 사람의 홈페이지 조회수를 +1 시킵니다.
@@ -268,13 +270,15 @@ ul.tabs li.current {
 			</div>
 			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link current">홈</li>
+					<li class="tab-link current"><a
+						href="test.jsp?userNumber=<%=user.getUser_no()%>"></a>홈</li>
 					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
-					<li class="tab-link"><a href="../mypage/post/listPost.jsp"
+					<li class="tab-link"><a
+						href="../mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 						class="text-white">게시판</a></li>
 					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
 					<li class="tab-link"><a
-						href="../mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+						href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
 					<li class="tab-link"><a href="#" class="text-white">관리</a></li>
 				</ul>
 			</div>
@@ -492,13 +496,15 @@ ul.tabs li.current {
 			</div>
 			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link current">홈</li>
+					<li class="tab-link current"><a
+						href="test.jsp?userNumber=<%=user.getUser_no()%>">홈</a></li>
 					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
-					<li class="tab-link"><a href="../mypage/post/listPost.jsp"
+					<li class="tab-link"><a
+						href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 						class="text-white">게시판</a></li>
 					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
 					<li class="tab-link"><a
-						href="../mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+						href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
 				</ul>
 			</div>
 		</div>
@@ -538,8 +544,8 @@ ul.tabs li.current {
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form action="../../controller/user/updateUserPic.jsp" method="post"
 			enctype="multipart/form-data">
-			<input type="hidden" name="userNo" value="<%=user_no%>" /> 
-			<input type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
+			<input type="hidden" name="userNo" value="<%=user_no%>" /> <input
+				type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">

@@ -26,7 +26,6 @@
 
 		<div class="row no-gutters">
 			<div class="col-md-6 offset-3">
-
 				<form action="../../controller/user/signUpController.jsp"
 					method="post" id="signUpForm" enctype="multipart/form-data">
 					<div class="text-center">
