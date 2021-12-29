@@ -1,3 +1,4 @@
+<%@page import="dao.user.UserDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.user.FriendDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -75,26 +76,25 @@ ul.tabs li.current {
 								</div>
 
 								<div class="col-md-10" id="profileContainer">
-									
-									
-									
+
 									<%
 									for (Integer friend : friends) {
+										System.out.println(friend);
+										String pic = UserDao.getUserDao().getUserPic(friend);
 									%>
-									
-										
-										
-										
-										
-										
 
+									<div>
+
+										<img src="../../upload/<%=pic%>" alt="" />
+
+									</div>
 
 									<%
 									}
 									%>
-									
-									
-									
+
+
+
 								</div>
 							</div>
 						</div>

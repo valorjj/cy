@@ -307,6 +307,8 @@ ul.tabs li.current {
 		// 로그인 된 계정과 다른 유저의 미니 홈페이지에 방문하는 경우
 		// 관리 페이지를 숨긴다. 
 		User user = UserDao.getUserDao().getUser(otherUserNo);
+
+		System.out.println("놀러온 사람 no :" + user_no + " 이고, 집 주인은 no :" + user.getUser_no());
 		%>
 		<div id="otherUserNo" style="display: none;">
 			<%=otherUserNo%>
@@ -367,14 +369,14 @@ ul.tabs li.current {
 												%>
 												<button type="button" class="btn btn-warning btn-sm"
 													value="" id="ilchonBtn"
-													onclick="becomeFriend(<%=user.getUser_no()%>, <%=friend_no%>);">일촌맺기</button>
+													onclick="becomeFriend(<%=friend_no%>,<%=user_no%>);">일촌맺기</button>
 
 												<%
 												} else {
 												%>
 												<button type="button" class="btn btn-warning btn-sm"
 													value="" id="ilchonBtn"
-													onclick="becomeFriend(<%=user.getUser_no()%>, <%=friend_no%>);">일촌끊기</button>
+													onclick="becomeFriend(<%=friend_no%>,<%=user_no%>);">일촌끊기</button>
 												<%
 												}
 												%>
