@@ -76,24 +76,25 @@ ul.tabs li.current {
 								</div>
 
 								<div class="col-md-10" id="profileContainer">
+									<div class="row">
+										<!-- 나와 일촌한 사람들 사진 표시하기 -->
+										<%
+										for (Integer friend : friends) {
+											System.out.println(friend);
+											String pic = UserDao.getUserDao().getUserPic(friend);
+										%>
 
-									<%
-									for (Integer friend : friends) {
-										System.out.println(friend);
-										String pic = UserDao.getUserDao().getUserPic(friend);
-									%>
+										<div class="col-md-4 my-2 p-3">
 
-									<div>
+											<img src="../../upload/<%=pic%>" alt="" style="max-width: 100%;"/>
 
-										<img src="../../upload/<%=pic%>" alt="" />
+										</div>
+
+										<%
+										}
+										%>
 
 									</div>
-
-									<%
-									}
-									%>
-
-
 
 								</div>
 							</div>

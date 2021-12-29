@@ -20,23 +20,26 @@
 	<div class="container bg-white">
 		<div class="row">
 			<div class="col-md-4 offset-4">
-				<a href="logIn.jsp"><img src="../../image/cl.png" alt="" style="max-width: 100%;"/></a>
+				<a href="logIn.jsp"><img src="../../image/cl.png" alt=""
+					style="max-width: 100%;" /></a>
 			</div>
 		</div>
 
 		<div class="row no-gutters">
 			<div class="col-md-6 offset-3">
 				<form action="../../controller/user/signUpController.jsp"
-					method="post" id="signUpForm" enctype="multipart/form-data">
+					method="post" id="signUpForm" enctype="multipart/form-data"
+					onsubmit="return signUpCheck();">
 					<div class="text-center">
 						<h3>회원가입</h3>
 					</div>
 					<hr />
 					<div class="form-group">
 						<label for="signId">아이디</label> <input type="text"
-							class="form-control" id="signId" name="signId" /> <small
-							id="idHelp" class="" style="color: orange">아이디는 10글자를 넘을
-							수 없습니다.</small>
+							class="form-control" id="signId" name="signId"
+							onchange="signUpCheck();" /> <small id="idHelp" class=""
+							style="color: orange">아이디는 10글자를 넘을 수 없습니다.</small> <small
+							id="idHelp2"></small>
 					</div>
 
 					<div class="form-group">
@@ -172,6 +175,8 @@
 	</script>
 
 	<script type="text/javascript">
+	
+		// 1. 아이디 중복체크 : signId 칸에 값 입력 시, change 이벤트가 발생하면 컨트롤러에 접근한다. 컨트롤러에서 db 접근 후 결과값을 리턴한다. 
 		$(function() {
 			$('#signId').change(function() {
 				$.ajax({
@@ -180,21 +185,56 @@
 					success: function(result) {
 						if (result == 1) {
 							// 입력한 아이디가 중복이 아닌경우 
-							document.getElementById('idHelp').innerHTML = '사용가능한 아이디입니다. ';
+							document.getElementById('idHelp').innerHTML = '중복체크 결과 : 중복 X';
 							document.getElementById('idHelp').style.color = "green";
 							
 						} else if (result == 2){
-							document.getElementById('idHelp').innerHTML = '현재 사용중인 아이디입니다. ';
+							document.getElementById('idHelp').innerHTML = '중복체크 결과 : 중복 O';
 							document.getElementById('idHelp').style.color = 'red';
 						}
 					}
 				});
 			});
 		});
+		
+		// 2. 회원가입 유효성 체크
+
+		function signUpCheck(){ 
+
+			var id = document.getElementById('signId').value;
+			var password = document.getElementById('signPassword').value;
+			var passwordConfirm = document.getElementById('signPasswordConfirm').value;
+			var name = document.getElementById('signName').value;
+			var phone = document.getElementById('signPhone').value;
+			var email = document.getElementById('signEmail').value;
+			var gender1 = document.getElementById('genderCheck1').chekced; 
+			var gender2 = document.getElementById('genderCheck2').chekced; 
+			var age = document.getElementById('signAge').value;
+			
+			var regId1 = /^[A-Za-z0-9]{3,15}$/; // 아이디는 영문 대,소문자 숫자0-9, 글자 수는 3-15
+			var regId2 = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g; // 특수문자 제거
+			
+			var regPw1 = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/ // 비밀번호는 영문 대,소문자 숫자09, 글자 수 5-15;
+			
+			
+			if(!regId1.test(id) || !regId2.test(id) ){
+				document.getElementById('idHelp2').innerHTML = '유효성 검사에서 실패했습니다. 다시 입력해주세요 ';
+				document.getElementById('idHelp2').style.color = 'red';
+				return false;
+			} else {
+				document.getElementById('idHelp').innerHTML = '사용가능한 아이디입니다. ';
+				document.getElementById('idHelp').style.color = "green";
+			}
+			
+			
+			
+
+			
+			
+		
+		}
 
 	</script>
-
-	<!-- <script src="../../js/user/signUp.js"></script> -->
 
 </body>
 </html>
