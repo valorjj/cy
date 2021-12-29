@@ -22,7 +22,7 @@
 			</div>
 			<div class="row col-12 border-bottom">
 				<div class="logo col-4 offset-4 text-center">
-					<a href="./home.jsp" class="">
+					<a href="#" class="">
 						<img src="../../image/1.logo.png" alt="">
 					</a>
 				</div>

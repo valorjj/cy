@@ -18,7 +18,7 @@ body {
 	<div class="container">
 		<div class="row col-8" style="display: block; margin: 0 auto;">
 			<ul class="d-flex my-2 text-warning">
-				<li class="mx-3" style="list-style: none;"><a href="./home.jsp" style="color: black";>홈</a></li>
+				<li class="mx-3" style="list-style: none;"><a href="./signhome.jsp" style="color: black";>홈</a></li>
 				<li class="mx-3 active" style="border-bottom: solid 1px #000; list-style: none;"><a href="./logIn.jsp" style="color: orange">로그인</a></li>
 			</ul>
 			<div class="title text-center" style="width: 100%;">
@@ -46,7 +46,7 @@ body {
 						<!-- 비밀번호 입력하는 부분 -->
 						<input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="비밀번호" />
 					</div>
-					<input type="submit" class="form-control btn btn-warning w-50 my-2" value="로그인" style="display: block; margin: 0 auto;"/>
+					<input type="submit" class="form-control btn btn-warning w-50 my-2" value="로그인" style="display: block; margin: 0 auto;" />
 					<!-- 로그인 버튼 -->
 					<div class="my-3 d-flex flex-column justify-content-center align-items-center">
 						<div class="my-1 col-12 d-flex align-self-between">
