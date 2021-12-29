@@ -54,7 +54,7 @@ public class UserDao extends DB {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("로그인 실패 : "+ e);
 			e.printStackTrace();
 		}
 		return false;

@@ -65,6 +65,24 @@ ul.tabs li.current {
 	ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(user_no);
 
 	User user = UserDao.getUserDao().getUser(user_no);
+	
+	String pagenum = request.getParameter("pagenum"); // 클릭한 페이지번호 요청
+	if(pagenum == null) { // 클릭한 페이지번호가 없으면
+		pagenum = "1"; // 1페이지
+	}	
+	int lastrow = BoardDao.getBoardDao().boardcount(key, keyword);
+
+	int listsize = 10;
+	int lastpage = 0;					//마지막 페이지
+	if(lastrow % listsize == 0) {		//만약에 나머지가 없다면
+		lastpage = lastrow / listsize;		//총 게시물/페이지당게시물
+	}else {
+		lastpage = lastrow / listsize+1; //총 게시물/페이지당게시물 +1
+	}
+
+	// 현재페이지번호
+	int currentpage = Integer.parseInt(pagenum);
+	int startrow = (currentpage-1)*listsize; // 현재페이지의 시작번호
 	%>
 
 
@@ -95,18 +113,16 @@ ul.tabs li.current {
 						
 
 						<div class="row form-control">
-						<%
-						for (Visitor visitor : visitors) {
-						%>
-						<form action="viewLoglist.jsp" method="get">
+						<%for (Visitor visitor : visitors) { %>
+						
 							<div class="col-md-12">
 								<span>no : <%=visitor.getVisitor_no()%></span> <span>작성자 : <%=visitor.getUser_id()%></span>
 								<span>작성일 : <%=visitor.getDate()%></span>
 								<%if(loginid != null && loginid.equals(visitor.getUser_id() ) ) { %>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  								수정
+  									수정 <!-- 수정 버튼 modal -->
 								</button>
-								<input type="submit" value="삭제">
+								<div><a href="../../../controller/mypage/visitor/deleteLogController.jsp?visitor_no=<%=visitor.getVisitor_no()%>"><button>삭제 </button></a></div>
 								
 								<%} %>
 							</div>
@@ -123,11 +139,9 @@ ul.tabs li.current {
 								</div>
 							</div>
 							<hr>
-							<%}	%>
-						</form>
+							<%}%>
 						</div>
-						
-						<!-- Button trigger modal -->
+					
 
 
  

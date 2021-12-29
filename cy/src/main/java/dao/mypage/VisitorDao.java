@@ -4,6 +4,7 @@ package dao.mypage;
 import java.util.ArrayList;
 
 import dao.DB;
+import dao.MemberDao;
 import dto.Visitor;
 
 public class VisitorDao extends DB {
@@ -59,5 +60,18 @@ public class VisitorDao extends DB {
 			return true;
 		} catch (Exception e) {System.out.println("방명록 수정 실패 : " + e);} return false;
 	}
+	
+	// 방명록삭제
+	public boolean deletevisitor(int visitor_no) {
+		String sql = "delete from visitor where visitor_no = ? ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, visitor_no);
+			ps.executeUpdate();
+			return true;		
+		} catch (Exception e) {System.out.println("방명록 삭제 실패 : " + e);} return false;
+	}
+	
+	//페이징 처리
 	
 }
