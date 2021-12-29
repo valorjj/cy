@@ -1,3 +1,6 @@
+<%@page import="dao.mypage.CommentDao"%>
+<%@page import="dto.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="dto.Post"%>
 <%@page import="dao.mypage.PostDao"%>
 <%@page import="dto.LogInSession"%>
@@ -90,7 +93,7 @@ ul.tabs li.current {
 									href="../../../controller/mypage/post/deletePostController.jsp?bpost_no=<%=post.getBpost_no()%>"><button
 										class="form-control">삭제하기</button></a>
 							</div>
-					</div>
+						</div>
 							<table class="table">
 								<tr>
 									<td style="width: 20%">작성자 <%=post.getWriter()%>
@@ -108,6 +111,48 @@ ul.tabs li.current {
 									<td style="height: 300px;">내용</td>
 									<td colspan="2"><%=post.getContent()%></td>
 								</tr>
+							</table>
+							<br>
+							<hr>
+							<form action="../../../controller/mypage/comment/bpostWriteController.jsp" method="post"class="row">
+								<!-- 댓글 저장시 : 1.댓글내용 2.댓글작성자[세션] 3.게시물번호 -->
+							<input type="hidden" name="bpost_no" value="<%=bpost_no%>">
+							
+								<div class="col-md-2">
+									<h6>댓글작성</h6>
+								</div>
+								<div class="col-md-8">
+									<textarea rows="" cols="" class="form-control" name="content"></textarea>
+								</div>
+								<div class="col-md-2">
+									<input type="submit" value="등록" class="form-control">
+								</div>
+							</form>
+							<br>
+							<table class="table" >
+								<tr>
+									<th>작성자</th>
+									<th>내용</th>
+									<th>작성일</th>
+									<th>삭제여부</th> 
+									
+								</tr>
+								<%
+							ArrayList<Comment> comments = CommentDao.getCommentDao().postCommentlist(bpost_no);
+							for (Comment comment : comments) {
+							%>
+							<tr>
+								<th><%=comment.getWriter()%></th>
+								<th><%=comment.getContent()%></th>
+								<th><%=comment.getDate() %></th>
+								<th><a
+									href="../../../controller/mypage/comment/bpostDeleteReplyController.jsp?comment_no=<%=comment.getComment_no()%>&bpost_no=<%=bpost_no%>">
+										<button class="form-control">삭제</button>
+								</a> <!-- 삭제버튼 눌렀을때 댓글번호 이동 -->
+							</tr>
+							<%
+							}
+							%>
 							</table>
 						</div>
 					</div>

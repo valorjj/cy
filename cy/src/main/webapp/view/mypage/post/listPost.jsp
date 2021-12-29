@@ -128,15 +128,13 @@ ul.tabs li.current {
 									%>
 
 									<li class="page-item">
-										<button onclick="pageChange(<%=currentpage%>)"
-											class="page-link">이전</button>
+										<a href="listPost.jsp?pagenum=<%=currentpage%>" class="page-link"> ◀ </a>
 									</li>
 									<%
 									} else {
 									%>
 									<li class="page-item">
-										<button onclick="pageChange(<%=currentpage - 1%>)"
-											class="page-link">이전</button>
+										<a href="listPost.jsp?pagenum=<%=currentpage-1%>" class="page-link"> ◀ </a>
 									</li>
 
 									<%
@@ -150,9 +148,8 @@ ul.tabs li.current {
 									%>
 
 									<li class="page-item">
-										<button onclick="pageChange(<%=i%>)" class="page-link">
-											<%=i%>
-										</button>
+										<a href="listPost.jsp?pagenum=<%=i%>" class="page-link"><%=i%> </a>
+									
 									</li>
 
 									<%
@@ -165,15 +162,13 @@ ul.tabs li.current {
 									%>
 
 									<li class="page-item">
-										<button onclick="pageChange(<%=currentpage%>)"
-											class="page-link">다음</button>
+										<a href="listPost.jsp?pagenum=<%=currentpage%>" class="page-link"> ▶  </a>
 									</li>
 									<%
 									} else {
 									%>
 									<li class="page-item">
-										<button onclick="pageChange(<%=currentpage + 1%>)"
-											class="page-link">다음</button>
+										<a href="listPost.jsp?pagenum=<%=currentpage+1%>" class="page-link"> ▶ </a>
 									</li>
 
 									<%
