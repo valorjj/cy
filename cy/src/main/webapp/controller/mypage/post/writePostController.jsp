@@ -18,10 +18,10 @@
 	String content = request.getParameter("content");
 		// 1. html < > -> 문자 변환 [ 정규표현식x ]
 		// 2. \n -> <br> 줄바꿈 변환
-	//content = content.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+	content = content.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 		// 3. html < > -> 문자 변환 [ 정규표현식 ]
 	//title = title.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\S)*(/)?","");
-	//title = title.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+	title = title.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 
 	LogInSession logInSession  =  (LogInSession)session.getAttribute("logIn");
 	int user_no = logInSession.getUser_no();

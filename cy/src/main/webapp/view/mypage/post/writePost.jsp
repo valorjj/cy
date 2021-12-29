@@ -53,14 +53,35 @@ ul.tabs li.current {
 		<div class="row">
 			<div class="col-md-10">
 				<div class="row">
-					<div class="col-md-2">
-						<img alt="" src="">
-					</div>
-					<div class="col-md-10">
+					<div class="col-md-3">
+						 <img src="../../upload/" alt=""class="img-thumbnail" style="max-width: 100%;" >
+                        <hr >
+                        <div>
+                           <span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
+                        </div>
+                        <hr >
+                        <div class="row text-center">
+                           <button type="button" class="btn btn-secondary btn-sm"
+                              value="">소개글 수정</button>
+
+                        </div>
+                        <hr >
+                        <!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
+                        <div class="">
+                           <button type="button" class="btn btn-secondary btn-sm"
+                              value="">프로필 사진 수정</button>
+                        </div>
+                        <div class="my-2">
+                           <h6>
+                              홈페이지 주소(http://cyworld/<span style="color: blue;"></span>)
+                           </h6>
+                        </div>
+                     </div>
+					<div class="col-md-9">
 						<form action="../../../controller/mypage/post/writePostController.jsp" method="post">
 							제목 : <input id="title" class="form-control" type="text" name="title"><br> 
 							내용 :
-							<textarea id="content" class="form-control" rows="10" cols="20"
+							<textarea id="content" class="form-control" rows="5" cols="20"
 								name="content"></textarea>
 							<br>
 							<input type="submit" value="등 록">
@@ -73,7 +94,7 @@ ul.tabs li.current {
 					<li class="tab-link current">홈</li>
 					<li class="tab-link"><a href="#">프로필</a></li>
 					<li class="tab-link" id="folder-4"><a href="listPost.jsp">게시판</a></li>
-					<li class="tab-link" id="folder-5">사진첩</li>
+					<li class="tab-link" id="folder-5"><a href="../gallery/listGallery.jsp">사진첩</a></li>
 					<li class="tab-link">방명록</li>
 					<li class="tab-link" style="display: none;">관리</li>
 				</ul>

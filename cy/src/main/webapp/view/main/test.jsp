@@ -277,7 +277,7 @@ ul.tabs li.current {
                <li class="tab-link current">홈</li>
                <li class="tab-link" ><a href="#">프로필</a></li>
                <li class="tab-link" id="folder-4"><a href="../mypage/post/listPost.jsp">게시판</a></li>
-               <li class="tab-link" id="folder-5"><a href="../mypage/post/listPost.jsp">사진첩</a></li>
+               <li class="tab-link" id="folder-5"><a href="../mypage/gallery/listGallery.jsp">사진첩</a></li>
                <li class="tab-link">방명록</li>
                <li class="tab-link" style="display: none;">관리</li>
             </ul>

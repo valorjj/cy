@@ -72,18 +72,37 @@ ul.tabs li.current {
 
 	ArrayList<Post> posts = PostDao.getPostDao().postlist(startrow, listsize);
 
-	for (Post post : posts) {
-		System.out.println(post.getBpost_no());
-	}
+	
 	%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
 				<div class="row">
-				<div class="col-md-2">
-					<img alt="" src="">
-				</div>
-				<div class="col-md-10">
+				<div class="col-md-3">
+					 <img src="../../upload/" alt=""class="img-thumbnail" style="max-width: 100%;" >
+                        <hr >
+                        <div>
+                           <span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
+                        </div>
+                        <hr >
+                        <div class="row text-center">
+                           <button type="button" class="btn btn-secondary btn-sm"
+                              value="">소개글 수정</button>
+
+                        </div>
+                        <hr >
+                        <!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
+                        <div class="">
+                           <button type="button" class="btn btn-secondary btn-sm"
+                              value="">프로필 사진 수정</button>
+                        </div>
+                        <div class="my-2">
+                           <h6>
+                              홈페이지 주소(http://cyworld/<span style="color: blue;"></span>)
+                           </h6>
+                        </div>
+                     </div>
+				<div class="col-md-9">
 					<div style="height: 500px; border: 1px solid orange;">
 						게시판
 						<table class="table">
@@ -190,8 +209,8 @@ ul.tabs li.current {
 	            <ul class="tabs">
 	               <li class="tab-link current">홈</li>
 	               <li class="tab-link" ><a href="#">프로필</a></li>
-	               <li class="tab-link" id="folder-4"><a href="#">게시판</a></li>
-	               <li class="tab-link" id="folder-5">사진첩</li>
+	               <li class="tab-link" id="folder-4"><a href="../post/listPost.jsp">게시판</a></li>
+              	   <li class="tab-link" id="folder-5"><a href="../gallery/listGallery.jsp">사진첩</a></li>
 	               <li class="tab-link">방명록</li>
 	               <li class="tab-link" style="display: none;">관리</li>
 	            </ul>

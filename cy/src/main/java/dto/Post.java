@@ -11,7 +11,6 @@ public class Post {
 
 	private int bpost_no; 
 	private int user_no ;
-	private int sub_no ; 
 	private String title;
 	private String content;
 	private String date;
@@ -21,11 +20,10 @@ public class Post {
 
 	public Post() {}
 	
-	public Post(int bpost_no, int user_no, int sub_no,  String title, String content, String date, int view) {
+	public Post(int bpost_no, int user_no, String title, String content, String date, int view) {
 		super();
 		this.bpost_no = bpost_no;
 		this.user_no = user_no;
-		this.sub_no = sub_no;
 		this.title = title;
 		this.content = content;
 		this.date = date;
@@ -77,13 +75,6 @@ public class Post {
 		this.user_no = user_no;
 	}
 
-	public int getSub_no() {
-		return sub_no;
-	}
-
-	public void setSub_no(int sub_no) {
-		this.sub_no = sub_no;
-	}
 
 	public String getTitle() {
 		return title;

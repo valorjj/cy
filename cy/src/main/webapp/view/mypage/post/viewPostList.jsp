@@ -75,10 +75,31 @@ ul.tabs li.current {
 		<div class="row">
 			<div class="col-md-10">
 				<div class="row">
-					<div class="col-md-2">
-						<img alt="" src="">
-					</div>
-					<div class="col-md-10">
+					<div class="col-md-3">
+						 <img src="../../upload/" alt=""class="img-thumbnail" style="max-width: 100%;" >
+                        <hr >
+                        <div>
+                           <span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
+                        </div>
+                        <hr >
+                        <div class="row text-center">
+                           <button type="button" class="btn btn-secondary btn-sm"
+                              value="">소개글 수정</button>
+
+                        </div>
+                        <hr >
+                        <!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
+                        <div class="">
+                           <button type="button" class="btn btn-secondary btn-sm"
+                              value="">프로필 사진 수정</button>
+                        </div>
+                        <div class="my-2">
+                           <h6>
+                              홈페이지 주소(http://cyworld/<span style="color: blue;"></span>)
+                           </h6>
+                        </div>
+                     </div>
+					<div class="col-md-9" style="overflow: auto; height: 500px;">
 						<div class="row">
 							<div class="m-2">
 								<a href="listPost.jsp"><button class="form-control">목록보기</button></a>
@@ -108,7 +129,7 @@ ul.tabs li.current {
 									<td colspan="2"><%=post.getTitle()%></td>
 								</tr>
 								<tr>
-									<td style="height: 300px;">내용</td>
+									<td style="height: 100px;">내용</td>
 									<td colspan="2"><%=post.getContent()%></td>
 								</tr>
 							</table>
@@ -137,7 +158,7 @@ ul.tabs li.current {
 									<th>삭제여부</th> 
 									
 								</tr>
-								<%
+							<%
 							ArrayList<Comment> comments = CommentDao.getCommentDao().postCommentlist(bpost_no);
 							for (Comment comment : comments) {
 							%>
@@ -146,7 +167,7 @@ ul.tabs li.current {
 								<th><%=comment.getContent()%></th>
 								<th><%=comment.getDate() %></th>
 								<th><a
-									href="../../../controller/mypage/comment/bpostDeleteReplyController.jsp?comment_no=<%=comment.getComment_no()%>&bpost_no=<%=bpost_no%>">
+									href="../../../controller/mypage/comment/bpostDeleteController.jsp?comment_no=<%=comment.getComment_no()%>&bpost_no=<%=bpost_no%>">
 										<button class="form-control">삭제</button>
 								</a> <!-- 삭제버튼 눌렀을때 댓글번호 이동 -->
 							</tr>
@@ -162,7 +183,7 @@ ul.tabs li.current {
 					<li class="tab-link current">홈</li>
 					<li class="tab-link"><a href="#">프로필</a></li>
 					<li class="tab-link" id="folder-4"><a href="listPost.jsp">게시판</a></li>
-					<li class="tab-link" id="folder-5">사진첩</li>
+					<li class="tab-link" id="folder-5"><a href="../gallery/listGallery.jsp">사진첩</a></li>
 					<li class="tab-link">방명록</li>
 					<li class="tab-link" style="display: none;">관리</li>
 				</ul>
