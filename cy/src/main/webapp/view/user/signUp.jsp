@@ -112,13 +112,13 @@
 						<label for="">나이</label>
 						<select name="signAge" id="signAge" class="custom-select">
 							<%
-                     for (int i = 10; i < 60; i++) {
-                     %>
+							for (int i = 10; i < 60; i++) {
+							%>
 							<option value="<%=i%>">
 								<%=i%></option>
 							<%
-                     }
-                     %>
+							}
+							%>
 						</select> <small id="ageHelp" class="" style="color: orange">나이를 선택해주세요. </small>
 					</div>
 					<div class="form-group">
@@ -132,6 +132,9 @@
 						<small id="infoHelp" class="" style="color: orange">간단한 홈페이지 소개를 적어주시면 어떨까요?</small>
 					</div>
 					<input type="submit" class="btn btn-warning d-flex justify-content-center w-50 col-4 offset-4" />
+					<button type="button" class="btn btn-warning d-flex justify-content-center w-50 col-4 offset-4 mt-3">
+						<a href="./signhome.jsp">뒤로기가</a>
+					</button>
 				</form>
 			</div>
 		</div>
@@ -176,7 +179,6 @@
       });
 
    </script>
-
 	<!-- <script src="../../js/user/signUp.js"></script> -->
 </body>
 </html>

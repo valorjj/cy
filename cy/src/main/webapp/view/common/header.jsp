@@ -47,20 +47,20 @@
 					</div>
 				</div>
 				<div class="col-md-7 d-flex justify-content-around">
-					<div class="row">
-						<div class="col-md-3">
-							<a href="#" class="text-dark" style="font-size: 1.2rem;">일촌
+					<div class="row d-flex">
+						<div class="col-md-3 align-self-center" >
+							<a href="#" class="text-dark" style="font-size: 1rem;">일촌
 								파도 타기</a>
 						</div>
-						<div class="col-md-3">
-							<a href="" class="text-dark" style="font-size: 1.2rem;">마이홈</a>
+						<div class="col-md-3 align-self-center">
+							<a href="" class="text-dark" style="font-size: 1rem;">마이홈</a>
 						</div>
-						<div class="col-md-3">
-							<a href="#" class="text-dark" style="font-size: 1.2rem;">일촌보기</a>
+						<div class="col-md-3 align-self-center">
+							<a href="#" class="text-dark" style="font-size: 1rem;">일촌보기</a>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 align-self-center">
 							<a href="../../controller/user/logOutController.jsp"
-								class="text-dark" style="font-size: 1.2rem;">로그아웃</a>
+								class="text-dark" style="font-size: 1rem;">로그아웃</a>
 						</div>
 					</div>
 				</div>
