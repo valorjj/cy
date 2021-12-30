@@ -154,7 +154,7 @@ ul.tabs li.current {
 							<div class="d-flex justify-content-end">
 								<div class="col-md-2">
 									<button type="button" class="btn btn-secondary" id="update"
-										onclick="update(<%=visitor.getVisitor_no()%>, <%=visitor.getUser_id()%>, <%=visitor.getDate()%>)"
+										onclick="update(<%=visitor.getVisitor_no()%>,'<%=visitor.getUser_id()%>','<%=visitor.getDate()%>')"
 										data-toggle="modal" data-target="#exampleModal">
 										수정
 										<!-- 수정 버튼 modal -->
@@ -257,17 +257,18 @@ ul.tabs li.current {
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
-
-
+	
+	
+	 <!-- Modal --> 
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h6 class="modal-title" id="exampleModalLabel">
-						no : <span id="no"> </span> 작성자 : <span id="writer"> </span> 작성일 :
-						<span id="date"> </span>
+						no : <span id="no"></span>
+						작성자 : <span id="writer"></span> 
+						작성일 : <span id="date"></span>
 					</h6>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -275,12 +276,13 @@ ul.tabs li.current {
 					</button>
 				</div>
 				<div class="modal-body">
-					<textarea rows="" cols="" class="form-control" name="content"></textarea>
+					<textarea rows="" cols="" class="form-control" name="content" id="content"></textarea>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">닫기</button>
-					<input type="submit" class="btn btn-primary" value="수정">
+					<button type="button" class="btn btn-primary" onclick="test();"id="modalup"> 수정 </button>	
+					
 				</div>
 			</div>
 		</div>

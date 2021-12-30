@@ -25,7 +25,9 @@
 	// 공통적으로 적용되는 css, js, api 를 한곳에 모아두는 곳 입니다.
 	// 4.x 부트스트랩, 부트스트랩 아이콘, jquery
 	%>
-
+	
+ 	 <!--  본인 js 호출 -->
+	<script type="text/javascript" src="/cy/js/mypage/visitor.js"></script>
 	<!-- 부트스트랩 4.x JS + jquery-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -39,7 +41,6 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		
-  
 
 </body>
 </html>
