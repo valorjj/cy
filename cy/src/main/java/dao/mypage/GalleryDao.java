@@ -114,8 +114,31 @@ public class GalleryDao extends DB {
 			}
 			return galleries;
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
+	}
+
+	// 전체 게시물 수 가져오는 메소드
+	// 메인 페이지에서 전체 게시물 수를 알려주는 숫자입니다. 
+	
+	public int getTotalGallery(int user_no) {
+
+		String sql = "select count(*) from gpost where user_no="+user_no;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+
 	}
 
 }

@@ -15,6 +15,7 @@ public class Post {
 	private String date;
 	private int view;
 	private String writer;
+	private String category;
 
 	public Post() {
 	}
@@ -44,6 +45,7 @@ public class Post {
 		}
 
 		this.view = view;
+		this.category = "게시판";
 
 	}
 
@@ -51,12 +53,14 @@ public class Post {
 		this.title = title;
 		this.content = content;
 		this.user_no = user_no;
+		this.category = "게시판";
 	}
 
 	public Post(int bpost_no, String title, String content) {
 		this.bpost_no = bpost_no;
 		this.title = title;
 		this.content = content;
+		this.category = "게시판";
 	}
 
 	public int getBpost_no() {
@@ -113,6 +117,14 @@ public class Post {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

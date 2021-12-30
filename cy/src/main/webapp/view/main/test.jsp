@@ -1,10 +1,15 @@
+<%@page import="dto.Total"%>
+<%@page import="dao.mypage.VisitorDao"%>
+<%@page import="dao.mypage.GalleryDao"%>
+<%@page import="dao.mypage.PostDao"%>
 <%@page import="dto.FLog"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.mypage.FLogDao"%>
 <%@page import="dao.user.FriendDao"%>
 <%@page import="dao.user.UserDao"%>
 <%@page import="dto.User"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,13 +152,15 @@ ul.tabs li.current {
 
 	User myself = UserDao.getUserDao().getUser(user_no); // 로그인 한 사람의 정보를 미리 저장해둡니다. 
 
+	ArrayList<Total> totals;
+
 	System.out.println("접속한 본인 유저 번호는 : " + user_no);
 
 	if (request.getParameter("userSearch") != null) { // 검색이 존재하는 경우입니다. 
 		// 검색한 유저의 번호를 otherUserNo 라는 변수에 초기화시킵니다. 
+		// 다른 유저를 검색했을 경우, "other" 라는 세션에 그 번호를 저장합니다. 
 		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
 		session.setAttribute("other", otherUserNo); // 일단 otherSession 클래스는 버리고 번호 하나만 세션에 저장합니다.
-
 		System.out.println("검색한 사람의 번호는 :" + otherUserNo);
 
 		if (otherUserNo == user_no) {
@@ -182,6 +189,14 @@ ul.tabs li.current {
 		// 관리 탭을 보이게한다. 
 		// 방문자 수가 증가되면 안된다.
 		User user = UserDao.getUserDao().getUser(user_no);
+		totals = UserDao.getUserDao().getTotalContents(user_no);
+
+		for (Total total : totals) {
+
+			System.out.println(total.getContent());
+			System.out.println(total.getDate());
+			System.out.println(total.getCategory());
+		}
 	%>
 
 
@@ -206,13 +221,13 @@ ul.tabs li.current {
 
 								<div class="col-md-4">
 									<div class="col-md-8">
-										<span>사이트 한 줄 소개</span>
+										<span><%=user.getIntro()%></span>
 									</div>
 								</div>
 
 								<div class="col-md-4">
 									<div class="col-md-8">
-										<span>사이트주소</span>
+										<span>www.cyworld.myHome/<%=user.getUser_id()%></span>
 									</div>
 								</div>
 
@@ -245,20 +260,18 @@ ul.tabs li.current {
 													data-toggle="modal" data-target="#updateUserPicModal">프로필
 													사진 수정</button>
 											</div>
-                      
-                      
-                      <div class="my-2">
-                        <div class="feelWrapper d-flex">
-                          <div class="feel mr-2">오늘의 기분</div>
-                          <select class="feelSelect">
-                            <option>기쁨 😀</option>
-                            <option>슬픔 😭</option>
-                            <option>분노 😡</option>
-                            <option>행복 😊</option>
-                            <option>귀찮 😒</option>
-                          </select>
+											<div class="my-2">
+												<div class="feelWrapper d-flex">
+													<div class="feel mr-2">오늘의 기분</div>
+													<select class="feelSelect">
+														<option>기쁨 😀</option>
+														<option>슬픔 😭</option>
+														<option>분노 😡</option>
+														<option>행복 😊</option>
+														<option>귀찮 😒</option>
+													</select>
+												</div>
 											</div>
-										</div>
 										</div>
 
 										<div class="col-md-9" style="box-shadow: 2px 2px 2px #cccccc;">
@@ -267,10 +280,9 @@ ul.tabs li.current {
 												<div class="col-md-6">
 													<span style="color: orange;">updated news</span>
 													<hr />
-
-													<div class="row">
+													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
-															<div>사진첩</div>
+															<div class="badge badge-info">사진첩</div>
 														</div>
 														<div class="col-md-8">
 															<div class="w-auto">사진첩 업데이트1</div>
@@ -301,50 +313,49 @@ ul.tabs li.current {
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="col-md-6">
-												<span style="color: orange;">boardlist</span>
-												<hr />
-												<div class="row">
-													<div class="col-md-12">
-														<div class="row border-bottom" style="width: 98%">
-															<div class="col-md-6 ">
-																<a href="" class="badge badge-info">게시판 </a>
-															</div>
-															<div class="col-md-6">
-																<span> 1 / 100 </span>
-															</div>
-														</div>
-														<div class="row border-bottom" style="width: 98%">
-															<div class="col-md-6">
-																<a href="" class="badge badge-warning">사진첩</a>
-															</div>
-															<div class="row">
-																<div class="col-md-6">
-																	<a href="">게시판 </a>
+
+												<%
+												// 각 게시판에서 작성된 전체 게시물을 가져옵니다.
+												%>
+
+												<div class="col-md-6">
+													<span style="color: orange;">boardlist</span>
+													<hr />
+													<div class="row">
+														<div class="col-md-12">
+															<div class="row border-bottom" style="width: 98%">
+																<div class="col-md-6 ">
+																	<a href="" class="badge badge-info">게시판 </a>
 																</div>
 																<div class="col-md-6">
-																	<span> 1 / 100 </span>
+																	<span> 0 / <%=PostDao.getPostDao().getTotalPost(user_no)%>
+																	</span>
 																</div>
 															</div>
-														</div>
-														<div class="row border-bottom" style="width: 98%">
-															<div class="col-md-6">
-																<a href="" class="badge badge-danger">방명록</a>
-															</div>
-															<div class="row">
+															<div class="row border-bottom" style="width: 98%">
 																<div class="col-md-6">
-																	<a href="">방명록</a>
+																	<a href="" class="badge badge-warning">사진첩</a>
 																</div>
 																<div class="col-md-6">
-																	<span> 1 / 100 </span>
+																	<span> 0 / <%=GalleryDao.getGalleryDao().getTotalGallery(user_no)%>
+																	</span>
+																</div>
+															</div>
+															<div class="row border-bottom" style="width: 98%">
+																<div class="col-md-6">
+																	<a href="" class="badge badge-danger">방명록</a>
+																</div>
+																<div class="col-md-6">
+																	<span> 0 / <%=VisitorDao.getvisitorDao().getTotalVisitor(user_no)%>
+																	</span>
 																</div>
 															</div>
 														</div>
+														<!-- 게시판 리스트 종료 -->
 													</div>
-													<!-- 게시판 리스트 종료 -->
 												</div>
 											</div>
+
 
 											<hr />
 											<span style="color: orange;">사진첩</span>
@@ -367,117 +378,59 @@ ul.tabs li.current {
 													<img src="../../image/siam.jpg" class="img-thumbnail"
 														alt="..." style="max-width: 100%;">
 												</div>
-
 											</div>
 											<hr />
 											<div class="row p-2">
 												<span style="color: orange; font-size: 12px;"> 일촌평</span>
 											</div>
+
 											<%
 											// 1. 일촌평을 가져와서 출력합니다. 
 											ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user_no);
 											for (FLog fLog : fLogs) {
 											%>
-											<div class="row">
-												<div class="col-md-2"><%=UserDao.getUserDao().getid(fLog.getFriend_no())%></div>
-												<div class="col-md-7"><%=fLog.getFlog_content()%></div>
-												<div class="col-md-3"><%=fLog.getFlow_date()%></div>
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<textarea
+															class="text-input hidden text-input hidden w-100"
+															id="input" rows="1" maxlength="50"
+															style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"><%=fLog.getFlog_content()%></textarea>
+													</div>
+													<div class="text-output" id="output"
+														style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div
+													class="btn-area col-3  align-self-center d-flex justify-content-center fori"
+													style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white edit"
+															onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel cancel"
+														id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit submit"
+														id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
 											</div>
 											<%
 											}
 											%>
-											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
-												<div class="col-1 align-self-center">
-													<span class="badge badge-warning">일촌평</span>
-												</div>
-												<div class="text-area col-8 align-self-center">
-													<div style="width: 100%">
-														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
-													</div>
-													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
-												</div>
-												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
-													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
-													</div>
-													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">취소</button>
-													</div>
-													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">확인</button>
-													</div>
-												</div>
-											</div>
-											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
-												<div class="col-1 align-self-center">
-													<span class="badge badge-warning">일촌평</span>
-												</div>
-												<div class="text-area col-8 align-self-center">
-													<div style="width: 100%">
-														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
-													</div>
-													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
-												</div>
-												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
-													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
-													</div>
-													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">취소</button>
-													</div>
-													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">확인</button>
-													</div>
-												</div>
-											</div>
-											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
-												<div class="col-1 align-self-center">
-													<span class="badge badge-warning">일촌평</span>
-												</div>
-												<div class="text-area col-8 align-self-center">
-													<div style="width: 100%">
-														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
-													</div>
-													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
-												</div>
-												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
-													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
-													</div>
-													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">취소</button>
-													</div>
-													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">확인</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- 일촌평 종료 -->
-										<div class="row d-flex flex-column my-2">
-											<div class="h6 bg-info pl-2 text-white">storyroom</div>
-											<button class="text-left" style="border: none;">
-												<span class="badge badge-primary">미니룸선택</span>
-												<input type="file" name="logo" id='getval' class="upload" title="Dimensions" id="imag">
-											</button>
-											<div class="backimg mt-10" style="width: 100%; position: relative;">
-												<div id='profile-upload'>
-													<div class="hvr-profile-img"></div>
-												</div>
-												<!-- 미니미업로드용 -->
-												<div class="" style="position: absolute; top: 0; left: 0; width: 100%;">
-													<span class="badge badge-warning">미니미선택</span>
-													<input type="file" id="file" value="미니미 아이템">
-													<canvas class="" id="canvas" width="590px" height="180px"></canvas>
-												</div>
-											</div>
 										</div>
 									</div>
+									<!-- 일촌평 종료 -->
 								</div>
 							</div>
 						</div>
-						<!-- 메인 페이지 종료 -->
 					</div>
+					<!-- 메인 페이지 종료 -->
 				</div>
 				<div class="col-md-2">
 					<ul class="tabs">
@@ -497,9 +450,12 @@ ul.tabs li.current {
 							class="text-white">방명록</a></li>
 						<li class="tab-link"><a href="#" class="text-white">관리</a></li>
 					</ul>
-          <div class="musicplayer p-3" style="height: 100px;">
-            <iframe style="display: block; margin: 0 auto; width: 100%; height: auto;" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/306913234&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-          </div>
+					<div class="musicplayer p-3" style="height: 100px;">
+						<iframe
+							style="display: block; margin: 0 auto; width: 100%; height: auto;"
+							scrolling="no" frameborder="no" allow="autoplay"
+							src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/306913234&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -510,11 +466,10 @@ ul.tabs li.current {
 	// 관리 페이지를 숨긴다. 
 	User user = UserDao.getUserDao().getUser(otherUserNo);
 	%>
-	<div class="container p-3" style="background-color: #263333;">
-
+	<div class="container p-3" style="background-color: lightgrey;">
 		<div class="container p-1" style="border: 2px dotted white">
 			<div class="row no-gutters">
-				<div class="col-md-10">
+				<div class="col-md-10" style="box-shadow: 1px 1px 1px black;">
 					<div id="tab-1" class="tab-content current" style="overflow: auto;">
 						<!-- 메인 페이지 호출 -->
 						<div class="container">
@@ -532,13 +487,13 @@ ul.tabs li.current {
 
 								<div class="col-md-4">
 									<div class="col-md-8">
-										<span>사이트 한 줄 소개</span>
+										<span><%=user.getIntro()%></span>
 									</div>
 								</div>
 
 								<div class="col-md-4">
 									<div class="col-md-8">
-										http://cyworld/<span style="color: blue;"><%=user.getUser_id()%></span>
+										<span>www.cyworld.myHome/<%=user.getUser_id()%></span>
 									</div>
 								</div>
 
@@ -581,17 +536,6 @@ ul.tabs li.current {
 												%>
 											</div>
 											<hr />
-											<div class="d-flex justify-content-center"
-												style="display: none">
-												<button type="button" class="btn btn-secondary btn-sm"
-													value="" style="display: none">소개글 수정</button>
-											</div>
-											<hr />
-											<!-- 나중에 시간되면 다크모드 전환도 넣을 까해서 밝기 아이콘 넣어두었음 -->
-											<div class="">
-												<button type="button" class="btn btn-secondary btn-sm"
-													value="" style="display: none">프로필 사진 수정</button>
-											</div>
 											<div class="my-2">
 												<h6>
 													홈페이지 주소(http://cyworld/<span style="color: blue;"><%=user.getUser_id()%></span>)
@@ -606,71 +550,75 @@ ul.tabs li.current {
 													<span style="color: orange;">updated news</span>
 													<hr />
 													<div class="row">
-														<div class="col-md-4">
-															<div>사진첩</div>
-
+														<div class="col-12 d-flex border-bottom">
+															<div class="col-md-4">
+																<div class="badge badge-info">사진첩</div>
+															</div>
+															<div class="col-md-8">
+																<div class="w-auto">사진첩 업데이트1</div>
+															</div>
 														</div>
-														<div class="col-md-8">
-															<div class="w-auto">사진첩 업데이트1</div>
+														<div class="col-12 d-flex border-bottom">
+															<div class="col-md-4">
+																<div class="badge badge-info">게시판</div>
+															</div>
+															<div class="col-md-8">
+																<div class="w-auto">게시판 업데이트1</div>
+															</div>
 														</div>
-														<div class="col-md-4">
-															<div>게시판</div>
+														<div class="col-12 d-flex border-bottom">
+															<div class="col-md-4">
+																<div class="badge badge-danger">방명록</div>
+															</div>
+															<div class="col-md-8">
+																<div class="w-auto">방명록 업데이트1</div>
+															</div>
 														</div>
-														<div class="col-md-8">
-															<div class="w-auto">게시판 업데이트1</div>
-														</div>
-														<div class="col-md-4">
-															<div>방명록</div>
-														</div>
-														<div class="col-md-8">
-															<div class="w-auto">방명록 업데이트1</div>
-														</div>
-														<div class="col-md-4">
-															<div>방명록</div>
-														</div>
-														<div class="col-md-8">
-															<div class="w-auto">방명록 업데이트1</div>
+														<div class="col-12 d-flex border-bottom">
+															<div class="col-md-4">
+																<div class="badge badge-primary">방명록</div>
+															</div>
+															<div class="col-md-8">
+																<div class="w-auto">방명록 업데이트1</div>
+															</div>
 														</div>
 													</div>
 												</div>
 												<div class="col-md-6">
-
 													<span style="color: orange;">boardlist</span>
 													<hr />
 													<div class="row">
 														<div class="col-md-12">
-															<div class="row">
+															<div class="row border-bottom" style="width: 98%">
+																<div class="col-md-6 ">
+																	<a href="" class="badge badge-info">게시판 </a>
+																</div>
 																<div class="col-md-6">
-																	<span> 1 / 100 </span>
+																	<span> 0 / <%=PostDao.getPostDao().getTotalPost(user.getUser_no())%>
+																	</span>
 																</div>
 															</div>
-															<div class="row">
+															<div class="row border-bottom" style="width: 98%">
 																<div class="col-md-6">
-																	<a href="">게시판 </a>
+																	<a href="" class="badge badge-warning">사진첩</a>
 																</div>
 																<div class="col-md-6">
-																	<span> 1 / 100 </span>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-md-6">
-																	<a href="">사진첩</a>
-																</div>
-																<div class="col-md-6">
-																	<span> 1 / 100 </span>
+																	<span> 0 / <%=GalleryDao.getGalleryDao().getTotalGallery(user.getUser_no())%>
+																	</span>
 																</div>
 															</div>
-															<div class="row">
+															<div class="row border-bottom" style="width: 98%">
 																<div class="col-md-6">
-																	<a href="">방명록</a>
+																	<a href="" class="badge badge-danger">방명록</a>
 																</div>
 																<div class="col-md-6">
-																	<span> 1 / 100 </span>
+																	<span> 0 / <%=VisitorDao.getvisitorDao().getTotalVisitor(user.getUser_no())%>
+																	</span>
 																</div>
 															</div>
 														</div>
+														<!-- 게시판 리스트 종료 -->
 													</div>
-													<!-- 게시판 리스트 종료 -->
 												</div>
 											</div>
 											<hr />
@@ -694,7 +642,6 @@ ul.tabs li.current {
 													<img src="../../image/siam.jpg" class="img-thumbnail"
 														alt="..." style="max-width: 100%;">
 												</div>
-
 											</div>
 											<hr />
 											<div class="row">
@@ -708,16 +655,47 @@ ul.tabs li.current {
 
 												</div>
 											</div>
+
 											<hr />
+
+											<div class="row p-2">
+												<span style="color: orange; font-size: 12px;"> 일촌평</span>
+											</div>
 											<%
 											// 1. 일촌평을 가져와서 출력합니다. 
 											ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user.getUser_no());
 											for (FLog fLog : fLogs) {
 											%>
-											<div class="row">
-												<div class="col-md-2"><%=UserDao.getUserDao().getid(fLog.getFriend_no())%></div>
-												<div class="col-md-7"><%=fLog.getFlog_content()%></div>
-												<div class="col-md-3"><%=fLog.getFlow_date()%></div>
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<textarea
+															class="text-input hidden text-input hidden w-100"
+															id="input" rows="1" maxlength="50"
+															style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"><%=fLog.getFlog_content()%></textarea>
+													</div>
+													<div class="text-output" id="output"
+														style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div
+													class="btn-area col-3  align-self-center d-flex justify-content-center fori"
+													style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white edit"
+															onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel cancel"
+														id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit submit"
+														id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
 											</div>
 											<%
 											}
@@ -730,6 +708,7 @@ ul.tabs li.current {
 						</div>
 						<!-- 메인 페이지 종료 -->
 					</div>
+
 				</div>
 				<div class="col-md-2">
 					<ul class="tabs">
@@ -748,8 +727,13 @@ ul.tabs li.current {
 							href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user.getUser_no()%>"
 							class="text-white">방명록</a></li>
 					</ul>
+					<div class="musicplayer p-3" style="height: 100px;">
+						<iframe
+							style="display: block; margin: 0 auto; width: 100%; height: auto;"
+							scrolling="no" frameborder="no" allow="autoplay"
+							src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/306913234&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -757,13 +741,15 @@ ul.tabs li.current {
 	}
 	%>
 	<!-- Modal -->
-	<div class="modal fade" id="updateIntroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="updateIntroModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form action="../../controller/user/updateUserIntro.jsp" method="get">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">홈페이지 소개</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -771,22 +757,26 @@ ul.tabs li.current {
 						<input type="text" class="form-control" id="" name="newIntro" />
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary btn-sm"
+							data-dismiss="modal">Close</button>
 						<input type="submit" class="btn btn-secondary btn-sm" name="" />
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-	<div class="modal fade" id="updateUserPicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form action="../../controller/user/updateUserPic.jsp" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="userNo" value="<%=user_no%>" />
-			<input type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
+	<div class="modal fade" id="updateUserPicModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form action="../../controller/user/updateUserPic.jsp" method="post"
+			enctype="multipart/form-data">
+			<input type="hidden" name="userNo" value="<%=user_no%>" /> <input
+				type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">프로필 사진</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -796,8 +786,9 @@ ul.tabs li.current {
 								<span class="input-group-text">사진업로드</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="newPic" name="newPic" onchange="readURL(this);" />
-								<label for="newPic" class="custom-file-label">Choose file</label>
+								<input type="file" class="custom-file-input" id="newPic"
+									name="newPic" onchange="readURL(this);" /> <label for="newPic"
+									class="custom-file-label">Choose file</label>
 							</div>
 						</div>
 						<div>
@@ -805,7 +796,8 @@ ul.tabs li.current {
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary btn-sm"
+							data-dismiss="modal">Close</button>
 						<input type="submit" class="btn btn-secondary btn-sm" name="" />
 					</div>
 				</div>
@@ -896,8 +888,10 @@ ul.tabs li.current {
 	}
 	</script>
 	<!--미니미업로드1,2  -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script
+		src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
 	<script type="text/javascript">
 	var canvas = new fabric.Canvas('canvas');
 
@@ -950,10 +944,7 @@ ul.tabs li.current {
 			
 	} );
 	
-	 
-  
-	  
-	  
+	
         function name() {
 
         }

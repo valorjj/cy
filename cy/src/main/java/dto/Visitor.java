@@ -8,6 +8,7 @@ public class Visitor {
 	private String content;
 	private String date;
 	private String user_id;
+	private String category;
 
 	public Visitor() {
 
@@ -20,6 +21,8 @@ public class Visitor {
 		this.content = content;
 		this.date = date;
 		this.user_id = user_id;
+		this.category = "방명록";
+
 	}
 
 	// 방명록 등록시 생성자
@@ -27,6 +30,7 @@ public class Visitor {
 		this.user_no = user_no;
 		this.content = content;
 		this.user_id = user_id;
+		this.category = "방명록";
 	}
 
 	// 방명록 수정시 생성자
@@ -73,6 +77,14 @@ public class Visitor {
 
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

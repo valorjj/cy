@@ -1,7 +1,10 @@
 package dao.user;
 
+import java.util.ArrayList;
+
 import dao.DB;
 import dto.OtherSession;
+import dto.Total;
 import dto.User;
 
 public class UserDao extends DB {
@@ -257,6 +260,37 @@ public class UserDao extends DB {
 			if (rs.next()) {
 				return rs.getString(1);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
+	// 15. 내용, 등록 날짜, 카테고리를 골라서 전부 다 합쳐서 가져오는 메소드
+
+	public ArrayList<Total> getTotalContents(int user_no) {
+
+		ArrayList<Total> totals = new ArrayList<>();
+
+		String sql = "select content,date,category from bpost union all select content,date,category from gpost union all select content,date,category from visitor where user_no="
+				+ user_no + " order by date desc limit 0, 4";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+
+				Total total = new Total(
+
+						rs.getString(1), rs.getString(2), rs.getString(3)
+
+				);
+				totals.add(total);
+
+			}
+			return totals;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

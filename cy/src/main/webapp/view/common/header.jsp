@@ -100,15 +100,18 @@
 	height: 50px;
 	padding: 5px;
 }
-</style>
 
+#gap-test {
+	margin: 0px;
+	padding: 0px;
+}
+</style>
 <link
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel="stylesheet" />
 <link
 	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"
 	rel="stylesheet" />
-
 <link rel="stylesheet" href="/cy/css/common/mini.css" />
 </head>
 <body>
@@ -126,22 +129,25 @@
 	%>
 
 	<div class="container" style="background-color: #eeeeee">
-		<form action="/cy/view/main/test.jsp" method="post" onsubmit="return detectSpace();">
-			<div class="row my-3 p-1">
+		<form action="/cy/view/main/test.jsp" method="post"
+			onsubmit="return detectSpace();">
+			<div class="row" id="gap-test">
 				<div class="col-md-5">
 					<div class="row">
 						<div class="col-md-3 align-self-center">
-							<input type="text" class="form-control" id="userSearch" name="userSearch" />
+							<input type="text" class="form-control" id="userSearch"
+								name="userSearch" />
 						</div>
 						<div class="col-md-2 align-self-center">
 							<!-- 헤더에서 검색한 결과값 -->
-							<input id="searchBtn" type="submit" class="form-control btn btn-secondary btn-sm" value="검색" />
+							<input id="searchBtn" type="submit"
+								class="form-control btn btn-secondary btn-sm" value="검색" />
 						</div>
 						<div class="col-md-2 align-self-center">
 							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
 								아이디</div>
 							<div class="row" style="color: orange;"><%=loginid%></div>
-            </div>
+						</div>
 
 						<div class="col-md-1">
 							<!-- 음악 재생 플레이어 영역-->
@@ -166,7 +172,6 @@
 									<br> Track: <span id="track">프리스타일_Y</span>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -300,11 +305,5 @@
 			}, 1000);
 		});
 	</script>
-
-
-
-
-
-
 </body>
 </html>

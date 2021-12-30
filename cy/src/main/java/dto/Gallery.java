@@ -13,10 +13,12 @@ public class Gallery {
 	private String photo;
 	private String date;
 	private String writer;
-	
-	public Gallery() {}
+	private String category;
 
-	public Gallery(int gpost_no, int user_no, String title, String content,String photo,  String date) {
+	public Gallery() {
+	}
+
+	public Gallery(int gpost_no, int user_no, String title, String content, String photo, String date) {
 		this.gpost_no = gpost_no;
 		this.user_no = user_no;
 		this.title = title;
@@ -24,39 +26,40 @@ public class Gallery {
 		this.photo = photo;
 		this.date = date;
 		this.writer = UserDao.getUserDao().getUserId(user_no);
-		Date today = new Date(); // 1. 오늘날짜 
-		SimpleDateFormat datetimeformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");	// 날짜,시간형식
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");				// 날짜 형식
-		SimpleDateFormat timeformat = new SimpleDateFormat("a hh:mm");					// 시간 형식
+		Date today = new Date(); // 1. 오늘날짜
+		SimpleDateFormat datetimeformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); // 날짜,시간형식
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 날짜 형식
+		SimpleDateFormat timeformat = new SimpleDateFormat("a hh:mm"); // 시간 형식
 		try {
-			Date date2 =  datetimeformat.parse( date );						// [문자열]DB -> 날짜/시간 형식 변환
-			if( dateFormat.format( date2 ).equals(  dateFormat.format( today ) ) ) {	// 등록날짜 = 오늘날짜 비교
-				this.date = timeformat.format(date2);		// 날짜가 동일하면 시간형식 적용
-			}else {
-				this.date = dateFormat.format(date2);		// 날짜가 동일하지 않으면 날짜형식 적용
+			Date date2 = datetimeformat.parse(date); // [문자열]DB -> 날짜/시간 형식 변환
+			if (dateFormat.format(date2).equals(dateFormat.format(today))) { // 등록날짜 = 오늘날짜 비교
+				this.date = timeformat.format(date2); // 날짜가 동일하면 시간형식 적용
+			} else {
+				this.date = dateFormat.format(date2); // 날짜가 동일하지 않으면 날짜형식 적용
 			}
+		} catch (Exception e) {
 		}
-		catch (Exception e) {}
+		this.category = "사진첩";
 
 	}
-	
-	public Gallery( String title, String content, String photo, int gpost_no) {
+
+	public Gallery(String title, String content, String photo, int gpost_no) {
 		this.gpost_no = gpost_no;
 		this.title = title;
 		this.content = content;
 		this.photo = photo;
-		
+		this.category = "사진첩";
+
 	}
-	
 
 	public Gallery(int user_no, String title, String content, String photo) {
 		this.user_no = user_no;
 		this.title = title;
 		this.content = content;
 		this.photo = photo;
-		
-	}
+		this.category = "사진첩";
 
+	}
 
 	public int getGpost_no() {
 		return gpost_no;
@@ -98,8 +101,6 @@ public class Gallery {
 		this.photo = photo;
 	}
 
-	
-
 	public String getDate() {
 		return date;
 	}
@@ -115,8 +116,13 @@ public class Gallery {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
-	
-	
-	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 }
