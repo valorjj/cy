@@ -246,4 +246,23 @@ public class UserDao extends DB {
 
 	}
 
+	// 14. 프로필 사진 가져오는 메소드
+
+	public String getUserPic(int user_no) {
+		String sql = "select user_pic from user where user_no = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
 }

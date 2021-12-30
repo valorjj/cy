@@ -5,11 +5,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+request.setCharacterEncoding("utf-8");
 // 유저 프로필 사진 교체
 String folderpath = request.getSession().getServletContext().getRealPath("/upload");
 MultipartRequest multi = new MultipartRequest(request, folderpath, 1024 * 1024 * 10, "UTF-8",
 		new DefaultFileRenamePolicy());
-request.setCharacterEncoding("utf-8");
+
 String pic = multi.getFilesystemName("newPic");
 LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
 int user_no = logInSession.getUser_no();

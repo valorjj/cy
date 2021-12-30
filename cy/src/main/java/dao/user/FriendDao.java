@@ -1,5 +1,7 @@
 package dao.user;
 
+import java.util.ArrayList;
+
 import dao.DB;
 
 public class FriendDao extends DB {
@@ -54,6 +56,32 @@ public class FriendDao extends DB {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	// 3. 일촌 목록 가져오기
+	public ArrayList<Integer> getMyFriend(int user_no) {
+
+		ArrayList<Integer> friends = new ArrayList<>();
+
+		String sql = "select friend_no from friend where user_no = ?";
+
+		try {
+
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_no);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				// while 문을 돌려서 친구 목록을 가져옵니다 (친구 고유 번호)
+				friends.add(rs.getInt(1));
+			}
+			return friends;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }

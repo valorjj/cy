@@ -7,43 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6;
-	height: 500px;
-}
+<title>게시판화면</title>
 
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
+<link rel="stylesheet" href="/cy/css/common/mini.css" />
 
-ul.tabs li {
-	background: #00a8be;
-	color: #222;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-ul.tabs li.current {
-	background: #00a8be;
-	color: #ededed;
-}
-
-.tab-content {
-	display: none;
-	background: #ededed;
-	padding: 10px;
-	height: 500px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-</style>
 </head>
 <body>
 
@@ -78,133 +45,162 @@ ul.tabs li.current {
 	int startrow = (currentpage - 1) * listsize;
 	%>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10">
-				<div class="row">
-					<div class="col-md-2">
-						<img alt="" src="">
-					</div>
-					<div class="col-md-10">
-						<div style="height: 500px; border: 1px solid orange;">
-							게시판
-							<table class="table">
-								<tr>
-									<td>
-										<button>□</button>
-									</td>
-									<th>번호</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-									<th>조회수</th>
-								</tr>
-
-								<%
-								ArrayList<Post> posts = PostDao.getPostDao().postlist(startrow, listsize);
-								for (Post post : posts) {
-								%>
-								<tr>
-									<td>□</td>
-									<td><%=post.getBpost_no()%></td>
-									<td><a
-										href="viewPostList.jsp?bpost_no=<%=post.getBpost_no()%>"
-										class="text-dark"><%=post.getTitle()%></a></td>
-									<td><%=post.getWriter()%></td>
-									<td><%=post.getDate()%></td>
-									<td><%=post.getView()%></td>
-								</tr>
-								<%
-								}
-								%>
-
-
-							</table>
-							<!--  페이징 번호 -->
-
+	<div class="container p-3" style="background-color: #263333;">
+		<div class="container p-1" style="border: 2px dotted white">
+			<div class="row no-gutters">
+				<div class="col-md-10 ">
+					<div id="tab-1" class="tab-content current" style="overflow: auto;">
+						<div class="container" style="background-color: white;">
 							<div class="row">
-								<!-- 가로 배치 -->
-								<div class="col-md-4 offset-4">
-									<ul class="pagination">
-
-										<!-- 첫페이지에서 이전버튼 눌렀을때 첫페이지 고정  -->
-										<%
-										if (currentpage == 1) {
-										%>
-
-										<li class="page-item"><a
-											href="listPost.jsp?pagenum=<%=currentpage%>"
-											class="page-link"> ◀ </a></li>
-										<%
-										} else {
-										%>
-										<li class="page-item"><a
-											href="listPost.jsp?pagenum=<%=currentpage - 1%>"
-											class="page-link"> ◀ </a></li>
-
-										<%
-										}
-										%>
-										<!-- 현재페이지번호 -1  -->
-
-										<!-- 게시물의 수만큼 페이지 번호 생성 -->
-										<%
-										for (int i = 1; i <= lastpage; i++) {
-										%>
-
-										<li class="page-item"><a
-											href="listPost.jsp?pagenum=<%=i%>" class="page-link"><%=i%>
-										</a></li>
-
-										<%
-										}
-										%>
-
-										<!-- 마지막페이지에서 다음버튼 눌렀을때 마지막페이지 고정 -->
-										<%
-										if (currentpage == lastpage) {
-										%>
-
-										<li class="page-item"><a
-											href="listPost.jsp?pagenum=<%=currentpage%>"
-											class="page-link"> ▶ </a></li>
-										<%
-										} else {
-										%>
-										<li class="page-item"><a
-											href="listPost.jsp?pagenum=<%=currentpage + 1%>"
-											class="page-link"> ▶ </a></li>
-
-										<%
-										}
-										%>
-
-									</ul>
+								<div class="col-md-2" style="">
+									<img alt="" src="../../../image/m1.png"
+										style="max-width: 100%;"> <img alt=""
+										src="../../../image/m2.png" style="max-width: 100%;"> <img
+										alt="" src="../../../image/m3.png" style="max-width: 100%;">
+									<img alt="" src="../../../image/m4.png"
+										style="max-width: 100%;"> <img alt=""
+										src="../../../image/m5.png" style="max-width: 100%;"> <img
+										alt="" src="../../../image/m6.png" style="max-width: 100%;">
+									<img alt="" src="../../../image/m7.png"
+										style="max-width: 100%;"> <img alt=""
+										src="../../../image/m8.png" style="max-width: 100%;"> <img
+										alt="" src="../../../image/m9.png" style="max-width: 100%;">
+									<img alt="" src="../../../image/m10.png"
+										style="max-width: 100%;"> <img alt=""
+										src="../../../image/m11.png" style="max-width: 100%;"> <img
+										alt="" src="../../../image/m12.png" style="max-width: 100%;">
 								</div>
+								<div class="col-md-10 my-4 p-3">
+									<div
+										style="height: 500px; box-shadow: 2px 2px 2px #eeeeee; border: 1px solid #eeeeee;">
+										<div class="d-flex justify-content-center">
+											<p style="color: orange;">게시판</p>
+										</div>
+										<table class="table">
+											<tr>
+												<td>선택</td>
+												<th>번호</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>작성일</th>
+												<th>조회수</th>
+											</tr>
+											<%
+											ArrayList<Post> posts = PostDao.getPostDao().postlist(startrow, listsize);
+											for (Post post : posts) {
+											%>
+											<tr>
+												<td><input type="checkbox" aria-label=""></td>
+												<td><%=post.getBpost_no()%></td>
+												<td><a
+													href="viewPostList.jsp?bpost_no=<%=post.getBpost_no()%>&userNumber=<%=number%>"
+													class="text-dark"><%=post.getTitle()%></a></td>
+												<td><%=post.getWriter()%></td>
+												<td><%=post.getDate()%></td>
+												<td><%=post.getView()%></td>
+											</tr>
+											<%
+											}
+											%>
+										</table>
+										<!--  페이징 번호 -->
+
+										<div class="row">
+											<!-- 가로 배치 -->
+											<div class="col-md-4 offset-4">
+												<ul class="pagination">
+
+													<!-- 첫페이지에서 이전버튼 눌렀을때 첫페이지 고정  -->
+													<%
+													if (currentpage == 1) {
+													%>
+
+													<li class="page-item"><a
+														href="listPost.jsp?pagenum=<%=currentpage%>"
+														class="page-link"> ◀ </a></li>
+													<%
+													} else {
+													%>
+													<li class="page-item"><a
+														href="listPost.jsp?pagenum=<%=currentpage - 1%>"
+														class="page-link"> ◀ </a></li>
+
+													<%
+													}
+													%>
+													<!-- 현재페이지번호 -1  -->
+
+													<!-- 게시물의 수만큼 페이지 번호 생성 -->
+													<%
+													for (int i = 1; i <= lastpage; i++) {
+													%>
+
+													<li class="page-item"><a
+														href="listPost.jsp?pagenum=<%=i%>" class="page-link"><%=i%>
+													</a></li>
+
+													<%
+													}
+													%>
+
+													<!-- 마지막페이지에서 다음버튼 눌렀을때 마지막페이지 고정 -->
+													<%
+													if (currentpage == lastpage) {
+													%>
+
+													<li class="page-item"><a
+														href="listPost.jsp?pagenum=<%=currentpage%>"
+														class="page-link"> ▶ </a></li>
+													<%
+													} else {
+													%>
+													<li class="page-item"><a
+														href="listPost.jsp?pagenum=<%=currentpage + 1%>"
+														class="page-link"> ▶ </a></li>
+
+													<%
+													}
+													%>
+
+												</ul>
+											</div>
+										</div>
+
+										<div class="col-md-3 offset-9">
+											<a href="writePost.jsp"><button type="button"
+													class="form-control">글 등록</button></a>
+										</div>
+									</div>
+								</div>
+
 							</div>
 
-							<div class="col-md-3 offset-9">
-								<a href="writePost.jsp"><button type="button"
-										class="form-control">글 등록</button></a>
-							</div>
 						</div>
+
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2">
-				<ul class="tabs">
-					<li class="tab-link current"><a
-						href="../../main/test.jsp?userNumber=<%=number%>">홈</a></li>
-					<li class="tab-link"><a href="#">프로필</a></li>
-					<li class="tab-link current" id="folder-4"><a href="#">게시판</a></li>
-					<li class="tab-link" id="folder-5">사진첩</li>
-					<li class="tab-link"><a href="/cy/view/mypage/visitor/viewLogList.jsp">방명록</a></li>
-					<li class="tab-link" style="display: none;">관리</li>
-				</ul>
+				<div class="col-md-2">
+					<ul class="tabs">
+						<li class="tab-link"><a
+							href="/cy/view/main/test.jsp?userNumber=<%=number%>"
+							class="text-white">홈</a></li>
+						<li class="tab-link"><a
+							href="/cy/view/user/viewUserProfile.jsp?userNumber=<%=number%>"
+							class="text-white">프로필</a></li>
+						<li class="tab-link current" id="folder-4"><a
+							href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=number%>"
+							class="text-white">게시판</a></li>
+						<li class="tab-link" id="folder-5" class="text-white"><a
+							href="/cy/view/mypage/gallery/listGallery.jsp?userNumber=<%=number%>">사진첩</a></li>
+						<li class="tab-link"><a
+							href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=number%>"
+							class="text-white">방명록</a></li>
+						<li class="tab-link" style="display: none;" class="text-white">관리</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-
 
 </body>
 </html>
