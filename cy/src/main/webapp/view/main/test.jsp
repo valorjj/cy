@@ -337,18 +337,18 @@ ul.tabs li.current {
 												</div>
 												<div class="text-area col-8 align-self-center">
 													<div style="width: 100%">
-														<input class="text-input hidden w-100" id="input" type="text" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
+														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
 													</div>
 													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
 												</div>
 												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
 													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white" onclick="dis()">EDIT</button>
+														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
 													</div>
-													<div class="btn btn-small btn-edit-cancel " id="cancel" style="display: none; width: 33%">
+													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
 														<button class="badge badge-dark text-white">취소</button>
 													</div>
-													<div class="btn btn-small btn-edit-submit " id="submit" style="display: none; width: 33%">
+													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
 														<button class="badge badge-dark text-white">확인</button>
 													</div>
 												</div>
@@ -359,18 +359,18 @@ ul.tabs li.current {
 												</div>
 												<div class="text-area col-8 align-self-center">
 													<div style="width: 100%">
-														<input class="text-input hidden w-100" id="input" type="text" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
+														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
 													</div>
 													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
 												</div>
 												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
 													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white" onclick="dis()">EDIT</button>
+														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
 													</div>
-													<div class="btn btn-small btn-edit-cancel " id="cancel" style="display: none; width: 33%">
+													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
 														<button class="badge badge-dark text-white">취소</button>
 													</div>
-													<div class="btn btn-small btn-edit-submit " id="submit" style="display: none; width: 33%">
+													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
 														<button class="badge badge-dark text-white">확인</button>
 													</div>
 												</div>
@@ -381,18 +381,18 @@ ul.tabs li.current {
 												</div>
 												<div class="text-area col-8 align-self-center">
 													<div style="width: 100%">
-														<input class="text-input hidden w-100" id="input" type="text" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
+														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
 													</div>
 													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
 												</div>
 												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
 													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white" onclick="dis()">EDIT</button>
+														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
 													</div>
-													<div class="btn btn-small btn-edit-cancel " id="cancel" style="display: none; width: 33%">
+													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
 														<button class="badge badge-dark text-white">취소</button>
 													</div>
-													<div class="btn btn-small btn-edit-submit " id="submit" style="display: none; width: 33%">
+													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
 														<button class="badge badge-dark text-white">확인</button>
 													</div>
 												</div>
@@ -782,21 +782,10 @@ ul.tabs li.current {
 	<script>
 	  $(document).ready(function(){
 
-		  $("#edit").on("click", function(){
+		  $(".edit").on("click", function(){
 
-		  $('#cancel').show();
-		  $('#submit').show();
-
-		  });
-
-		});
-	  
-	  $(document).ready(function(){
-
-		  $("#cancel").on("click", function(){
-
-		  $('#cancel').hide();
-		  $('#submit').hide();
+		  $('.cancel').show();
+		  $('.submit').show();
 
 		  });
 
@@ -804,10 +793,21 @@ ul.tabs li.current {
 	  
 	  $(document).ready(function(){
 
-		  $("#submit").on("click", function(){
+		  $(".cancel").on("click", function(){
 
-		  $('#cancel').hide();
-		  $('#submit').hide();
+		  $('.cancel').hide();
+		  $('.submit').hide();
+
+		  });
+
+		});
+	  
+	  $(document).ready(function(){
+
+		  $(".submit").on("click", function(){
+
+		  $('.cancel').hide();
+		  $('.submit').hide();
 
 		  });
 
