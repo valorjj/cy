@@ -4,13 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 	<!-- 로그인 페이지에는 헤더 빼고 common 만 끌어온다. -->
 	<%@ include file="../common/common.jsp"%>
 	<!-- 헤더 고정 -->
-	<div id="header" class="wrap">
-		<div class="container-fluid">
+	<div class="wrap" style="position: relative;">
+		<div id="header" class="container-fluid">
 			<div class="row col-12 justify-content-end my-2">
 				<ul class="d-flex text-dark">
 					<li><a href="#">싸이월드</a></li>
@@ -30,9 +32,9 @@
 		</div>
 		<!-- 헤더 고정 -->
 		<!-- 캐러셀 -->
-		<div id="slide" class="wrap">
+		<div id="slide" class="carouselmid">
 			<!-- Carousel wrapper -->
-			<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+			<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="height: 75vh">
 				<ol class="carousel-indicators">
 					<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
 					<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -40,19 +42,19 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="../../image/cyworld_back3.jpg" class="d-block" alt="" style="background-repeat: no-repeat; background-position: center; background-size: cover; width: 100%">
+						<img src="../../image/cyworld_back3.jpg" class="d-block" alt="" style="background-repeat: no-repeat; background-position: center; background-size: cover; width: 100%; height: 76vh;">
 						<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
 							<h5>Welcome to Cyworld !!</h5>
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img src="../../image/back2.png" class="d-block w-100" alt="...">
+						<img src="../../image/back2.png" class="d-block w-100" alt="..." style="height: 76vh;">
 						<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
 							<h5>Welcome to Cyworld !!</h5>
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img src="../../image/back1.png" class="d-block w-100" alt="...">
+						<img src="../../image/back1.png" class="d-block w-100" alt="..." style="height: 76vh;">
 						<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
 							<h5>Welcome to Cyworld !!</h5>
 						</div>
@@ -71,7 +73,7 @@
 		</div>
 		<!-- 캐러셀 종료 -->
 		<!-- 푸터 시작 -->
-		<div id="footer" class="wrap">
+		<div id="footer">
 			<div class="container-fluid text-light" style="background: grey;">
 				<div class="row justify-content-center">
 					<div class="copyright text-center" style="width: 100%; height: 50px; line-height: 50px; font-size: 20px;">(주)CYWORLD</div>
@@ -82,7 +84,7 @@
 						<li class="mx-2">조원 : 조지훈</li>
 						<li class="mx-2">조원 : 김태호</li>
 					</ul>
-					<div class="col-12 text-center my-1 text-dark" style="word-spacing: 10px;">
+					<div class="col-12 text-center my-1 lightdark" style="word-spacing: 10px;">
 						<span>소개</span>
 						<span>·</span>
 						<span>도움말</span>
@@ -95,5 +97,6 @@
 			</div>
 		</div>
 		<!-- 푸터 종료-->
+	</div>
 </body>
 </html>
