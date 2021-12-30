@@ -4,7 +4,6 @@ package dao.mypage;
 import java.util.ArrayList;
 
 import dao.DB;
-import dao.MemberDao;
 import dto.Visitor;
 
 public class VisitorDao extends DB {
@@ -28,6 +27,27 @@ public class VisitorDao extends DB {
 		} catch (Exception e) {System.out.println("방명록 작성 실패 :" + e);} return false;
 	} // 방명록 등록 메소드 end
 	//-----------------------------------------------------------------------------------------
+	
+	//페이징 
+	public ArrayList<Visitor> visitorlist(int startrow, int listsize) {
+		ArrayList<Visitor> visitors = new ArrayList<Visitor>();
+		String sql = "select * from visitor order by visitor_no desc limit ? , ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, startrow);
+			ps.setInt(2, listsize);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Visitor visitor = new Visitor(rs.getInt(1), rs.getInt(2), rs.getString(3),
+						rs.getString(4), rs.getString(5));
+				visitors.add(visitor);
+			}
+			return visitors;
+		} catch (Exception e) {System.out.println("페이징 연습 실패 : " + e);} return null;
+		
+	}
+	
+	
 	
 	
 	// 전체 게시물 조회
@@ -73,5 +93,15 @@ public class VisitorDao extends DB {
 	}
 	
 	//페이징 처리
-	
+	public int visitorcount() {
+		
+		String sql = "select count(*) from visitor";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {System.out.println("페이징 처리 실패 :" +e);}return 0;
+	}
 }

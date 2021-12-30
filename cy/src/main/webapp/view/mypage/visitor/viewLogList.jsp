@@ -52,6 +52,8 @@ ul.tabs li.current {
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
+	<!--  본인 js 호출 -->
+	
 	<%
 	// 방명록 출력 페이지
 	// 다른 유저가 남긴 방명록을 리스트로 보여줍니다.
@@ -62,7 +64,7 @@ ul.tabs li.current {
 	// 헤더에 로그인 세션이 있는데 여기서도 호출해야하나 ??
 	// 만약 중복되서 안된다면 user_no 또는 id를 어떻게 가져와야하나
 	
-	ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(user_no);
+	// ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(user_no);
 
 	User user = UserDao.getUserDao().getUser(user_no);
 	
@@ -70,9 +72,11 @@ ul.tabs li.current {
 	if(pagenum == null) { // 클릭한 페이지번호가 없으면
 		pagenum = "1"; // 1페이지
 	}	
-	int lastrow = BoardDao.getBoardDao().boardcount(key, keyword);
+	
+	
+	int lastrow = VisitorDao.getvisitorDao().visitorcount();
 
-	int listsize = 10;
+	int listsize = 5;
 	int lastpage = 0;					//마지막 페이지
 	if(lastrow % listsize == 0) {		//만약에 나머지가 없다면
 		lastpage = lastrow / listsize;		//총 게시물/페이지당게시물
@@ -83,6 +87,8 @@ ul.tabs li.current {
 	// 현재페이지번호
 	int currentpage = Integer.parseInt(pagenum);
 	int startrow = (currentpage-1)*listsize; // 현재페이지의 시작번호
+	
+	ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(startrow, listsize);
 	%>
 
 
@@ -111,22 +117,21 @@ ul.tabs li.current {
 						<!-- 방명록 작성 end -->
 						<!-- 방명록 list -->
 						
-
-						<div class="row form-control">
-						<%for (Visitor visitor : visitors) { %>
 						
-							<div class="col-md-12">
-								<span>no : <%=visitor.getVisitor_no()%></span> <span>작성자 : <%=visitor.getUser_id()%></span>
+						<div class="col-md-12">
+						<%for (Visitor visitor : visitors) { %>
+							<div class="row form-control">
+								<span id="visitor_no">no : <%=visitor.getVisitor_no()%></span> <span>작성자 : <%=visitor.getUser_id()%></span>
 								<span>작성일 : <%=visitor.getDate()%></span>
 								<%if(loginid != null && loginid.equals(visitor.getUser_id() ) ) { %>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  									수정 <!-- 수정 버튼 modal -->
-								</button>
-								<div><a href="../../../controller/mypage/visitor/deleteLogController.jsp?visitor_no=<%=visitor.getVisitor_no()%>"><button>삭제 </button></a></div>
-								
+									<button type="button" class="btn btn-primary" id="update" onclick="update(<%=visitor.getVisitor_no()%>, <%=visitor.getUser_id()%>, <%=visitor.getDate()%>)" data-toggle="modal" data-target="#exampleModal" >
+	  									수정 <!-- 수정 버튼 modal -->
+									</button>
+									<div><a href="../../../controller/mypage/visitor/deleteLogController.jsp?visitor_no=<%=visitor.getVisitor_no()%>"><button>삭제 </button></a></div>
 								<%} %>
 							</div>
 							<hr>
+							
 							<div class="row">
 								<div class="col-md-4" style="height: 140px;">
 									<!-- 작성자 아이디를 가지고 가져오기 -->
@@ -141,26 +146,46 @@ ul.tabs li.current {
 							<hr>
 							<%}%>
 						</div>
-					
-
-
- 
-
 					</div>
 				</div>
+							<!-- 페이징 -->
+						<div class="row">
+							<div class="col-md-4 offset-4 my-3">
+								<ul class="pagination">
+									<!--  첫 페이지이면 이전페이지 누르면 첫페이지 고정 -->
+									<%if(currentpage == 1) { %>
+									<li class="page-item"><a href="viewLogList.jsp?pagenum=<%=currentpage %>" class="page-link"> 이전 </a> </li>
+									<%}else {%>
+									<li class="page-item"><a href="viewLogList.jsp?pagenum=<%=currentpage-1 %>" class="page-link"> 이전 </a> </li>
+									<%} %>
+									<!-- 게시물의 수만큼 페이지 생성 -->
+									<% for(int i = 1; i <= lastpage; i++) { %>
+									<li class="page-item"><a href="viewLogList.jsp?pagenum=<%=i %>" class="page-link"> <%=i %> </a> </li> <!-- i를 클릭했을때 현재 페이지 이동 [ 클릭한 페이지와 같이] -->
+									<%} %>
+									<!-- 마지막페이지에서 다음버튼 눌렀을때 마지막페이지 고정 -->
+									<%if(currentpage == lastpage) {%>
+									<li class="page-item"><a href="viewLogList.jsp?pagenum=<%=currentpage %>" class="page-link"> 다음 </a> </li>
+									<%}else { %>
+									<li class="page-item"><a href="viewLogList.jsp?pagenum=<%=currentpage+1 %>" class="page-link"> 다음 </a> </li>
+									<%} %>
+								</ul>
+							</div>
+						</div>
 			</div>
 			
-			<!-- Modal -->
-								<form action="../../../controller/mypage/visitor/updateLogController.jsp" method="get">	
-									<input type="hidden" value="" name="visitor_no">
-									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						
+					
+							<!-- Modal -->
+									
+								
+									 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									  <div class="modal-dialog">
 									    <div class="modal-content">
 									      <div class="modal-header">
 									        <h6 class="modal-title" id="exampleModalLabel">
-									        no :
-									        작성자 :
-									        작성일 :
+									        no : <span id ="no" > </span>
+									        작성자 : <span id="writer"> </span>
+									        작성일 : <span id="date"> </span>
 									        </h6>
 									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									          <span aria-hidden="true">&times;</span>
@@ -175,8 +200,8 @@ ul.tabs li.current {
 									      </div>
 									    </div>
 									  </div>
-									</div>
-								</form>
+									</div> 
+								
 								<%-- <!-- Modal -->
 								<form action="../../../controller/mypage/visitor/updateLogController.jsp" method="get">	
 									<input type="hidden" value="<%=visitor.getVisitor_no()%>" name="visitor_no">
@@ -218,12 +243,10 @@ ul.tabs li.current {
 
 
 
+			</div>
 		</div>
-
-
-
-	</div>
-
+	
+	
 	<%-- 
 	<div class="container" id="visitorcontainer" style="overflow: auto;">
 		<!-- 방명록 작성 -->
@@ -277,5 +300,6 @@ ul.tabs li.current {
 
 	</div>
  --%>
+ 
 </body>
 </html>
