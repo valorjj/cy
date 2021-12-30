@@ -13,7 +13,7 @@ boolean result = FLogDao.getFLogDao().createNewFriendComment(content, other_no, 
 
 if (result) {
 	out.println("<script> alert('일촌평이 등록되었습니다.'); </script>");
-	response.sendRedirect("../../view/main/test.jsp?userSearch=" + other_no);
+	response.sendRedirect("../../view/main/test.jsp?userSearch=" + other_no); // 테스트
 
 } else {
 
