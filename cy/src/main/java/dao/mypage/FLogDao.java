@@ -18,13 +18,14 @@ public class FLogDao extends DB {
 	}
 
 	// 1. 일촌평 등록 메소드
-	public boolean createNewFriendComment(String content, int user_no) {
+	public boolean createNewFriendComment(String content, int user_no, int friend_no) {
 
-		String sql = "insert into ilchon_log(content, user_no) values(?, ?)";
+		String sql = "insert into ilchon_log(content, user_no, friend_no) values(?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, content);
 			ps.setInt(2, user_no);
+			ps.setInt(3, friend_no);
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -34,7 +35,6 @@ public class FLogDao extends DB {
 	}
 
 	// 2. 특정 유저의 일촌평 불러오기
-
 	public ArrayList<FLog> getFLogList(int user_no) {
 
 		ArrayList<FLog> fLogs = new ArrayList<>();
@@ -47,7 +47,7 @@ public class FLogDao extends DB {
 			ps.setInt(1, user_no);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				FLog fLog = new FLog(rs.getInt(2), rs.getString(3));
+				FLog fLog = new FLog(rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));
 				fLogs.add(fLog);
 			}
 			return fLogs;

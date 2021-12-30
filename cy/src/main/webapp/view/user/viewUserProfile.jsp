@@ -77,8 +77,15 @@ ul.tabs li.current {
 
 								<div class="col-md-10" id="profileContainer">
 									<div class="row">
+										<p>나와 일촌 관계인 사람 프로필 사진</p>
+									</div>
+									<div class="row">
 										<!-- 나와 일촌한 사람들 사진 표시하기 -->
+										
 										<%
+										
+										// 1. 프로필 사진을 클릭하면 해당하는 사람 홈페이지로 이동하게 링크를 걸어두었습니다. 
+										
 										for (Integer friend : friends) {
 											System.out.println(friend);
 											String pic = UserDao.getUserDao().getUserPic(friend);
@@ -86,7 +93,7 @@ ul.tabs li.current {
 
 										<div class="col-md-4 my-2 p-3">
 
-											<img src="../../upload/<%=pic%>" alt="" style="max-width: 100%;"/>
+											<a href="../main/test.jsp?userSearch=<%=friend%>"><img src="../../upload/<%=pic%>" alt="" style="max-width: 100%;"/></a>
 
 										</div>
 

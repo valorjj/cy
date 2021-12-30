@@ -1,3 +1,6 @@
+<%@page import="dto.FLog"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.mypage.FLogDao"%>
 <%@page import="dao.user.FriendDao"%>
 <%@page import="dao.user.UserDao"%>
 <%@page import="dto.User"%>
@@ -93,12 +96,12 @@ ul.tabs li.current {
 					<div class="container">
 						<div class="row">
 							<div class="col-md-4">
-								<div class="row mainViewCount p-1" style="font-size: 0.4rem;">
+								<div class="row mainViewCount p-1" style="font-size: 0.8rem;">
 									<div class="col-md-4">
-										Today: <span style="color: red;">(?)</span>
+										Today: <span style="color: orange;">(?)</span>
 									</div>
 									<div class="col-md-4">
-										Total: <span style="color: red;"><%=user.getView()%></span>
+										Total: <span style="color: orange;"><%=user.getView()%></span>
 									</div>
 								</div>
 							</div>
@@ -247,18 +250,22 @@ ul.tabs li.current {
 
 										</div>
 										<hr />
-										<span style="color: orange; font-size: 12px;"> 일촌평</span>
-										<div>
-											<!-- 일촌평 시작 -->
-											<%
-											// 1. DB 에서 가져와서 가장 최근 5개만 출력되도록 한다.
-											%>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
+										<div class="row">
+											<span style="color: orange; font-size: 12px;"> 일촌평</span>
 										</div>
+										<%
+										// 1. 일촌평을 가져와서 출력합니다. 
+										ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user_no);
+										for (FLog fLog : fLogs) {
+										%>
+										<div class="row">
+											<div class="col-md-2"><%=UserDao.getUserDao().getid(fLog.getFriend_no())%></div>
+											<div class="col-md-7"><%=fLog.getFlog_content()%></div>
+											<div class="col-md-3"><%=fLog.getFlow_date()%></div>
+										</div>
+										<%
+										}
+										%>
 										<!-- 일촌평 종료 -->
 									</div>
 								</div>
@@ -270,15 +277,17 @@ ul.tabs li.current {
 			</div>
 			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link current"><a
+					<li class="tab-link current text-white"><a
 						href="test.jsp?userNumber=<%=user.getUser_no()%>"></a>홈</li>
-					<li class="tab-link"><a href="../user/viewUserProfile.jsp?userNumber=<%=user_no %>" class="text-white">프로필</a></li>
+					<li class="tab-link"><a
+						href="../user/viewUserProfile.jsp?userNumber=<%=user_no%>"
+						class="text-white">프로필</a></li>
 					<li class="tab-link"><a
 						href="../mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 						class="text-white">게시판</a></li>
-					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
+					<li class="tab-link"><a href="../mypage/gallery/listGallery.jsp?userNumber=<%=user_no%>" class="text-white">사진첩</a></li>
 					<li class="tab-link"><a
-						href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+						href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user.getUser_no()%>" class="text-white">방명록</a></li>
 					<li class="tab-link"><a href="#" class="text-white">관리</a></li>
 				</ul>
 			</div>
@@ -301,12 +310,12 @@ ul.tabs li.current {
 					<div class="container">
 						<div class="row">
 							<div class="col-md-4">
-								<div class="row mainViewCount p-1" style="font-size: 0.4rem;">
+								<div class="row mainViewCount p-1" style="font-size: 0.8rem;">
 									<div class="col-md-4">
-										Today: <span style="color: red;">(?)</span>
+										Today: <span style="color: orange;">(?)</span>
 									</div>
 									<div class="col-md-4">
-										Total: <span style="color: red;">(?)</span>
+										Total: <span style="color: orange;"><%=user.getView()%></span>
 									</div>
 								</div>
 							</div>
@@ -487,16 +496,21 @@ ul.tabs li.current {
 													data-target="#createNewIlchonComment">일촌평 등록</button>
 
 											</div>
-
 										</div>
-
-										<div>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
-											<h6>일촌평입니다...</h6>
+										<hr />
+										<%
+										// 1. 일촌평을 가져와서 출력합니다. 
+										ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user.getUser_no());
+										for (FLog fLog : fLogs) {
+										%>
+										<div class="row">
+											<div class="col-md-2"><%=UserDao.getUserDao().getid(fLog.getFriend_no())%></div>
+											<div class="col-md-7"><%=fLog.getFlog_content()%></div>
+											<div class="col-md-3"><%=fLog.getFlow_date()%></div>
 										</div>
+										<%
+										}
+										%>
 										<!-- 일촌평 종료 -->
 									</div>
 								</div>
@@ -508,13 +522,15 @@ ul.tabs li.current {
 			</div>
 			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link current"><a
+					<li class="tab-link current text-white"><a
 						href="test.jsp?userNumber=<%=user.getUser_no()%>">홈</a></li>
-					<li class="tab-link"><a href="#" class="text-white">프로필</a></li>
+					<li class="tab-link"><a
+						href="../user/viewUserProfile.jsp?userNumber=<%=otherUserNo%>"
+						class="text-white">프로필</a></li>
 					<li class="tab-link"><a
 						href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 						class="text-white">게시판</a></li>
-					<li class="tab-link"><a href="#" class="text-white">사진첩</a></li>
+					<li class="tab-link"><a href="../mypage/gallery/listGallery.jsp" class="text-white">사진첩</a></li>
 					<li class="tab-link"><a
 						href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
 				</ul>
@@ -600,6 +616,7 @@ ul.tabs li.current {
 		<form action="../../controller/user/createIlchonCommentController.jsp"
 			method="post">
 			<input type="hidden" value="<%=otherUserNo%>" name="otherUserNo">
+			<input type="hidden" value="<%=user_no%>" name="userNo">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -611,8 +628,8 @@ ul.tabs li.current {
 						</button>
 					</div>
 					<div class="modal-body">
-						<input type="text" class="form-control" id=""
-							name="newIlchonComment" />
+						<input type="text" class="form-control" id="friendComment"
+							name="friendComment" />
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary btn-sm"
