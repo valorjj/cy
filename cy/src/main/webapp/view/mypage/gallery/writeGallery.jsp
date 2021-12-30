@@ -46,6 +46,10 @@ ul.tabs li.current {
 <body>
 	<%@ include file="../../common/header.jsp"%>
 
+	<%
+	int userNo = Integer.parseInt(request.getParameter("userNo"));
+	%>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
@@ -78,7 +82,6 @@ ul.tabs li.current {
 					<div class="col-md-9" style="overflow: auto; height: 500px;">
 						<div style="overflow: auto; height: 500px;">
 							<form
-							
 								action="../../../controller/mypage/gallery/writeGalleryController.jsp"
 								method="post" enctype="multipart/form-data">
 								제목 : <input class="form-control" type="text" name="title"><br>
@@ -97,15 +100,26 @@ ul.tabs li.current {
 
 			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link current">홈</li>
-					<li class="tab-link"><a href="#">프로필</a></li>
-					<li class="tab-link" id="folder-4"><a
-						href="../post/listPost.jsp">게시판</a></li>
-					<li class="tab-link" id="folder-5"><a href="listGallery.jsp">사진첩</a></li>
-					<li class="tab-link">방명록</li>
-					<li class="tab-link" style="display: none;">관리</li>
+					<li class="tab-link"><a
+						href="/cy/view/main/test.jsp?userNumber=<%=userNo%>"
+						class="text-white">홈</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/user/viewUserProfile.jsp?userNumber=<%=userNo%>"
+						class="text-white">프로필</a></li>
+					<li class="tab-link current" id="folder-4"><a
+						href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=userNo%>"
+						class="text-white">게시판</a></li>
+					<li class="tab-link" id="folder-5" class="text-white"><a
+						href="/cy/view/mypage/gallery/listGallery.jsp?userNumber=<%=userNo%>">사진첩</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=userNo%>"
+						class="text-white">방명록</a></li>
+					<li class="tab-link" style="display: none;" class="text-white">관리</li>
 				</ul>
 			</div>
+
+
+
 		</div>
 	</div>
 

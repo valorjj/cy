@@ -7,210 +7,113 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-.bgm-wrap iframe#youtube-player {
-	display: none
-}
+<link rel="stylesheet" href="/cy/css/common/common.css" />
+<link rel="stylesheet" href="/cy/css/common/mini.css" />
 
-.bgm-wrap .audio-box {
-	width: 350px;
+<style type="text/css">
+#audio-player {
 	height: 100px;
-	background: #efefef;
-	padding: 5px 15px;
-	margin: 15px;
-	border-radius: 15px;
-	color: gray;
-	border: solid 0.5px #ddd
+	width: 450px;
+	overflow: hidden;
+	background-color: #2B2B2B;
+	color: white;
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
 }
 
-.bgm-wrap .audio-box .text-play-click {
-	margin-top: 10px;
+#controls {
+	height: 50px;
+	background-color: #808080;
+	width: 350px;
 }
 
-.bgm-wrap .audio-title-wrap {
-	margin-bottom: 5px;
-	margin-top: 3px;
-	font-size: 13px;
-	font-weight: 500;
-	color: #999;
+.time {
+	font-size: 10px;
+	color: white;
+	position: relative;
+	top: 14px;
+	margin: 5px;
 }
 
-.bgm-wrap .audio-box .audio-control-btn {
+.ui-progressbar {
+	background: #2B2B2B;
+}
+
+.ui-progressbar-value {
+	background: white;
+}
+
+#progressbar, #volume {
+	height: 10px;
 	display: inline-block;
-	font-size: 14px
+	border-radius: 0px;
+	border: none;
+	position: relative;
+	top: 16px;
 }
 
-.bgm-wrap .audio-box .audio-control-btn.btn-play {
-	width: 12px;
-	margin-right: 5px;
-	cursor: pointer;
+#progressbar {
+	width: 150px;
 }
 
-.bgm-wrap .audio-box .audio-control-btn.btn-pause {
-	width: 12px;
-	margin-right: 5px;
-	cursor: pointer;
+#play, #mute {
+	font-size: 16px;
+	width: 20px;
+	position: relative;
+	top: 17px;
 }
 
-.bgm-wrap .play-time {
-	display: inline-block;
-	margin: 4px;
-}
-
-.bgm-wrap .audio-box .play-progress-box {
-	display: inline-block;
-	font-size: 14px;
-	background: #fff;
-	width: 120px;
-	height: 4px;
-	border: solid 0.5px #ddd;
-	vertical-align: middle
-}
-
-.bgm-wrap .audio-box .play-progress-bar {
-	width: 0;
-	height: 100%;
-	background: gray;
-}
-
-.bgm-wrap .audio-box .play-volume-box {
-	display: inline-block;
+#play {
 	margin-left: 15px;
 }
 
-.bgm-wrap .audio-box .play-volume-slider {
+#volume {
+	width: 50px;
+}
+
+#more-info-box {
 	display: inline-block;
-	width: 40px;
-	height: 4px;
-	vertical-align: middle;
-	margin-left: 5px;
-}
-
-.bgm-wrap .audio-box .play-volume-slider .ui-slider-handle.ui-state-active
-	{
-	border: 1px solid #c5c5c5;
-	background: gray;
-}
-
-.bgm-wrap .audio-box .play-volume-slider .ui-slider-handle {
-	width: 10px;
-	height: 10px;
-	border-radius: 15px
-}
-
-.bgm-wrap .block_tool {
-	position: absolute;
+	width: 150px;
+	height: 50px;
+	position: relative;
+	left: 350px;
 	top: -50px;
-	width: auto
+	padding-top: 18px;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 12px;
+	color: white;
 }
 
-.bgm-wrap .block_tool div {
-	margin-bottom: 0;
+#more-info-box, #more-info-box>span {
+	cursor: context-menu;
 }
 
-.bgm-wrap .block_tool div .block_copy {
-	margin-right: 10px;
-	margin-left: 10px
-}
-
-.bgm-wrap .block_tool div {
+#info-tray {
 	display: inline-block;
-	margin-bottom: 10px;
-	width: 40px;
-	height: 40px;
-	text-align: center;
-	border-radius: 50%;
-	background: #F1F1F1 no-repeat center;
-	box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.05);
-	cursor: pointer;
-}
-
-.bgm-wrap .block_tool .audio_url p {
-	position: absolute;
-	left: -15px;
-	top: 48px;
-	padding: 0 10px;
-	height: 40px;
-	border-radius: 8px;
-	line-height: 40px;
-	text-align: center;
-	background: #656868;
-	color: #FFF;
-}
-
-.bgm-wrap .block_tool .audio_list p {
-	position: absolute;
-	left: 36px;
-	top: 48px;
-	padding: 0 10px;
-	height: 40px;
-	border-radius: 8px;
-	line-height: 40px;
-	text-align: center;
-	background: #656868;
-	color: #FFF;
-}
-
-.bgm-wrap .block_tool .audio_remove p {
-	position: absolute;
-	left: 83px;
-	top: 48px;
-	padding: 0 10px;
-	height: 40px;
-	border-radius: 8px;
-	line-height: 40px;
-	text-align: center;
-	background: #656868;
-	color: #FFF;
-	width: 70px;
-}
-
-.bgm-wrap .block_tool div p:after {
-	content: "";
-	clear: both;
-	display: block;
-	position: absolute;
-	top: -8px;
-	width: 40px;
-	height: 10px;
-	left: 0;
-	background: url(../images/section/section-tool-bg.png) no-repeat right
-		center;
-}
-
-.bgm-wrap .block_tool div:hover {
-	background-color: #EB479A
-}
-
-.bgm-wrap .block_tool .audio_url {
-	background-image: url(../images/block/list-icon.png) !important;
-}
-
-.bgm-wrap .block_tool .audio_url:hover {
-	background-image: url(../images/block/list-icon-over.png) !important;
-}
-
-.bgm-wrap .block_tool .audio_list {
-	background-image: url(../images/block/desktop-icon.png);
-	margin-right: 10px;
-	margin-left: 10px !important;
-}
-
-.bgm-wrap .block_tool .audio_list:hover {
-	background-image: url(../images/block/desktop-icon-over.png) !important;
-}
-
-.bgm-wrap .block_tool .audio_remove {
-	background-image: url(../images/block/remove.png) !important;
-}
-
-.bgm-wrap .block_tool .audio_remove:hover {
-	background-image: url(../images/block/remove-over.png) !important;
+	color: white;
+	position: relative;
+	width: 100%;
+	top: -65px;
+	height: 50px;
+	padding: 5px;
 }
 </style>
-<link rel="stylesheet" href="../../css/common/common.css" />
+
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link
+	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"
+	rel="stylesheet" />
+
+
 </head>
 <body>
+
+
 
 	<%@ include file="common.jsp"%>
 	<%
@@ -232,74 +135,77 @@
 			<div class="row my-3 p-1">
 				<div class="col-md-5">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-3 align-self-center">
 							<input type="text" class="form-control" id="userSearch"
 								name="userSearch" />
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-2 align-self-center">
 							<input id="searchBtn" type="submit"
 								class="form-control btn btn-secondary btn-sm" value="검색" />
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2 align-self-center">
 							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
 								아이디</div>
 							<div class="row" style="color: orange;"><%=loginid%></div>
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-1">
+							<!-- 음악 재생 플레이어 영역-->
 							<!--  헤더에 음악재생 추가 -->
-							<div class="bgm-wrap">
-								<div id="audio-player"></div>
-								<div class="audio-box" style="">
-									<div class="audio-title-wrap">
-										<span id="audio-title"> 제목</span>
-									</div>
-									<div class="audio-control-btn btn-play">
-										<i class="fa fa-play"></i>
-									</div>
-									<div class="play-time start">00:00</div>
-									<div class="play-progress-box">
-										<div class="play-progress-bar"></div>
-									</div>
-									<div class="play-time end">00:00</div>
-									<div class="play-volume-box">
-										<div class="audio-control-btn btn-volume">
-											<i class="fa fa-volume-up"></i>
-										</div>
-										<div class="play-volume-slider"></div>
-									</div>
-								</div>
+							<audio id="player" autoplay="autoplay">
+								<source src="/cy/audio/audio_sample.mp3" type="audio/mpeg" />
+							</audio>
 
-								<div class="popup-audio-player" style="display: none">
-									<div class="audio-control-btn btn-play">
-										<i class="fa fa-play" style=""></i>
-									</div>
+							<div id="audio-player">
+								<div id="controls">
+									<i id="play" class="fa fa-pause"></i> <span id="start-time"
+										class="time">00:00</span>
+									<div id="progressbar"></div>
+									<span id="time" class="time">00:00</span> <i id="mute"
+										class="fa fa-volume-up"></i>
+									<div id="volume"></div>
+								</div>
+								<div id="more-info-box">
+									<span id="more-info">목록</span>
+								</div>
+								<div id="info-tray" style="text-align: center;">
+									<br> Track: <span id="track">프리스타일_Y</span>
 								</div>
 							</div>
+							<!-- 음악 재생 플레이어 영역-->
 						</div>
+
+<!-- 						<div class="col-md-4 offset-3">
+							<div class="col-md-6">
+								<a href="#" class="text-dark" style="font-size: 1rem;">일촌 파도
+									타기</a>
+							</div>
+							<div class="col-md-6">
+								<a href="" class="text-dark" style="font-size: 1rem;">마이홈</a>
+							</div>
+
+							<div class="col-md-6">
+								<a href="#" class="text-dark" style="font-size: 1rem;">일촌보기</a>
+							</div>
+							<div class="col-md-6">
+								<a href="../../controller/user/logOutController.jsp"
+									class="text-dark" style="font-size: 1rem;">로그아웃</a>
+							</div>
+						</div> -->
+
 					</div>
 				</div>
-				<div class="col-md-7 d-flex justify-content-around">
-					<div class="row">
-						<div class="col-md-3">
-							<a href="#" class="text-dark" style="font-size: 1rem;">일촌 파도
-								타기</a>
-						</div>
-						<div class="col-md-3">
-							<a href="" class="text-dark" style="font-size: 1rem;">마이홈</a>
-						</div>
-						<div class="col-md-3">
-							<a href="#" class="text-dark" style="font-size: 1rem;">일촌보기</a>
-						</div>
-						<div class="col-md-3">
-							<a href="../../controller/user/logOutController.jsp"
-								class="text-dark" style="font-size: 1rem;">로그아웃</a>
-						</div>
-					</div>
-				</div>
+
+
+
+
 			</div>
 		</form>
 	</div>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 
 	<script type="text/javascript">
 		function detectSpace() {
@@ -330,6 +236,102 @@
 			}
 		}
 	</script>
+
+	<script>
+		var audio_player = $("#audio-player");
+		var play_button = $('#play');
+		var progress_bar = $("#progressbar");
+		var time = $("#time");
+		var mute_button = $('#mute');
+		var volume_bar = $('#volume');
+		var more_info = $('#more-info-box');
+		var info_tray = $("#info-tray");
+		var player = document.getElementById('player');
+		var duration = 0;
+		var volume = 0.75;
+
+		player.onloadedmetadata = function() {
+			duration = player.duration;
+			progress_bar.progressbar("option", {
+				'max' : duration
+			});
+		};
+
+		player.load();
+		player.volume = 0.75;
+		player.addEventListener("timeupdate", function() {
+			progress_bar.progressbar('value', player.currentTime);
+			time.text(getTime(player.currentTime));
+		}, false);
+
+		function getTime(t) {
+			var m = ~~(t / 60), s = ~~(t % 60);
+			return (m < 10 ? "0" + m : m) + ':' + (s < 10 ? "0" + s : s);
+		}
+
+		function getProgressBarClickInfo(progress_bar, e) {
+			var offset = progress_bar.position();
+			var x = e.pageX - offset.left; // or e.offsetX (less support, though)
+			var y = e.pageY - offset.top; // or e.offsetY
+			var max = progress_bar.progressbar("option", "max");
+			var value = x * max / progress_bar.width();
+
+			return {
+				x : x,
+				y : y,
+				max : max,
+				value : value
+			};
+		}
+
+		volume_bar.progressbar({
+			value : player.volume * 100,
+		});
+
+		volume_bar.click(function(e) {
+			var info = getProgressBarClickInfo($(this), e);
+			volume_bar.progressbar('value', info.value);
+			player.volume = info.value / info.max;
+		});
+
+		progress_bar.progressbar({
+			value : player.currentTime,
+		});
+
+		progress_bar.click(function(e) {
+			var info = getProgressBarClickInfo($(this), e);
+			player.currentTime = player.duration / info.max * info.value;
+		});
+
+		play_button.click(function() {
+			player[player.paused ? 'play' : 'pause']();
+			$(this).toggleClass("fa-play", !player.paused);
+			$(this).toggleClass("fa-pause", player.paused);
+		});
+
+		mute_button.click(function() {
+			if (player.volume == 0) {
+				player.volume = volume;
+			} else {
+				volume = player.volume;
+				player.volume = 0;
+			}
+
+			volume_bar.progressbar('value', player.volume * 100);
+
+			$(this).toggleClass("fa-volume-up", player.volume != 0);
+			$(this).toggleClass("fa-volume-off", player.volume == 0);
+		});
+
+		more_info.click(function() {
+			audio_player.animate({
+				height : (audio_player.height() == 50) ? 100 : 50
+			}, 1000);
+		});
+	</script>
+
+
+
 
 
 

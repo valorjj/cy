@@ -245,15 +245,25 @@ ul.tabs li.current {
 			</div>
 
 			<div class="col-md-2">
+
+
 				<ul class="tabs">
-					<li class="tab-link"><a href="/cy/view/main/test.jsp">홈</a></li>
-					<li class="tab-link"><a href="#">프로필</a></li>
-					<li class="tab-link current"><a href="newDiary.jsp">다이어리</a></li>
-					<li class="tab-link">게시판</li>
-					<li class="tab-link">사진첩</li>
-					<li class="tab-link">방명록</li>
-					<li class="tab-link" style="display: none;">관리</li>
+					<li class="tab-link"><a
+						href="/cy/view/main/test.jsp?userNumber=<%=otherUserNo%>"
+						class="text-white">홈</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/user/viewUserProfile.jsp?userNumber=<%=otherUserNo%>"
+						class="text-white">프로필</a></li>
+					<li class="tab-link current" id="folder-4"><a
+						href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=otherUserNo%>"
+						class="text-white">게시판</a></li>
+					<li class="tab-link" id="folder-5" class="text-white"><a
+						href="/cy/view/mypage/gallery/listGallery.jsp?userNumber=<%=otherUserNo%>">사진첩</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+					<li class="tab-link" style="display: none;" class="text-white">관리</li>
 				</ul>
+
 			</div>
 		</div>
 	</div>

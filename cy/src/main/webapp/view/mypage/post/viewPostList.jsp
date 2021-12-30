@@ -11,48 +11,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-body {
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6;
-	height: 500px;
-}
 
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-ul.tabs li {
-	background: #00a8be;
-	color: #222;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-ul.tabs li.current {
-	background: #ff6400;
-	color: #ededed;
-}
-
-.tab-content {
-	display: none;
-	background: #ededed;
-	padding: 10px;
-	height: 500px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-</style>
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
 	<%
-	int number = Integer.parseInt(request.getParameter("userNumber")); 
+	int number = Integer.parseInt(request.getParameter("userNumber"));
 	int bpost_no = Integer.parseInt(request.getParameter("bpost_no")); // 전 페이지에서 클릭한 게시물 번호
 	String postviews = loginid + ":" + bpost_no; // 현재 로그인된 id + 게시물번호 => 세션 이름 사용 예정
 
@@ -159,15 +123,23 @@ ul.tabs li.current {
 					</div>
 				</div>
 			</div>
-			<div class="col-md-1">
+			<div class="col-md-2">
 				<ul class="tabs">
-					<li class="tab-link "><a href="test.jsp?userNumber=<%=number%>">홈</a></li>
-					<li class="tab-link"><a href="#">프로필</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/main/test.jsp?userNumber=<%=number%>"
+						class="text-white">홈</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/user/viewUserProfile.jsp?userNumber=<%=number%>"
+						class="text-white">프로필</a></li>
 					<li class="tab-link current" id="folder-4"><a
-						href="listPost.jsp?userNumber=<%=number%>">게시판</a></li>
-					<li class="tab-link" id="folder-5">사진첩</li>
-					<li class="tab-link">방명록</li>
-					<li class="tab-link" style="display: none;">관리</li>
+						href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=number%>"
+						class="text-white">게시판</a></li>
+					<li class="tab-link" id="folder-5" class="text-white"><a
+						href="/cy/view/mypage/gallery/listGallery.jsp?userNumber=<%=number%>">사진첩</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=number%>"
+						class="text-white">방명록</a></li>
+					<li class="tab-link" style="display: none;" class="text-white">관리</li>
 				</ul>
 			</div>
 		</div>
