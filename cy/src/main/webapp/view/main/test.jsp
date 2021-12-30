@@ -341,7 +341,7 @@ ul.tabs li.current {
 													</div>
 													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
 												</div>
-												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
 													<div class="btn btn-edit " id="edit" style="width: 33%">
 														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
 													</div>
@@ -363,7 +363,7 @@ ul.tabs li.current {
 													</div>
 													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
 												</div>
-												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
 													<div class="btn btn-edit " id="edit" style="width: 33%">
 														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
 													</div>
@@ -385,7 +385,7 @@ ul.tabs li.current {
 													</div>
 													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
 												</div>
-												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
 													<div class="btn btn-edit " id="edit" style="width: 33%">
 														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
 													</div>
@@ -780,39 +780,39 @@ ul.tabs li.current {
 	</script>
 	<!-- 글등록 -->
 	<script>
-	  $(document).ready(function(){
+	
+	$('.fori').each(function(){
+		
+		 $(".edit").on("click", function(){
 
-		  $(".edit").on("click", function(){
+			  $('.cancel').show();
+			  $('.submit').show();
 
-		  $('.cancel').show();
-		  $('.submit').show();
+			  });
 
-		  });
-
-		});
-	  
-	  $(document).ready(function(){
-
-		  $(".cancel").on("click", function(){
-
-		  $('.cancel').hide();
-		  $('.submit').hide();
-
-		  });
-
-		});
-	  
-	  $(document).ready(function(){
-
-		  $(".submit").on("click", function(){
+	
+	
+	  $(".cancel").on("click", function(){
 
 		  $('.cancel').hide();
 		  $('.submit').hide();
 
 		  });
 
-		});
-		  
+	
+		
+		 $(".submit").on("click", function(){
+
+			  $('.cancel').hide();
+			  $('.submit').hide();
+
+			  });
+
+			
+	} );
+	
+	 
+  
 	  
 	  
         function name() {
