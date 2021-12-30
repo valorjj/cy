@@ -48,9 +48,6 @@ ul.tabs li.current {
 	display: inherit;
 }
 
-        
-  
-
 /* 이미지업로드 */
 #profile-upload {
 	background-image: url('');
@@ -236,7 +233,7 @@ ul.tabs li.current {
 											</div>
 										</div>
 									</div>
-									<div class="col-md-9">
+									<div class="col-md-9 d-flex flex-column">
 										<!-- 센터 부분 -->
 										<div class="row" style="overflow: hidden;">
 											<div class="col-md-6">
@@ -329,25 +326,82 @@ ul.tabs li.current {
 												<img src="../../image/siam.jpg" class="img-thumbnail" alt="..." style="max-width: 100%;">
 											</div>
 										</div>
-										<hr />
-										<div class="row my-2">
-											<span style="color: orange; font-size: 12px;"> 일촌평</span>
-											<div>
-												<!-- 일촌평 시작 -->
-												<%
-												// 1. DB 에서 가져와서 가장 최근 5개만 출력되도록 한다.
-												%>
-												<h6>일촌평입니다...</h6>
-												<h6>일촌평입니다...</h6>
-												<h6>일촌평입니다...</h6>
-												<h6>일촌평입니다...</h6>
-												<h6>일촌평입니다...</h6>
+										<div class="row my-2" style="overflow-y: scroll;">
+											<!-- 일촌평 시작 -->
+											<%
+											// 1. DB 에서 가져와서 가장 최근 5개만 출력되도록 한다.
+											%>
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<input class="text-input hidden w-100" id="input" type="text" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
+													</div>
+													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white" onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel " id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit " id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
 											</div>
-											<!-- 일촌평 종료 -->
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<input class="text-input hidden w-100" id="input" type="text" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
+													</div>
+													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white" onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel " id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit " id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
+											</div>
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<input class="text-input hidden w-100" id="input" type="text" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
+													</div>
+													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center" style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white" onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel " id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit " id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
+											</div>
 										</div>
-										<div class="row d-flex flex-column my-2 col-12">
+										<!-- 일촌평 종료 -->
+										<div class="row d-flex flex-column my-2">
 											<div class="h6 bg-info pl-2 text-white">storyroom</div>
-											<button class="text-left" style="border:none;">
+											<button class="text-left" style="border: none;">
 												<span class="badge badge-primary">미니룸선택</span>
 												<input type="file" name="logo" id='getval' class="upload" title="Dimensions" id="imag">
 											</button>
@@ -357,7 +411,7 @@ ul.tabs li.current {
 												</div>
 												<!-- 미니미업로드용 -->
 												<div class="" style="position: absolute; top: 0; left: 0; width: 100%;">
-												<span class="badge badge-warning">미니미선택</span>
+													<span class="badge badge-warning">미니미선택</span>
 													<input type="file" id="file" value="미니미 아이템">
 													<canvas class="" id="canvas" width="590px" height="180px"></canvas>
 												</div>
@@ -368,8 +422,8 @@ ul.tabs li.current {
 							</div>
 						</div>
 					</div>
-					<!-- 메인 페이지 종료 -->
 				</div>
+				<!-- 메인 페이지 종료 -->
 			</div>
 			<div class="col-md-2">
 				<ul class="tabs d-flex flex-column">
@@ -652,6 +706,7 @@ ul.tabs li.current {
 		</form>
 	</div>
 	<script type="text/javascript">
+	
 		function becomeFriend(friend_no, user_no) {
 			var you = friend_no;
 			var me = user_no;
@@ -722,14 +777,108 @@ ul.tabs li.current {
 	  reader.readAsDataURL(file);
 	});
 
-
-
-
-
-
-
-
-
 	</script>
+	<!-- 글등록 -->
+	<script>
+	  $(document).ready(function(){
+
+		  $("#edit").on("click", function(){
+
+		  $('#cancel').show();
+		  $('#submit').show();
+
+		  });
+
+		});
+	  
+	  $(document).ready(function(){
+
+		  $("#cancel").on("click", function(){
+
+		  $('#cancel').hide();
+		  $('#submit').hide();
+
+		  });
+
+		});
+	  
+	  $(document).ready(function(){
+
+		  $("#submit").on("click", function(){
+
+		  $('#cancel').hide();
+		  $('#submit').hide();
+
+		  });
+
+		});
+		  
+	  
+	  
+        function name() {
+
+        }
+
+        var btnEdit = document.getElementById("edit");
+        var btnCancel = document.getElementById("cancel");
+        var btnSubmit = document.getElementById("submit");
+
+        function activateInput() {
+            var currentText = output.innerHTML;
+            input.value = currentText.replace(/<br>/g, "\n");
+            btnEdit.classList.add("activated");
+            options.classList.add("hidden");
+            output.classList.add("hidden");
+            input.classList.remove("hidden");
+            input.focus();
+        }
+
+        function submitInput() {
+            var newText = input.value;
+            output.innerHTML = newText.replace(/\n\r?/g, '<br>');
+            deactivateInput();
+        }
+
+        function deactivateInput() {
+            btnEdit.classList.remove("activated");
+            options.classList.remove("hidden");
+            input.classList.add("hidden");
+            output.classList.remove("hidden");
+        }
+
+        function init() {
+            // start editing
+            btnEdit.addEventListener(
+                "click",
+                function () {
+                    if (!btnEdit.classList.contains("activated")) {
+                        activateInput();
+                    }
+                }
+            );
+
+            // cancel editing
+            btnCancel.addEventListener(
+                "click",
+                function () {
+                    deactivateInput();
+                }
+            );
+
+            // submit text
+            btnSubmit.addEventListener(
+                "click",
+                function () {
+                    submitInput();
+                }
+            );
+
+            // open input for initial text
+            // ---------------------------
+            activateInput();
+
+
+        }
+    </script>
 </body>
 </html>
