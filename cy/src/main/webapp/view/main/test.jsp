@@ -91,7 +91,7 @@ ul.tabs li.current {
 	<div class="container p-3" style="background-color: #263333;">
 		<div class="row no-gutters">
 			<div class="col-md-10">
-				<div id="tab-1" class="tab-content current" style="overflow: auto;">
+				<div id="" class="tab-content current" style="overflow: auto;">
 					<!-- 메인 페이지 호출 -->
 					<div class="container">
 						<div class="row">
@@ -285,9 +285,11 @@ ul.tabs li.current {
 					<li class="tab-link"><a
 						href="../mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 						class="text-white">게시판</a></li>
-					<li class="tab-link"><a href="../mypage/gallery/listGallery.jsp?userNumber=<%=user_no%>" class="text-white">사진첩</a></li>
 					<li class="tab-link"><a
-						href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user.getUser_no()%>" class="text-white">방명록</a></li>
+						href="../mypage/gallery/listGallery.jsp?userNumber=<%=user_no%>"
+						class="text-white">사진첩</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user_no %>" class="text-white">방명록</a></li>
 					<li class="tab-link"><a href="#" class="text-white">관리</a></li>
 				</ul>
 			</div>
@@ -530,9 +532,10 @@ ul.tabs li.current {
 					<li class="tab-link"><a
 						href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 						class="text-white">게시판</a></li>
-					<li class="tab-link"><a href="../mypage/gallery/listGallery.jsp" class="text-white">사진첩</a></li>
 					<li class="tab-link"><a
-						href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+						href="../mypage/gallery/listGallery.jsp" class="text-white">사진첩</a></li>
+					<li class="tab-link"><a
+						href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user.getUser_no() %>" class="text-white">방명록</a></li>
 				</ul>
 			</div>
 		</div>

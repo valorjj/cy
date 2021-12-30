@@ -76,14 +76,17 @@ ul.tabs li.current {
 	ArrayList<Gallery> galleries;
 	%>
 
-	<div class="container">
-		<div class="row">
+	<div class="container" style="background-color: #263333;">
+		<div class="row no-gutters">
 			<div class="col-md-10">
-				<div class="row">
-					<div class="col-md-3">
+				<div class="tab-content current" style="overflow: auto;">
+
+
+					<div class="col-md-2">
 						<img src="../../upload/" alt="" class="img-thumbnail"
 							style="max-width: 100%;">
 						<hr>
+
 						<div>
 							<span> 홈페이지 소개글을 적고, 수정할 수 있는 부분입니다. </span>
 						</div>
@@ -105,7 +108,7 @@ ul.tabs li.current {
 							</h6>
 						</div>
 					</div>
-					<div class="col-md-9 row"
+					<div class="col-md-10 row"
 						style="overflow: auto; height: 500px; margin-left: 15px; align-items: center;">
 
 						<%
@@ -115,39 +118,41 @@ ul.tabs li.current {
 							int j = 0;
 							for (Gallery gallery : galleries) {
 						%>
+
+						<!-- 게시물 출력 div 시작 -->
 						<div class="card my-5"
-							style="align-content: center; text-align: center; padding: 0px 30px; margin-left: 50px;">
-							<p class="item"><%=gallery.getTitle()%></p>
-							<hr>
-							<div class="row">
-								<div class="col-md-4 pt-1">
-
-									작성번호 :
-									<%=gallery.getGpost_no()%>
-									<br> 작성자 :
-									<%=gallery.getWriter()%>
-
-								</div>
-								<div class="col-md-4 py-3">
-									작성일 :
-									<%=gallery.getDate()%>
-								</div>
-								<div class="col-md-2 py-2">
+							style="align-content: center; text-align: center; padding: 0px 30px; margin-left: 50px; background-color: #eeeeee; box-shadow: 2px 2px 2px #cccccc;">
+							<!-- 게시물 제목 출력 -->
+							<div class="row"
+								style="background-color: #eeeeee; border-bottom: 1px solid black">
+								<p class="item"><%=gallery.getTitle()%></p>
+							</div>
+							<div class="row"
+								style="background-color: #eeeeee; border-bottom: 1px solid black">
+								<div class="col-md-1"><%=j%></div>
+								<div class="col-md-3"><%=gallery.getWriter()%></div>
+								<div class="col-md-3"><%=gallery.getDate()%></div>
+							</div>
+							<div class="d-flex justify-content-end">
+								<div class="col-md-3 my-2">
 									<a href="updateGallery.jsp?gpost_no=<%=gallery.getGpost_no()%>">
-										<button type="button" class="form-control">수정</button>
+										<button type="button" class="btn btn-secondary btn-sm"
+											value="" name="">수정</button>
 									</a>
 								</div>
-								<div class="col-md-2 py-2">
+								<div class="col-md-3 my-2">
 									<a
 										href="../../../controller/mypage/gallery/deleteGalleryController.jsp?gpost_no=<%=gallery.getGpost_no()%>">
-										<button type="button" class="form-control">삭제</button>
+										<button type="button" class="btn btn-secondary btn-sm"
+											value="" name="">삭제</button>
 									</a>
 								</div>
 							</div>
 							<hr>
+
 							<br> <br> <img
 								src="../../../upload/<%=gallery.getPhoto()%>"
-								class="card-img-top pimg" style="width: 500px;">
+								class="card-img-top pimg img-thumbnail" style="width: 500px;">
 							<div class="card-body">
 								<hr>
 								<!-- 본문내용 -->
@@ -158,7 +163,7 @@ ul.tabs li.current {
 							<hr>
 
 							<div style="overflow: auto; height: 120px;">
-								<table class="table" border="1">
+								<table class="table table-hover table-borderless">
 									<tr>
 										<th>번호</th>
 										<th>id</th>
@@ -200,6 +205,9 @@ ul.tabs li.current {
 								</div>
 							</div>
 						</div>
+
+
+						<!-- 게시물 출력 div 종료 -->
 						<br> <br> <br>
 						<%
 						j++;
@@ -278,19 +286,20 @@ ul.tabs li.current {
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
+	
 		function reply( gpost_no ,j, userNo) {
-			 var reply1 = document.getElementsByName("reply2")[j].value;
+			var reply1 = document.getElementsByName("reply2")[j].value;
 			$.ajax({
 				url: "../../../controller/mypage/comment/gpostWriteController.jsp",
-				data: { reply1 : reply1 , gpost_no : gpost_no},
+				data: { reply1 : reply1 , gpost_no : gpost_no, userNo : userNo},
 				success: function(result) { 	
 					if(result==1){
 						// 댓글 등록 성공 시 
-						location.href='../../../view/mypage/gallery/listGallery.jsp?gpost_no'+gpost_no
+						location.href='../../../view/mypage/gallery/listGallery.jsp?gpost_no'+gpost_no+'&userNumber='+userNo;
 					} else {
 						
 						
-					}
+					} 
 					
 				}
 			});

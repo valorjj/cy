@@ -242,15 +242,15 @@
 			
 		} */
 			
-			function signUpFormCheck() {
+/* 			function signUpFormCheck() {
 			
 			      var id = document.getElementById("signUpForm").signId.value;
 			      var password = document.getElementById("signUpForm").signPassword.value;
 			      var passwordconfirm = document.getElementById("signUpForm").signPasswordConfirm.value;
 			      var name = document.getElementById("signUpForm").signName.value;
 			      var phone = document.getElementById("signUpForm").signPhone.value;
-			      var sex1 = document.getElementById("signUpForm").genderCheck1.checked;   // checked 유무 가져오기 
-			      var sex2 = document.getElementById("signUpForm").genderCheck2.checked;
+			      var genderCheck1 = document.getElementById("signUpForm").genderCheck1.checked;   // checked 유무 가져오기 
+			      var genderCheck1 = document.getElementById("signUpForm").genderCheck2.checked;
 			      var signpic = document.getElementById("signUpForm").signPic.checked;
 			      var signnick = document.getElementById("signUpForm").signNickname.value;
 			      var signinfo = document.getElementById("signUpForm").signInfo.value;
@@ -324,7 +324,7 @@
 			      } else {
 			         document.getElementById("infoHelp").innerHTML = "";
 			      } 
-			} 
+			}  */
 		
 	</script>
 

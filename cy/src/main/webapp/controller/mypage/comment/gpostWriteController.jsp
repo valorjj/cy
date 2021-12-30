@@ -8,14 +8,21 @@
 // 로그인된 회원의 번호
 LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
 
-int user_no = logInSession.getUser_no();
-String reply1 = request.getParameter("reply1");
+int user_no = logInSession.getUser_no(); // 접속한 계정 정보 
+String reply1 = request.getParameter("reply1"); // 작성한 댓글 
 
-System.out.print(reply1);
-int gpost_no = Integer.parseInt(request.getParameter("gpost_no"));
-System.out.print(gpost_no);
+int gpost_no = Integer.parseInt(request.getParameter("gpost_no")); 
+int userNo = Integer.parseInt(request.getParameter("userNo")); // 댓글 작성한 사람의 회원 번호
+
+System.out.println(user_no);
+System.out.println(reply1);
+System.out.println(gpost_no);
+System.out.println(userNo);
+
+
+
 // 객체화
-Reply reply = new Reply(user_no, gpost_no, reply1);
+Reply reply = new Reply(userNo, gpost_no, reply1);
 // db처리
 boolean result = ReplyDao.getReplyDao().gallerywrite(reply);
 // 결과
