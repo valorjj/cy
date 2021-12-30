@@ -13,7 +13,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="/cy/css/common/mini.css" />
+
+<style>
+#right-nav {
+	margin: 0px;
+	padding: 0px;
+}
+
+#left-nav {
+	margin: 0px;
+	padding: 0px;
+}
+</style>
+
+
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
@@ -24,7 +37,7 @@
 
 	String pagenum = request.getParameter("pagenum"); // 4. 클릭한 페이지번호
 	if (pagenum == null) { // 클릭한 페이지번호가 없으면 [ 게시판 첫화면 ]
-		pagenum = "1"; //	1페이지 설정
+		pagenum = "1"; //	1페이지 설정 
 	}
 
 	int lastrow = GalleryDao.getGalleryDao().gallerycount(); // 1. 총 게시물수 
@@ -46,12 +59,16 @@
 
 	<div class="container" style="background-color: #263333;">
 		<div class="container p-1" style="border: 2px dotted white">
+			<!-- 10 : 2 로 분할, 왼쪽에는 게시글, 오른쪽에는 메뉴 -->
 			<div class="row no-gutters">
+				<!-- 왼쪽 : 유저 정보, 사진첩에 등록된 게시물들 출력 -->
 				<div class="col-md-10" style="box-shadow: 1px 1px 1px black;">
 					<div class="tab-content current" style="overflow: auto;">
 						<div class="container">
-							<div class="row">
+							<div class="row" id="">
+								<!-- 홈페이지 주인의 사진과 정보 -->
 								<div class="col-md-2" id="left-nav">
+									<!-- 미니 홈페이지 주인의 프로필 사진 -->
 									<img src="../../../upload/<%=user.getUser_pic()%>" alt=""
 										class="img-thumbnail" style="max-width: 100%;">
 									<hr>
@@ -59,6 +76,9 @@
 										<span> <%=user.getIntro()%></span>
 									</div>
 									<hr>
+									<%
+									if (userNo == user_no) { // 본인만 수정 버튼을 볼 수 있게한다.
+									%>
 									<div class="d-flex justify-content-center">
 										<button type="button" class="btn btn-secondary btn-sm"
 											data-toggle="modal" data-target="#updateIntroModal">소개글
@@ -71,19 +91,20 @@
 											data-toggle="modal" data-target="#updateUserPicModal">프로필
 											사진 수정</button>
 									</div>
+									<%
+									}
+									%>
 								</div>
+								<!-- 등록된 사진 출력 -->
 								<div class="col-md-10"
 									style="overflow: auto; height: 500px; align-items: center;"
 									id="right-nav">
-
 									<%
 									if (GalleryDao.getGalleryDao().gallerylist(startrow, listsize, userNo) != null) {
 										galleries = GalleryDao.getGalleryDao().gallerylist(startrow, listsize, userNo);
-
 										int j = 0;
 										for (Gallery gallery : galleries) {
 									%>
-
 									<!-- 게시물 출력 div 시작 -->
 									<div class="card my-5"
 										style="align-content: center; text-align: center; padding: 0px 30px; margin-left: 50px; background-color: #eeeeee; box-shadow: 2px 2px 2px #cccccc;">
@@ -117,16 +138,19 @@
 										</div>
 										<hr>
 
-										<br> <br> <img
-											src="../../../upload/<%=gallery.getPhoto()%>"
+										<br> <img src="../../../upload/<%=gallery.getPhoto()%>"
 											class="card-img-top pimg img-thumbnail" style="width: 500px;">
+
 										<div class="card-body">
 											<hr>
 											<!-- 본문내용 -->
-											<p class="item"><%=gallery.getContent()%>
+											<p class="item">
+
+												<%=gallery.getContent()%>
+
 											</p>
 										</div>
-										<br>
+
 										<hr>
 
 										<div style="overflow: auto; height: 120px;">
@@ -140,6 +164,15 @@
 												</tr>
 												<%
 												ArrayList<Reply> replies = ReplyDao.getReplyDao().galleryCommentlist(gallery.getGpost_no());
+												if (replies == null) {
+												%>
+
+												<tr>
+													<td colspan="4">새로운 게시글을 등록해보세요 !!</td>
+												</tr>
+
+												<%
+												} else {
 												int i = 1;
 												for (Reply reply : replies) {
 												%>
@@ -155,6 +188,7 @@
 												</tr>
 												<%
 												i++;
+												}
 												}
 												%>
 											</table>
@@ -172,57 +206,56 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- 게시물 출력 div 종료 -->
-								<br> <br> <br>
-								<%
-								j++;
-								}
-								}
-								%>
 
-								<div class="row">
-									<div class="col-md-4 offset-4">
-										<ul class="pagination">
-											<%
-											if (currentpage == 1) {
-											%>
-											<li class="page-item"><a
-												href="listGallery.jsp?pagenum=<%=currentpage%>"
-												class="page-link"> ◀ </a></li>
-											<%
-											} else {
-											%>
-											<li class="page-item"><a
-												href="listGallery.jsp?pagenum=<%=currentpage - 1%>"
-												class="page-link"> ◀ </a></li>
-											<%
-											}
-											%>
-											<%
-											for (int i = 1; i <= lastpage; i++) {
-											%>
-											<li class="page-item"><a
-												href="listGallery.jsp?pagenum=<%=i%>" class="page-link"><%=i%></a></li>
-											<%
-											}
-											%>
-											<%
-											if (currentpage == lastpage) {
-											%>
-											<li class="page-item"><a
-												href="listGallery.jsp?pagenum=<%=currentpage%>"
-												class="page-link"> ▶ </a></li>
-											<%
-											} else {
-											%>
-											<li class="page-item"><a
-												href="listGallery.jsp?pagenum=<%=currentpage + 1%>"
-												class="page-link"> ▶ </a></li>
-											<%
-											}
-											%>
-										</ul>
+									<%
+									j++;
+									}
+									}
+									%>
+
+									<div class="row" id="pageSection">
+										<div class="col-md-4 offset-4">
+											<ul class="pagination">
+												<%
+												if (currentpage == 1) {
+												%>
+												<li class="page-item"><a
+													href="listGallery.jsp?pagenum=<%=currentpage%>"
+													class="page-link"> ◀ </a></li>
+												<%
+												} else {
+												%>
+												<li class="page-item"><a
+													href="listGallery.jsp?pagenum=<%=currentpage - 1%>"
+													class="page-link"> ◀ </a></li>
+												<%
+												}
+												%>
+												<%
+												for (int i = 1; i <= lastpage; i++) {
+												%>
+												<li class="page-item"><a
+													href="listGallery.jsp?pagenum=<%=i%>" class="page-link"><%=i%></a></li>
+												<%
+												}
+												%>
+												<%
+												if (currentpage == lastpage) {
+												%>
+												<li class="page-item"><a
+													href="listGallery.jsp?pagenum=<%=currentpage%>"
+													class="page-link"> ▶ </a></li>
+												<%
+												} else {
+												%>
+												<li class="page-item"><a
+													href="listGallery.jsp?pagenum=<%=currentpage + 1%>"
+													class="page-link"> ▶ </a></li>
+												<%
+												}
+												%>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -235,7 +268,8 @@
 					</div>
 				</div>
 
-				<div class="col-md-2">
+				<!-- 오른쪽 : 메뉴 출력 -->
+				<div class="col-md-2 no-gutters">
 					<ul class="tabs">
 						<li class="tab-link"><a
 							href="/cy/view/main/test.jsp?userNumber=<%=userNo%>"
@@ -243,10 +277,10 @@
 						<li class="tab-link"><a
 							href="/cy/view/user/viewUserProfile.jsp?userNumber=<%=userNo%>"
 							class="text-white">프로필</a></li>
-						<li class="tab-link current" id="folder-4"><a
+						<li class="tab-link" id="folder-4"><a
 							href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=userNo%>"
 							class="text-white">게시판</a></li>
-						<li class="tab-link" id="folder-5" class="text-white"><a
+						<li class="tab-link current" id="folder-5" class="text-white"><a
 							href="/cy/view/mypage/gallery/listGallery.jsp?userNumber=<%=userNo%>">사진첩</a></li>
 						<li class="tab-link"><a
 							href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=userNo%>"
@@ -254,13 +288,12 @@
 						<li class="tab-link" style="display: none;" class="text-white">관리</li>
 					</ul>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 
-	<!-- Modal -->
+	<!-- 유저 정보 업데이트 하는 모달 -->
+	<!-- 본인 미니홈페이지를 볼 때만 나타나게 해야합니다. -->
 	<div class="modal fade" id="updateIntroModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form action="../../controller/user/updateUserIntro.jsp" method="get">
@@ -285,7 +318,8 @@
 			</div>
 		</form>
 	</div>
-
+	<!-- 유저 사진 업데이트 하는 모달 -->
+	<!-- 본인 미니홈페이지를 볼 때만 나타나게 해야합니다. -->
 	<div class="modal fade" id="updateUserPicModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form action="../../controller/user/updateUserPic.jsp" method="post"

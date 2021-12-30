@@ -19,18 +19,32 @@
 	<%@ include file="../common/header.jsp"%>
 
 	<%
-	int otherUserNo = -1; // 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
-	User myself = UserDao.getUserDao().getUser(user_no); // 로그인한 사람의 정보를 미리 저장해둡니다. 
+	int otherUserNo = -1; // 1. 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
+	// 2. otherUserNo 변수 하나로 검색이 있을때, 없을때, 자기 자신을 검색했을 때를 통합적으로 사용합니다.
+	// 3. 검색이 있을 경우에는 검색한 사람의 번호로 초기화시킵니다.
+	// 3.1 내 자신을 검색한 경우에는 로그인 한 사람의 번호로 초기화시킵니다.
+	// 3.2 다른 사람을 검색한 경우에는 검색한 사람의 번호로 초기화시킵니다. 
+	// 4. 검색이 없는 경우에는 로그인 한 계정의 번호로 초기화시킵니다. 
+	// 5. 
+
+	User myself = UserDao.getUserDao().getUser(user_no); // 로그인 한 사람의 정보를 미리 저장해둡니다. 
+
+	System.out.println("접속한 본인 유저 번호는 : " + user_no);
 
 	if (request.getParameter("userSearch") != null) { // 검색이 존재하는 경우입니다. 
 		// 검색한 유저의 번호를 otherUserNo 라는 변수에 초기화시킵니다. 
 		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
-		session.setAttribute("other", otherUserNo); // 일단 otherSession 클래스는 버리고 번호 하나만 세션에 저장합니다. 
+		session.setAttribute("other", otherUserNo); // 일단 otherSession 클래스는 버리고 번호 하나만 세션에 저장합니다.
+
+		System.out.println("검색한 사람의 번호는 :" + otherUserNo);
+
 		if (otherUserNo == user_no) {
 			// 검색 대상이 본인 아이디인 경우
+			System.out.println("검색한 사람이 자기 자신일 때 :" + otherUserNo);
 			otherUserNo = user_no;
 		} else {
 			// 검색 대상이 남의 아이디인 경우
+			System.out.println("검색한 사람이 남일 때 ");
 			UserDao.getUserDao().updateViewCount(otherUserNo); // 방문한 사람의 홈페이지 조회수를 +1 시킵니다.
 			String visitor = user_no + ":" + otherUserNo; // 로그인 한 계정 번호:찾아서 들어간 사람정보
 			if (session.getAttribute(visitor) == null) {
@@ -40,6 +54,7 @@
 		}
 
 	} else {
+		System.out.println("검색한 사람이 없을 때 회원 번호 :" + otherUserNo);
 		// 검색값이 로그인 한 유저와 동일한 경우입니다. 
 		otherUserNo = user_no;
 	}
@@ -500,7 +515,8 @@
 							href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
 							class="text-white">게시판</a></li>
 						<li class="tab-link"><a
-							href="../mypage/gallery/listGallery.jsp" class="text-white">사진첩</a></li>
+							href="../mypage/gallery/listGallery.jsp?userNumber=<%=user.getUser_no()%>"
+							class="text-white">사진첩</a></li>
 						<li class="tab-link"><a
 							href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user.getUser_no()%>"
 							class="text-white">방명록</a></li>

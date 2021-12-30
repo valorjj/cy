@@ -109,12 +109,9 @@
 	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"
 	rel="stylesheet" />
 
-
+<link rel="stylesheet" href="/cy/css/common/mini.css" />
 </head>
 <body>
-
-
-
 	<%@ include file="common.jsp"%>
 	<%
 	// [팝업-미니홈페이지] 에서 모든 페이지에 포함 될 헤더파일에서 로그인 세션을 담습니다.
@@ -126,22 +123,19 @@
 
 	loginid = logInSession.getUser_id(); // 로그인 아이디 
 	int user_no = logInSession.getUser_no();
-	// OtherSession otherSession = (OtherSession) session.getAttribute("other");
 	%>
 
 	<div class="container" style="background-color: #eeeeee">
-		<form action="/cy/view/main/test.jsp" method="post"
-			onsubmit="return detectSpace();">
+		<form action="/cy/view/main/test.jsp" method="post" onsubmit="return detectSpace();">
 			<div class="row my-3 p-1">
 				<div class="col-md-5">
 					<div class="row">
 						<div class="col-md-3 align-self-center">
-							<input type="text" class="form-control" id="userSearch"
-								name="userSearch" />
+							<input type="text" class="form-control" id="userSearch" name="userSearch" />
 						</div>
 						<div class="col-md-2 align-self-center">
-							<input id="searchBtn" type="submit"
-								class="form-control btn btn-secondary btn-sm" value="검색" />
+							<!-- 헤더에서 검색한 결과값 -->
+							<input id="searchBtn" type="submit" class="form-control btn btn-secondary btn-sm" value="검색" />
 						</div>
 						<div class="col-md-2 align-self-center">
 							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
@@ -172,33 +166,9 @@
 									<br> Track: <span id="track">프리스타일_Y</span>
 								</div>
 							</div>
-							<!-- 음악 재생 플레이어 영역-->
 						</div>
-
-<!-- 						<div class="col-md-4 offset-3">
-							<div class="col-md-6">
-								<a href="#" class="text-dark" style="font-size: 1rem;">일촌 파도
-									타기</a>
-							</div>
-							<div class="col-md-6">
-								<a href="" class="text-dark" style="font-size: 1rem;">마이홈</a>
-							</div>
-
-							<div class="col-md-6">
-								<a href="#" class="text-dark" style="font-size: 1rem;">일촌보기</a>
-							</div>
-							<div class="col-md-6">
-								<a href="../../controller/user/logOutController.jsp"
-									class="text-dark" style="font-size: 1rem;">로그아웃</a>
-							</div>
-						</div> -->
-
 					</div>
 				</div>
-
-
-
-
 			</div>
 		</form>
 	</div>
