@@ -48,36 +48,8 @@ ul.tabs li.current {
 	display: inherit;
 }
 
-        /* 메뉴네비 호버 */
-        /* Pulse */
-        @ keyframes pulse {
-            25% {
-                transform: scale(1.05);
-            }
-
-            75 % {
-                transform:
-                 scale (0 .95);
-            }
-        }
-
-
-.pulse {
-	display: inline-block;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	transform: translateZ(0);
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	background-position: right center;
-	background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
-}
-
-.pulse:hover {
-	animation-name: pulse;
-	animation-duration: 2s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	background-position: right center;
-}
+        
+  
 
 /* 이미지업로드 */
 #profile-upload {
@@ -401,12 +373,12 @@ ul.tabs li.current {
 			</div>
 			<div class="col-md-2">
 				<ul class="tabs d-flex flex-column">
-					<li rel="pulse" class="tab-link button pulse current"><a href="test.jsp?userNumber=<%=user.getUser_no()%>"></a>홈</li>
-					<li rel="pulse" class="tab-link button pulse"><a href="#" class="text-white">프로필</a></li>
-					<li rel="pulse" class="tab-link button pulse"><a href="../mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>" class="text-white">게시판</a></li>
-					<li rel="pulse" class="tab-link button pulse"><a href="#" class="text-white">사진첩</a></li>
-					<li rel="pulse" class="tab-link button pulse"><a href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
-					<li rel="pulse" class="tab-link button pulse"><a href="#" class="text-white">관리</a></li>
+					<li class="tab-link button pulse current"><a href="test.jsp?userNumber=<%=user.getUser_no()%>"></a>홈</li>
+					<li class="tab-link button pulse"><a href="#" class="text-white">프로필</a></li>
+					<li class="tab-link button pulse"><a href="../mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>" class="text-white">게시판</a></li>
+					<li class="tab-link button pulse"><a href="#" class="text-white">사진첩</a></li>
+					<li class="tab-link button pulse"><a href="/cy/view/mypage/visitor/viewLogList.jsp" class="text-white">방명록</a></li>
+					<li class="tab-link button pulse"><a href="/cy/view/mypage/setting/viewSetting.jsp" class="text-white">관리</a></li>
 				</ul>
 				<!-- 뮤직 -->
 				<div class="musicplayer p-3" style="height: 100px;">

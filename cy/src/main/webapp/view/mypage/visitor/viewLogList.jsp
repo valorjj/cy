@@ -130,11 +130,11 @@ ul.tabs li.current {
 				<ul class="tabs">
 					<li class="tab-link"><a href="/cy/view/main/test.jsp">홈</a></li>
 					<li class="tab-link"><a href="#">프로필</a></li>
-					<li class="tab-link current"><a href="newDiary.jsp">다이어리</a></li>
+					<li class="tab-link current"><a href="../diary/viewDiary.jsp">다이어리</a></li>
 					<li class="tab-link">게시판</li>
 					<li class="tab-link">사진첩</li>
 					<li class="tab-link">방명록</li>
-					<li class="tab-link" style="display: none;">관리</li>
+					<li class="tab-link" style=""><a href=""></a> 관리</li>
 				</ul>
 			</div>
 

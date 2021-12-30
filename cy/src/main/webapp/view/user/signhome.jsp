@@ -4,8 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
+<style type="text/css">
+/* 초기 홈 호버효과 */
+.menuhover>li a:hover {
+	background: orange;
+	color: white;
+	transform: scale(1.2);
+	transition: all 1s ease-out;
+}
+</style>
 </head>
 <body>
 	<!-- 로그인 페이지에는 헤더 빼고 common 만 끌어온다. -->
@@ -14,7 +21,7 @@
 	<div class="wrap" style="position: relative;">
 		<div id="header" class="container-fluid">
 			<div class="row col-12 justify-content-end my-2">
-				<ul class="d-flex text-dark">
+				<ul class="d-flex text-dark menuhover">
 					<li><a href="#">싸이월드</a></li>
 					<li class="mx-2">|</li>
 					<li><a href="./signUp.jsp">회원가입</a></li>
@@ -35,7 +42,7 @@
 		<div id="slide" class="carouselmid">
 			<!-- Carousel wrapper -->
 			<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="height: 75vh">
-				<ol class="carousel-indicators">
+				<ol class="carousel-indicators ">
 					<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
 					<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
 					<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
@@ -43,19 +50,19 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="../../image/cyworld_back3.jpg" class="d-block" alt="" style="background-repeat: no-repeat; background-position: center; background-size: cover; width: 100%; height: 76vh;">
-						<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
+						<div class="carousel-caption d-none d-md-block mb-3" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
 							<h5>Welcome to Cyworld !!</h5>
 						</div>
 					</div>
 					<div class="carousel-item">
 						<img src="../../image/back2.png" class="d-block w-100" alt="..." style="height: 76vh;">
-						<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
+						<div class="carousel-caption d-none d-md-block mb-3" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
 							<h5>Welcome to Cyworld !!</h5>
 						</div>
 					</div>
 					<div class="carousel-item">
 						<img src="../../image/back1.png" class="d-block w-100" alt="..." style="height: 76vh;">
-						<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
+						<div class="carousel-caption d-none d-md-block mb-3" style="background: rgba(0, 0, 0, 0.5); width: 50%; display: block; margin: 0 auto; border-radius: 20px;">
 							<h5>Welcome to Cyworld !!</h5>
 						</div>
 					</div>
