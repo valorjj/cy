@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+canvas {
+	position : absolute;
+	top:0;
+	left: 0;
+	z-index: -5;
+  -webkit-filter: blur(0.6px);
+  -moz-filter: blur(0.6px);
+  -o-filter: blur(0.6px);
+  -ms-filter: blur(0.6px);
+  filter: blur(0.6px);
+}

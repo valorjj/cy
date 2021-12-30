@@ -141,7 +141,7 @@
 							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
 								아이디</div>
 							<div class="row" style="color: orange;"><%=loginid%></div>
-						</div>
+            </div>
 
 						<div class="col-md-1">
 							<!-- 음악 재생 플레이어 영역-->
@@ -166,6 +166,7 @@
 									<br> Track: <span id="track">프리스타일_Y</span>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>

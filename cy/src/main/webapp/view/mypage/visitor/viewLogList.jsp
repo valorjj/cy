@@ -245,8 +245,6 @@ ul.tabs li.current {
 			</div>
 
 			<div class="col-md-2">
-
-
 				<ul class="tabs">
 					<li class="tab-link"><a
 						href="/cy/view/main/test.jsp?userNumber=<%=otherUserNo%>"

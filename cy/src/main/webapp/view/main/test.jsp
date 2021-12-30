@@ -4,20 +4,138 @@
 <%@page import="dao.user.FriendDao"%>
 <%@page import="dao.user.UserDao"%>
 <%@page import="dto.User"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>메인 화면</title>
+<style type="text/css">
+body {
+	/* margin-top: 100px; */
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6;
+	height: auto;
+	background-image: url(../../image/gridback.png);
+	background-repeat: repeat;
+	background-size: 15px;
+	background-position: center;
+}
 
-<link rel="stylesheet" href="/cy/css/common/mini.css" />
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: #00a8be;
+	color: #222;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current {
+	background: #00a8be;
+	color: #ededed;
+}
+
+.tab-content {
+	display: none;
+	background: #ededed;
+	padding: 10px;
+	height: 500px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+/* 이미지업로드 */
+#profile-upload {
+	background-image: url('');
+	background-size: cover;
+	background-position: center;
+	height: 200px;
+	width: 100%;
+	border: 1px solid #bbb;
+	position: relative;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#profile-upload:hover input.upload {
+	display: block;
+}
+
+#profile-upload:hover .hvr-profile-img {
+	display: inline-block;
+}
+
+#profile-upload .fa {
+	margin: auto;
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	text-align: center;
+	right: 0;
+	padding: 6px;
+	opacity: 1;
+	transition: opacity 1s linear;
+	-webkit-transform: scale(.75);
+}
+
+#profile-upload:hover .fa {
+	opacity: 1;
+	-webkit-transform: scale(1);
+}
+
+#profile-upload input.upload {
+	z-index: 1;
+	left: 0;
+	margin: 0;
+	bottom: 0;
+	top: 0;
+	padding: 0;
+	opacity: 0;
+	outline: none;
+	cursor: pointer;
+	position: absolute;
+	background: #ccc;
+	width: 100%;
+	display: none;
+}
+
+#profile-upload .hvr-profile-img {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: absolute;
+	vertical-align: middle;
+	position: relative;
+	background: transparent;
+}
+
+#profile-upload .fa:after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0px;
+	background: rgba(0, 0, 0, 0.3);
+	z-index: -1;
+	transition: height 0.3s;
+}
+
+#profile-upload:hover .fa:after {
+	height: 100%;
+}
+</style>
+
 </head>
 <body>
-
 	<%@ include file="../common/header.jsp"%>
-
 	<%
 	int otherUserNo = -1; // 1. 검색한 유저의 정보를 저장하는 변수입니다. -1 로 초기화 시켜둡니다. 
 	// 2. otherUserNo 변수 하나로 검색이 있을때, 없을때, 자기 자신을 검색했을 때를 통합적으로 사용합니다.
@@ -66,7 +184,8 @@
 		User user = UserDao.getUserDao().getUser(user_no);
 	%>
 
-	<div class="container p-3" style="background-color: #263333;">
+
+	<div class="container p-3" style="background-color: lightgrey;">
 		<div class="container p-1" style="border: 2px dotted white">
 			<div class="row no-gutters">
 				<div class="col-md-10" style="box-shadow: 1px 1px 1px black;">
@@ -126,11 +245,20 @@
 													data-toggle="modal" data-target="#updateUserPicModal">프로필
 													사진 수정</button>
 											</div>
-											<div class="my-2">
-												<h6>
-													홈페이지 주소(http://cyworld/<span style="color: blue;"><%=user.getUser_id()%></span>)
-												</h6>
+                      
+                      
+                      <div class="my-2">
+                        <div class="feelWrapper d-flex">
+                          <div class="feel mr-2">오늘의 기분</div>
+                          <select class="feelSelect">
+                            <option>기쁨 😀</option>
+                            <option>슬픔 😭</option>
+                            <option>분노 😡</option>
+                            <option>행복 😊</option>
+                            <option>귀찮 😒</option>
+                          </select>
 											</div>
+										</div>
 										</div>
 
 										<div class="col-md-9" style="box-shadow: 2px 2px 2px #cccccc;">
@@ -147,35 +275,49 @@
 														<div class="col-md-8">
 															<div class="w-auto">사진첩 업데이트1</div>
 														</div>
+													</div>
+													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
-															<div>게시판</div>
+															<div class="badge badge-info">게시판</div>
 														</div>
 														<div class="col-md-8">
 															<div class="w-auto">게시판 업데이트1</div>
 														</div>
+													</div>
+													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
-															<div>방명록</div>
+															<div class="badge badge-danger">방명록</div>
 														</div>
 														<div class="col-md-8">
 															<div class="w-auto">방명록 업데이트1</div>
 														</div>
+													</div>
+													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
-															<div>방명록</div>
+															<div class="badge badge-primary">방명록</div>
 														</div>
 														<div class="col-md-8">
 															<div class="w-auto">방명록 업데이트1</div>
 														</div>
 													</div>
 												</div>
-												<div class="col-md-6">
-													<span style="color: orange;">boardlist</span>
-													<hr />
-													<div class="row">
-														<div class="col-md-12">
-															<div class="row">
-																<div class="col-md-6">
-																	<span> 1 / 100 </span>
-																</div>
+											</div>
+											<div class="col-md-6">
+												<span style="color: orange;">boardlist</span>
+												<hr />
+												<div class="row">
+													<div class="col-md-12">
+														<div class="row border-bottom" style="width: 98%">
+															<div class="col-md-6 ">
+																<a href="" class="badge badge-info">게시판 </a>
+															</div>
+															<div class="col-md-6">
+																<span> 1 / 100 </span>
+															</div>
+														</div>
+														<div class="row border-bottom" style="width: 98%">
+															<div class="col-md-6">
+																<a href="" class="badge badge-warning">사진첩</a>
 															</div>
 															<div class="row">
 																<div class="col-md-6">
@@ -185,13 +327,10 @@
 																	<span> 1 / 100 </span>
 																</div>
 															</div>
-															<div class="row">
-																<div class="col-md-6">
-																	<a href="">사진첩</a>
-																</div>
-																<div class="col-md-6">
-																	<span> 1 / 100 </span>
-																</div>
+														</div>
+														<div class="row border-bottom" style="width: 98%">
+															<div class="col-md-6">
+																<a href="" class="badge badge-danger">방명록</a>
 															</div>
 															<div class="row">
 																<div class="col-md-6">
@@ -206,6 +345,7 @@
 													<!-- 게시판 리스트 종료 -->
 												</div>
 											</div>
+
 											<hr />
 											<span style="color: orange;">사진첩</span>
 											<hr />
@@ -246,7 +386,91 @@
 											<%
 											}
 											%>
-											<!-- 일촌평 종료 -->
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
+													</div>
+													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
+											</div>
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
+													</div>
+													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
+											</div>
+											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
+												<div class="col-1 align-self-center">
+													<span class="badge badge-warning">일촌평</span>
+												</div>
+												<div class="text-area col-8 align-self-center">
+													<div style="width: 100%">
+														<textarea class="text-input hidden text-input hidden w-100" id="input" rows="1" maxlength="50" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></textarea>
+													</div>
+													<div class="text-output" id="output" style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+												</div>
+												<div class="btn-area col-3  align-self-center d-flex justify-content-center fori" style="width: 100%">
+													<div class="btn btn-edit " id="edit" style="width: 33%">
+														<button class="badge badge-dark text-white edit" onclick="dis()">EDIT</button>
+													</div>
+													<div class="btn btn-small btn-edit-cancel cancel" id="cancel" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">취소</button>
+													</div>
+													<div class="btn btn-small btn-edit-submit submit" id="submit" style="display: none; width: 33%">
+														<button class="badge badge-dark text-white">확인</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 일촌평 종료 -->
+										<div class="row d-flex flex-column my-2">
+											<div class="h6 bg-info pl-2 text-white">storyroom</div>
+											<button class="text-left" style="border: none;">
+												<span class="badge badge-primary">미니룸선택</span>
+												<input type="file" name="logo" id='getval' class="upload" title="Dimensions" id="imag">
+											</button>
+											<div class="backimg mt-10" style="width: 100%; position: relative;">
+												<div id='profile-upload'>
+													<div class="hvr-profile-img"></div>
+												</div>
+												<!-- 미니미업로드용 -->
+												<div class="" style="position: absolute; top: 0; left: 0; width: 100%;">
+													<span class="badge badge-warning">미니미선택</span>
+													<input type="file" id="file" value="미니미 아이템">
+													<canvas class="" id="canvas" width="590px" height="180px"></canvas>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -273,6 +497,9 @@
 							class="text-white">방명록</a></li>
 						<li class="tab-link"><a href="#" class="text-white">관리</a></li>
 					</ul>
+          <div class="musicplayer p-3" style="height: 100px;">
+            <iframe style="display: block; margin: 0 auto; width: 100%; height: auto;" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/306913234&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+          </div>
 				</div>
 			</div>
 		</div>
@@ -283,9 +510,8 @@
 	// 관리 페이지를 숨긴다. 
 	User user = UserDao.getUserDao().getUser(otherUserNo);
 	%>
-
-
 	<div class="container p-3" style="background-color: #263333;">
+
 		<div class="container p-1" style="border: 2px dotted white">
 			<div class="row no-gutters">
 				<div class="col-md-10">
@@ -382,6 +608,7 @@
 													<div class="row">
 														<div class="col-md-4">
 															<div>사진첩</div>
+
 														</div>
 														<div class="col-md-8">
 															<div class="w-auto">사진첩 업데이트1</div>
@@ -522,24 +749,21 @@
 							class="text-white">방명록</a></li>
 					</ul>
 				</div>
+
 			</div>
 		</div>
 	</div>
-
 	<%
 	}
 	%>
-
 	<!-- Modal -->
-	<div class="modal fade" id="updateIntroModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="updateIntroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form action="../../controller/user/updateUserIntro.jsp" method="get">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">홈페이지 소개</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -547,27 +771,22 @@
 						<input type="text" class="form-control" id="" name="newIntro" />
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-sm"
-							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
 						<input type="submit" class="btn btn-secondary btn-sm" name="" />
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-
-	<div class="modal fade" id="updateUserPicModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form action="../../controller/user/updateUserPic.jsp" method="post"
-			enctype="multipart/form-data">
-			<input type="hidden" name="userNo" value="<%=user_no%>" /> <input
-				type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
+	<div class="modal fade" id="updateUserPicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form action="../../controller/user/updateUserPic.jsp" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="userNo" value="<%=user_no%>" />
+			<input type="hidden" name="oldPic" value="<%=myself.getUser_pic()%>">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">프로필 사진</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -577,20 +796,16 @@
 								<span class="input-group-text">사진업로드</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="newPic"
-									name="newPic" onchange="readURL(this);" /> <label for="newPic"
-									class="custom-file-label">Choose file</label>
+								<input type="file" class="custom-file-input" id="newPic" name="newPic" onchange="readURL(this);" />
+								<label for="newPic" class="custom-file-label">Choose file</label>
 							</div>
 						</div>
 						<div>
 							<img class="" id="imagePreview" style="max-width: 100%;">
 						</div>
-
-
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-sm"
-							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
 						<input type="submit" class="btn btn-secondary btn-sm" name="" />
 					</div>
 				</div>
@@ -629,8 +844,8 @@
 		</form>
 	</div>
 
-
 	<script type="text/javascript">
+	
 		function becomeFriend(friend_no, user_no) {
 			var you = friend_no;
 			var me = user_no;
@@ -665,5 +880,144 @@
 		
 		
 	</script>
+	<!-- 이미지 배경 업로드 -->
+	<script type="text/javascript">
+	document.getElementById('getval').addEventListener('change', readURL, true);
+	function readURL(){
+	    var file = document.getElementById("getval").files[0];
+	    var reader = new FileReader();
+	    reader.onloadend = function(){
+	        document.getElementById('profile-upload').style.backgroundImage = "url(" + reader.result + ")";        
+	    }
+	    if(file){
+	        reader.readAsDataURL(file);
+	    }else{
+	    }
+	}
+	</script>
+	<!--미니미업로드1,2  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
+	<script type="text/javascript">
+	var canvas = new fabric.Canvas('canvas');
+
+	document.getElementById('file').addEventListener("change", function (e) {
+	  var file = e.target.files[0];
+	  var reader = new FileReader();
+	  console.log("reader   " + reader);
+	  reader.onload = function (f) {
+	    var data = f.target.result;
+	    fabric.Image.fromURL(data, function (img) {
+	      var oImg = img.set({left: 0, top: 0, width: 600, height: 100, angle: 0}).scale(0.9);
+	      canvas.add(oImg).renderAll();
+	      canvas.setActiveObject(oImg);  
+	    });
+	  };
+	  reader.readAsDataURL(file);
+	});
+
+	</script>
+	<!-- 글등록 -->
+	<script>
+	
+	$('.fori').each(function(){
+		
+		 $(".edit").on("click", function(){
+
+			  $('.cancel').show();
+			  $('.submit').show();
+
+			  });
+
+	
+	
+	  $(".cancel").on("click", function(){
+
+		  $('.cancel').hide();
+		  $('.submit').hide();
+
+		  });
+
+	
+		
+		 $(".submit").on("click", function(){
+
+			  $('.cancel').hide();
+			  $('.submit').hide();
+
+			  });
+
+			
+	} );
+	
+	 
+  
+	  
+	  
+        function name() {
+
+        }
+
+        var btnEdit = document.getElementById("edit");
+        var btnCancel = document.getElementById("cancel");
+        var btnSubmit = document.getElementById("submit");
+
+        function activateInput() {
+            var currentText = output.innerHTML;
+            input.value = currentText.replace(/<br>/g, "\n");
+            btnEdit.classList.add("activated");
+            options.classList.add("hidden");
+            output.classList.add("hidden");
+            input.classList.remove("hidden");
+            input.focus();
+        }
+
+        function submitInput() {
+            var newText = input.value;
+            output.innerHTML = newText.replace(/\n\r?/g, '<br>');
+            deactivateInput();
+        }
+
+        function deactivateInput() {
+            btnEdit.classList.remove("activated");
+            options.classList.remove("hidden");
+            input.classList.add("hidden");
+            output.classList.remove("hidden");
+        }
+
+        function init() {
+            // start editing
+            btnEdit.addEventListener(
+                "click",
+                function () {
+                    if (!btnEdit.classList.contains("activated")) {
+                        activateInput();
+                    }
+                }
+            );
+
+            // cancel editing
+            btnCancel.addEventListener(
+                "click",
+                function () {
+                    deactivateInput();
+                }
+            );
+
+            // submit text
+            btnSubmit.addEventListener(
+                "click",
+                function () {
+                    submitInput();
+                }
+            );
+
+            // open input for initial text
+            // ---------------------------
+            activateInput();
+
+
+        }
+    </script>
 </body>
 </html>

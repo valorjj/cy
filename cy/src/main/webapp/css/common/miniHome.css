@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap')
+	;
+
+/* 마이정보 폰트 */
+.mystat {
+	font-family: 'Black Han Sans', sans-serif;
+	line-height: 2rem;
+}
+
+/* 유튜브 플레이어 */
+.dotbox>li {
+	font-family: 3rem;
+}
+
+.dotbox>li:active {
+	color: oragne;
+}
+
+.hide {
+	display: none;
+}
+
+iframe {
+	position: absolute;
+}
+
+#slider {
+	width: auto;
+	margin: 0 auto;
+}
+
+ul li {
+	margin: 0 0.2em;
+	display: inline;
+}
+
+ul {
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#slider:first-child {
+	position: relative;
+}
+
+a {
+	text-decoration: none;
+	color: #B2B2B2;
+}
+
+a:hover {
+	color: #CCCCCC;
+}
+
+/* 글래스 효과 */
+
+
+/* 내미니홈가기 호버 */
+.myinfo {
+	transition: all .2s ease-in-out;
+	position: relative;
+}
+
+.myinfo::after {
+	background-image: url("../../image/gif/img(1).gif");
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 0.7;
+	width: 100%;
+	height: 100%;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.myinfo:hover {
+	transform: scale(0.95);
+	animation-timing-function: ease-in-out;
+}
+
+.draw {
+	background: none;
+	border: 0;
+	box-sizing: border-box;
+	margin: 1em;
+	padding: 1em 2em;
+	box-shadow: inset 0 0 0 2px #f45e61;
+	color: #f45e61;
+	font-size: inherit;
+	font-weight: 700;
+	position: relative;
+	vertical-align: middle;
+	font-family: 'Black Han Sans', sans-serif;
+}
+
+.draw::before, .draw::after {
+	box-sizing: inherit;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.draw {
+	transition: color 0.25s;
+}
+
+.draw::before, .draw::after {
+	border: 2px solid transparent;
+	width: 0;
+	height: 0;
+}
+
+.draw::before {
+	top: 0;
+	left: 0;
+}
+
+.draw::after {
+	bottom: 0;
+	right: 0;
+}
+
+.draw:hover {
+	color: #000;
+}
+
+.draw:hover::before, .draw:hover::after {
+	width: 100%;
+	height: 100%;
+}
+
+.draw:hover::before {
+	border-top-color: #60daaa;
+	border-right-color: #60daaa;
+	transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+
+.draw:hover::after {
+	border-bottom-color: #60daaa;
+	border-left-color: #60daaa;
+	transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s,
+		height 0.25s ease-out 0.75s;
+}
