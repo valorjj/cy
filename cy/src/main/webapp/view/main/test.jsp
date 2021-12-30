@@ -190,13 +190,6 @@ ul.tabs li.current {
 		// 방문자 수가 증가되면 안된다.
 		User user = UserDao.getUserDao().getUser(user_no);
 		totals = UserDao.getUserDao().getTotalContents(user_no);
-
-		for (Total total : totals) {
-
-			System.out.println(total.getContent());
-			System.out.println(total.getDate());
-			System.out.println(total.getCategory());
-		}
 	%>
 
 
@@ -280,44 +273,37 @@ ul.tabs li.current {
 												<div class="col-md-6">
 													<span style="color: orange;">updated news</span>
 													<hr />
+
+													<%
+													for (Total total : totals) {
+													%>
 													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
-															<div class="badge badge-info">사진첩</div>
+															<%
+															if (total.getCategory().equals("게시판")) {
+															%>
+															<div class="badge badge-info"><%=total.getCategory()%></div>
+
+															<%
+															} else if (total.getCategory().equals("사진첩")) {
+															%>
+															<div class="badge badge-danger"><%=total.getCategory()%></div>
+															<%
+															} else if (total.getCategory().equals("방명록")) {
+															%>
+															<div class="badge badge-warning"><%=total.getCategory()%></div>
+															<%
+															}
+															%>
 														</div>
 														<div class="col-md-8">
-															<div class="w-auto">사진첩 업데이트1</div>
+															<div class="w-auto"><%=total.getContent().substring(0, 3)%></div>
 														</div>
 													</div>
-													<div class="col-12 d-flex border-bottom">
-														<div class="col-md-4">
-															<div class="badge badge-info">게시판</div>
-														</div>
-														<div class="col-md-8">
-															<div class="w-auto">게시판 업데이트1</div>
-														</div>
-													</div>
-													<div class="col-12 d-flex border-bottom">
-														<div class="col-md-4">
-															<div class="badge badge-danger">방명록</div>
-														</div>
-														<div class="col-md-8">
-															<div class="w-auto">방명록 업데이트1</div>
-														</div>
-													</div>
-													<div class="col-12 d-flex border-bottom">
-														<div class="col-md-4">
-															<div class="badge badge-primary">방명록</div>
-														</div>
-														<div class="col-md-8">
-															<div class="w-auto">방명록 업데이트1</div>
-														</div>
-													</div>
+													<%
+													}
+													%>
 												</div>
-
-												<%
-												// 각 게시판에서 작성된 전체 게시물을 가져옵니다.
-												%>
-
 												<div class="col-md-6">
 													<span style="color: orange;">boardlist</span>
 													<hr />
@@ -358,7 +344,6 @@ ul.tabs li.current {
 
 
 											<hr />
-											<span style="color: orange;">사진첩</span>
 											<hr />
 											<div class="row">
 												<!-- 메인 페이지 중앙에 출력되는 이미지 혹은 동영상 혹은 미니룸 -->
