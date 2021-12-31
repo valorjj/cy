@@ -65,27 +65,19 @@ ul.tabs li.current {
 	// 리스트 호출 후, 레이아웃에 맞게 [글내용] [작성자] [작성일] [수정] [삭제] 요소를 출력합니다. 
 	// 헤더에 로그인 세션이 있는데 여기서도 호출해야하나 ??
 	// 만약 중복되서 안된다면 user_no 또는 id를 어떻게 가져와야하나
-
 	// ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(user_no);
-
 	int otherUserNo = Integer.parseInt(request.getParameter("userNumber")); // test.jsp 넘어온 정보. 내꺼 볼때 / 남의꺼 볼때[헤더에서 검색한 값]
-
 	if (otherUserNo == user_no) {
 		// 내가 내꺼 볼 때 값 스위칭
 		otherUserNo = user_no;
-
 	} else {
 		// 남의 홈페이지 봤을 때는 위에 선언된 값 유지 
-
 	}
-
 	// 
-
 	String pagenum = request.getParameter("pagenum"); // 클릭한 페이지번호 요청
 	if (pagenum == null) { // 클릭한 페이지번호가 없으면
 		pagenum = "1"; // 1페이지
 	}
-
 	int lastrow = VisitorDao.getvisitorDao().visitorcount();
 	int listsize = 5;
 	int lastpage = 0; //마지막 페이지
@@ -97,9 +89,7 @@ ul.tabs li.current {
 	// 현재페이지번호
 	int currentpage = Integer.parseInt(pagenum);
 	int startrow = (currentpage - 1) * listsize; // 현재페이지의 시작번호
-
 	User user = UserDao.getUserDao().getUser(user_no);
-
 	ArrayList<Visitor> visitors = VisitorDao.getvisitorDao().visitorlist(startrow, listsize, otherUserNo);
 	%>
 
@@ -126,17 +116,17 @@ ul.tabs li.current {
 								<div class="col-md-8">
 									<textarea rows="7" cols="70" class="form-control w-auto"
 										style="height: 100%;" name="content"></textarea>
-									<input type="submit" value="작성">
+									<input type="submit" value="작성" class="btn btn-outline-success">
 								</div>
 							</form>
 						</div>
-
+						<hr>
+						<br>
 
 						<!-- 방명록 작성 end -->
 						<!-- 방명록 list -->
 						<%
 						for (Visitor visitor : visitors) {
-
 							int user_n = UserDao.getUserDao().getLogInIdNo(visitor.getUser_id());
 							User user2 = UserDao.getUserDao().getUser(user_n);
 						%>
@@ -147,7 +137,6 @@ ul.tabs li.current {
 								<span id="visitor_no">no : <%=visitor.getVisitor_no()%></span> <span>작성자
 									: <%=visitor.getUser_id()%></span> <span>작성일 : <%=visitor.getDate()%></span>
 							</div>
-
 							<%
 							if (loginid != null && loginid.equals(visitor.getUser_id())) {
 							%>
@@ -170,6 +159,7 @@ ul.tabs li.current {
 							<%
 							}
 							%>
+
 							<div class="row my-2">
 								<div class="col-md-4" style="height: 140px;">
 									<!-- 작성자 아이디를 가지고 가져오기 -->
@@ -183,16 +173,13 @@ ul.tabs li.current {
 								</div>
 							</div>
 						</div>
+						<hr>
+						<br>
 						<%
 						}
 						%>
 					</div>
-
-				</div>
-
-
-				<!-- 페이징 -->
-				<div class="row">
+					<div class="row">
 					<div class="col-md-4 offset-4 my-3">
 						<ul class="pagination">
 							<!--  첫 페이지이면 이전페이지 누르면 첫페이지 고정 -->
@@ -241,6 +228,59 @@ ul.tabs li.current {
 						</ul>
 					</div>
 				</div>
+				</div>
+
+
+			<%-- 	<!-- 페이징 -->
+				<div class="row">
+					<div class="col-md-4 offset-4 my-3">
+						<ul class="pagination">
+							<!--  첫 페이지이면 이전페이지 누르면 첫페이지 고정 -->
+							<%
+							if (currentpage == 1) {
+							%>
+							<li class="page-item"><a
+								href="viewLogList.jsp?pagenum=<%=currentpage%>"
+								class="page-link"> 이전 </a></li>
+							<%
+							} else {
+							%>
+							<li class="page-item"><a
+								href="viewLogList.jsp?pagenum=<%=currentpage - 1%>"
+								class="page-link"> 이전 </a></li>
+							<%
+							}
+							%>
+							<!-- 게시물의 수만큼 페이지 생성 -->
+							<%
+							for (int i = 1; i <= lastpage; i++) {
+							%>
+							<li class="page-item"><a
+								href="viewLogList.jsp?pagenum=<%=i%>" class="page-link"> <%=i%>
+							</a></li>
+							<!-- i를 클릭했을때 현재 페이지 이동 [ 클릭한 페이지와 같이] -->
+							<%
+							}
+							%>
+							<!-- 마지막페이지에서 다음버튼 눌렀을때 마지막페이지 고정 -->
+							<%
+							if (currentpage == lastpage) {
+							%>
+							<li class="page-item"><a
+								href="viewLogList.jsp?pagenum=<%=currentpage%>"
+								class="page-link"> 다음 </a></li>
+							<%
+							} else {
+							%>
+							<li class="page-item"><a
+								href="viewLogList.jsp?pagenum=<%=currentpage + 1%>"
+								class="page-link"> 다음 </a></li>
+							<%
+							}
+							%>
+						</ul>
+					</div>
+				</div> --%>
 
 			</div>
 
@@ -264,6 +304,7 @@ ul.tabs li.current {
 
 			</div>
 		</div>
+		
 	</div>
 	<!-- Modal -->
 

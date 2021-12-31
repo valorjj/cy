@@ -153,8 +153,6 @@ ul.tabs li.current {
 	// 필요없을 것 같음
 	String otherUserId = null;
 
-	ArrayList<Total> totals;
-
 	System.out.println("접속한 본인 유저 번호는 : " + user_no);
 
 	if (request.getParameter("userSearch") != null) {
@@ -283,7 +281,7 @@ ul.tabs li.current {
 
 													<%
 													System.out.println("현재 본인 미니 홈페이지를 보고 있습니다. 내 번호는 :" + otherUserNo);
-													totals = UserDao.getUserDao().getTotalContents(otherUserNo);
+													ArrayList<Total> totals = UserDao.getUserDao().getTotalContents(otherUserNo);
 													if (totals != null) {
 														for (Total total : totals) {
 													%>
@@ -549,11 +547,14 @@ ul.tabs li.current {
 												<div class="col-md-6">
 													<span style="color: orange;">updated news</span>
 													<hr />
+
 													<%
-													totals = UserDao.getUserDao().getTotalContents(user.getUser_no());
+													
+													ArrayList<Total> totals2 = UserDao.getUserDao().getTotalContents(user.getUser_no());
 													System.out.println("현재보고 있는 사람 회원 번호는 :" + user.getUser_no());
-													if (totals != null) {
-														for (Total total : totals) {
+													if (totals2 != null) {
+														for (Total total : totals2) {
+															
 													%>
 													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
