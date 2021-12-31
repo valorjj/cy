@@ -116,3 +116,29 @@
 2. 작성 / DB 처리 / 작성후 페이지 전환 완료
 
 다음: 방명록 출력 및 페이징 처리
+
+
+# 발표 자료
+
+![image](https://user-images.githubusercontent.com/30681841/147807839-5cca58e5-9319-4716-aa7c-b61b6304c400.png)
+![image](https://user-images.githubusercontent.com/30681841/147807844-1eaf7a2a-5e08-4bea-9b1b-a1e73d207519.png)
+![image](https://user-images.githubusercontent.com/30681841/147807848-9e94c613-26c4-4138-a5e2-2c3703b2a89d.png)
+![image](https://user-images.githubusercontent.com/30681841/147807850-2ad619a5-2579-48bd-9d9e-c156091a9ed5.png)
+![image](https://user-images.githubusercontent.com/30681841/147807853-abc57a04-8703-4390-9c68-a5aa27a93c25.png)
+![image](https://user-images.githubusercontent.com/30681841/147807858-6ec694c4-4b50-40a2-8cb1-cd299c0cf466.png)
+
+![image](https://user-images.githubusercontent.com/30681841/147807865-1d871b27-6ca6-4444-aa2f-de4c06e851c8.png)
+![image](https://user-images.githubusercontent.com/30681841/147807867-1c404fd3-437e-4691-a230-a18001e67ed8.png)
+![image](https://user-images.githubusercontent.com/30681841/147807875-81627492-59fe-48e7-b8e6-2a77e036fc8c.png)
+![image](https://user-images.githubusercontent.com/30681841/147807880-070d8489-4b62-4afc-b47e-b2f819357919.png)
+
+![image](https://user-images.githubusercontent.com/30681841/147807883-baf04f01-6805-4a7b-bcd5-7d3595f5fd67.png)
+
+![image](https://user-images.githubusercontent.com/30681841/147807887-f8f443e5-6cee-41c2-9ff3-27f7e82c074f.png)
+![image](https://user-images.githubusercontent.com/30681841/147807892-0dbeb8a1-dc32-41d6-99c3-1ffaee59f3ef.png)
+![image](https://user-images.githubusercontent.com/30681841/147807898-1dcf3961-c302-4fba-ba7c-62fe849e5273.png)
+![image](https://user-images.githubusercontent.com/30681841/147807900-0218cd98-fb89-4ce7-b824-fbade4db102e.png)
+
+![image](https://user-images.githubusercontent.com/30681841/147807906-b800f8cf-b564-40fc-b7d4-802eeb2d5b26.png)
+
+
