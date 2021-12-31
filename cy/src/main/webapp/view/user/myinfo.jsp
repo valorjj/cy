@@ -20,7 +20,7 @@
 
 					<a class="nav-link" data-toggle="pill" href="#pills-memberinfo">
 						회원 정보 </a> <a class="nav-link" data-toggle="pill"
-						href="#pills-memberdelete"> 회정 탈퇴 </a>
+						href="#pills-memberdelete"> 회원 탈퇴 </a>
 				</div>
 			</div>
 

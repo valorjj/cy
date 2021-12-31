@@ -20,7 +20,7 @@ body {
 		<div class="row col-8" style="display: block; margin: 0 auto;">
 			<ul class="d-flex my-2 text-warning">
 				<li class="mx-3" style="list-style: none;"><a
-					href="./signhome.jsp" style="color: black";>홈</a></li>
+					href="./signhome.jsp" style="color: black;">홈</a></li>
 				<li class="mx-3 active"
 					style="border-bottom: solid 1px #000; list-style: none;"><a
 					href="./logIn.jsp" style="color: orange">로그인</a></li>

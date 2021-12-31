@@ -173,7 +173,7 @@
 					<input type="submit"
 						class="btn btn-warning d-flex justify-content-center w-50 col-4 offset-4" />
 
-					<a href="../user/login.jsp"><button type="button"
+					<a href="logIn.jsp"><button type="button"
 							class="btn btn-warning d-flex justify-content-center w-50 col-4 offset-4 mt-3">뒤로가기</button></a>
 
 				</form>

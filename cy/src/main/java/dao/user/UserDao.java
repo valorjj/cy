@@ -330,8 +330,10 @@ public class UserDao extends DB {
 	public ArrayList<Total> getTotalContents(int user_no) {
 
 		ArrayList<Total> totals = new ArrayList<>();
-		String sql = "select content,date,category from bpost union all select content,date,category from gpost union all select content,date,category from visitor where user_no="
-				+ user_no + " order by date desc limit 0, 4";
+		String sql = "select content,date,category from bpost where user_no=" + user_no
+				+ " union all select content,date,category from gpost where user_no=" + user_no
+				+ " union all select content,date,category from visitor where user_no=" + user_no
+				+ " order by date desc limit 0, 4";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();

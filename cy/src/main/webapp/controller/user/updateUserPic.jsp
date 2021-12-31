@@ -12,17 +12,18 @@ MultipartRequest multi = new MultipartRequest(request, folderpath, 1024 * 1024 *
 		new DefaultFileRenamePolicy());
 
 String pic = multi.getFilesystemName("newPic");
-LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
-int user_no = logInSession.getUser_no();
+/* LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
+int user_no = logInSession.getUser_no(); */
+
+int userNo = Integer.parseInt(request.getParameter("userNo"));
 System.out.println(pic);
-System.out.println(user_no);
+System.out.println(userNo);
 if (pic == null) {
 	pic = multi.getParameter("oldPic");
 }
-boolean result = UserDao.getUserDao().updateUserPic(pic, user_no);
+boolean result = UserDao.getUserDao().updateUserPic(pic, userNo);
 if (result) {
-	out.print("<script>alert('수정 되었습니다.');</script>");
-	out.println("<script> location.href='../../view/main/test.jsp';</script>");
+	response.sendRedirect("/cy/view/mypage/gallery/listGallery.jsp?userSearch="+userNo);
 } else {
 
 }

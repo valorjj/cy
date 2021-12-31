@@ -305,7 +305,7 @@ ul.tabs li.current {
 															%>
 														</div>
 														<div class="col-md-8">
-															<div class="w-auto"><%=total.getContent().substring(0, 5)%></div>
+															<div class="w-auto"><%=total.getContent()%></div>
 														</div>
 													</div>
 													<%
@@ -549,12 +549,10 @@ ul.tabs li.current {
 													<hr />
 
 													<%
-													
 													ArrayList<Total> totals2 = UserDao.getUserDao().getTotalContents(user.getUser_no());
 													System.out.println("현재보고 있는 사람 회원 번호는 :" + user.getUser_no());
 													if (totals2 != null) {
 														for (Total total : totals2) {
-															
 													%>
 													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
@@ -576,7 +574,7 @@ ul.tabs li.current {
 															%>
 														</div>
 														<div class="col-md-8">
-															<div class="w-auto"><%=total.getContent().substring(0, 5)%></div>
+															<div class="w-auto"><%=total.getContent()%></div>
 														</div>
 													</div>
 													<%
@@ -664,45 +662,49 @@ ul.tabs li.current {
 											</div>
 
 											<hr />
-											<%
-											// 1. 일촌평을 가져와서 출력합니다. 
-											ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user.getUser_no());
-											for (FLog fLog : fLogs) {
-											%>
-											<div class="btn-bar d-flex col-12 mb-1" style="height: 20px;">
-												<div class="col-1 align-self-center">
-													<span class="badge badge-warning">일촌평</span>
+
+											<div style="overflow: auto;">
+												<%
+												// 1. 일촌평을 가져와서 출력합니다. 
+												ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user.getUser_no());
+												for (FLog fLog : fLogs) {
+												%>
+												<div class="btn-bar d-flex col-12 mb-1"
+													style="height: 20px;">
+													<div class="col-1 align-self-center">
+														<span class="badge badge-warning">일촌평</span>
+													</div>
+													<div class="text-area col-8 align-self-center">
+														<div style="width: 100%">
+															<textarea
+																class="text-input hidden text-input hidden w-100"
+																id="input" rows="1" maxlength="50"
+																style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"><%=fLog.getFlog_content()%></textarea>
+														</div>
+														<div class="text-output" id="output"
+															style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
+													</div>
+													<div
+														class="btn-area col-3  align-self-center d-flex justify-content-center fori"
+														style="width: 100%">
+														<div class="btn btn-edit " id="edit" style="width: 33%">
+															<button class="badge badge-dark text-white edit"
+																onclick="dis()">EDIT</button>
+														</div>
+														<div class="btn btn-small btn-edit-cancel cancel"
+															id="cancel" style="display: none; width: 33%">
+															<button class="badge badge-dark text-white">취소</button>
+														</div>
+														<div class="btn btn-small btn-edit-submit submit"
+															id="submit" style="display: none; width: 33%">
+															<button class="badge badge-dark text-white">확인</button>
+														</div>
+													</div>
 												</div>
-												<div class="text-area col-8 align-self-center">
-													<div style="width: 100%">
-														<textarea
-															class="text-input hidden text-input hidden w-100"
-															id="input" rows="1" maxlength="50"
-															style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"><%=fLog.getFlog_content()%></textarea>
-													</div>
-													<div class="text-output" id="output"
-														style="position: absolute top: 0 bottom: 0 width: 100% padding: $pad overflow-y: auto background: #fff user-select: none"></div>
-												</div>
-												<div
-													class="btn-area col-3  align-self-center d-flex justify-content-center fori"
-													style="width: 100%">
-													<div class="btn btn-edit " id="edit" style="width: 33%">
-														<button class="badge badge-dark text-white edit"
-															onclick="dis()">EDIT</button>
-													</div>
-													<div class="btn btn-small btn-edit-cancel cancel"
-														id="cancel" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">취소</button>
-													</div>
-													<div class="btn btn-small btn-edit-submit submit"
-														id="submit" style="display: none; width: 33%">
-														<button class="badge badge-dark text-white">확인</button>
-													</div>
-												</div>
+												<%
+												}
+												%>
 											</div>
-											<%
-											}
-											%>
 											<!-- 일촌평 종료 -->
 										</div>
 									</div>

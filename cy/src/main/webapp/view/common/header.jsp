@@ -9,11 +9,10 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/cy/css/common/common.css" />
 <link rel="stylesheet" href="/cy/css/common/mini.css" />
-
 <style type="text/css">
 #audio-player {
 	height: 100px;
-	width: 450px;
+	width: 400px;
 	overflow: hidden;
 	background-color: #2B2B2B;
 	color: white;
@@ -78,7 +77,7 @@
 	width: 150px;
 	height: 50px;
 	position: relative;
-	left: 350px;
+	left: 300px;
 	top: -50px;
 	padding-top: 18px;
 	text-align: center;
@@ -132,49 +131,50 @@
 		<form action="/cy/view/main/test.jsp" method="post"
 			onsubmit="return detectSpace();">
 			<div class="row" id="gap-test">
-				<div class="col-md-5">
+				<div class="col-md-7">
 					<div class="row">
-						<div class="col-md-3 align-self-center">
+						<div class="col-md-5 align-self-center">
 							<input type="text" class="form-control" id="userSearch"
 								name="userSearch" />
 						</div>
-						<div class="col-md-2 align-self-center">
+						<div class="col-md-3 align-self-center">
 							<!-- 헤더에서 검색한 결과값 -->
+
 							<input id="searchBtn" type="submit"
 								class="form-control btn btn-secondary btn-sm" value="검색" />
 						</div>
-						<div class="col-md-2 align-self-center">
+						<div class="col-md-4 align-self-center">
 							<div class="row" style="font-size: 12px; font-weight: bold;">접속한
 								아이디</div>
 							<div class="row" style="color: orange;"><%=loginid%></div>
 						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<!-- 음악 재생 플레이어 영역-->
+					<!--  헤더에 음악재생 추가 -->
+					<audio id="player" autoplay="autoplay">
+						<source src="/cy/audio/audio_sample.mp3" type="audio/mpeg" />
+					</audio>
 
-						<div class="col-md-1">
-							<!-- 음악 재생 플레이어 영역-->
-							<!--  헤더에 음악재생 추가 -->
-							<audio id="player" autoplay="autoplay">
-								<source src="/cy/audio/audio_sample.mp3" type="audio/mpeg" />
-							</audio>
-
-							<div id="audio-player">
-								<div id="controls">
-									<i id="play" class="fa fa-pause"></i> <span id="start-time"
-										class="time">00:00</span>
-									<div id="progressbar"></div>
-									<span id="time" class="time">00:00</span> <i id="mute"
-										class="fa fa-volume-up"></i>
-									<div id="volume"></div>
-								</div>
-								<div id="more-info-box">
-									<span id="more-info">목록</span>
-								</div>
-								<div id="info-tray" style="text-align: center;">
-									<br> Track: <span id="track">프리스타일_Y</span>
-								</div>
-							</div>
+					<div id="audio-player">
+						<div id="controls">
+							<i id="play" class="fa fa-pause"></i> <span id="start-time"
+								class="time">00:00</span>
+							<div id="progressbar"></div>
+							<span id="time" class="time">00:00</span> <i id="mute"
+								class="fa fa-volume-up"></i>
+							<div id="volume"></div>
+						</div>
+						<div id="more-info-box">
+							<span id="more-info">▼</span>
+						</div>
+						<div id="info-tray" style="text-align: center;">
+							<br> Track: <span id="track">프리스타일_Y</span>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</form>
 	</div>
@@ -305,5 +305,6 @@
 			}, 1000);
 		});
 	</script>
+
 </body>
 </html>

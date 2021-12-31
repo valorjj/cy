@@ -102,7 +102,7 @@
 									<%
 									if (GalleryDao.getGalleryDao().gallerylist(startrow, listsize, userNo) != null) {
 										galleries = GalleryDao.getGalleryDao().gallerylist(startrow, listsize, userNo);
-										int j = 0;
+										int j = 1;
 										for (Gallery gallery : galleries) {
 									%>
 									<!-- 게시물 출력 div 시작 -->
@@ -304,7 +304,8 @@
 	<!-- 본인 미니홈페이지를 볼 때만 나타나게 해야합니다. -->
 	<div class="modal fade" id="updateIntroModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form action="../../controller/user/updateUserIntro.jsp" method="get">
+		<form action="/cy/controller/user/updateUserIntro.jsp" method="get">
+			<input type="hidden" name="userNo" value="<%=userNo%>" />
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -330,9 +331,9 @@
 	<!-- 본인 미니홈페이지를 볼 때만 나타나게 해야합니다. -->
 	<div class="modal fade" id="updateUserPicModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<form action="../../controller/user/updateUserPic.jsp" method="post"
+		<form action="/cy/controller/user/updateUserPic.jsp" method="post"
 			enctype="multipart/form-data">
-			<input type="hidden" name="userNo" value="<%=user_no%>" /> <input
+			<input type="hidden" name="userNo" value="<%=userNo%>" /> <input
 				type="hidden" name="oldPic" value="<%=user.getUser_pic()%>">
 			<div class="modal-dialog">
 				<div class="modal-content">
