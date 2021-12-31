@@ -18,15 +18,13 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+
 <body>
 
 	<%
 	// 공통적으로 적용되는 css, js, api 를 한곳에 모아두는 곳 입니다.
 	// 4.x 부트스트랩, 부트스트랩 아이콘, jquery
 	%>
-
-
-
 
 	<!-- 부트스트랩 4.x JS + jquery-->
 	<script
@@ -40,6 +38,8 @@
 	<!-- jquery google 에서 가져오기 -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+  
 
 </body>
 </html>
