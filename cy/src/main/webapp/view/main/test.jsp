@@ -190,6 +190,7 @@ ul.tabs li.current {
 		// 방문자 수가 증가되면 안된다.
 		User user = UserDao.getUserDao().getUser(user_no);
 		totals = UserDao.getUserDao().getTotalContents(user_no);
+		if (totals != null) {
 	%>
 
 
@@ -297,7 +298,7 @@ ul.tabs li.current {
 															%>
 														</div>
 														<div class="col-md-8">
-															<div class="w-auto"><%=total.getContent().substring(0, 3)%></div>
+															<div class="w-auto"><%=total.getContent().substring(0, 5)%></div>
 														</div>
 													</div>
 													<%
@@ -320,7 +321,7 @@ ul.tabs li.current {
 															</div>
 															<div class="row border-bottom" style="width: 98%">
 																<div class="col-md-6">
-																	<a href="" class="badge badge-warning">사진첩</a>
+																	<a href="" class="badge badge-danger">사진첩</a>
 																</div>
 																<div class="col-md-6">
 																	<span> 0 / <%=GalleryDao.getGalleryDao().getTotalGallery(user_no)%>
@@ -329,7 +330,7 @@ ul.tabs li.current {
 															</div>
 															<div class="row border-bottom" style="width: 98%">
 																<div class="col-md-6">
-																	<a href="" class="badge badge-danger">방명록</a>
+																	<a href="" class="badge badge-warning">방명록</a>
 																</div>
 																<div class="col-md-6">
 																	<span> 0 / <%=VisitorDao.getvisitorDao().getTotalVisitor(user_no)%>
@@ -446,6 +447,7 @@ ul.tabs li.current {
 		</div>
 	</div>
 	<%
+	}
 	} else {
 	// 로그인 된 계정과 다른 유저의 미니 홈페이지에 방문하는 경우
 	// 관리 페이지를 숨긴다. 

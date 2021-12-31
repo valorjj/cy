@@ -275,7 +275,7 @@ public class UserDao extends DB {
 		ArrayList<Total> totals = new ArrayList<>();
 
 		String sql = "select content,date,category from bpost union all select content,date,category from gpost union all select content,date,category from visitor where user_no="
-				+ user_no + " order by date desc limit 0, 4";
+				+ user_no + " order by date asc limit 0, 4";
 
 		try {
 			ps = con.prepareStatement(sql);
