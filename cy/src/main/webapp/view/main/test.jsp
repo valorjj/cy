@@ -276,6 +276,8 @@ ul.tabs li.current {
 													<hr />
 
 													<%
+													
+													
 													for (Total total : totals) {
 													%>
 													<div class="col-12 d-flex border-bottom">
@@ -298,7 +300,7 @@ ul.tabs li.current {
 															%>
 														</div>
 														<div class="col-md-8">
-															<div class="w-auto"><%=total.getContent().substring(0, 5)%></div>
+															<div class="w-auto"><%=total.getContent()%></div>
 														</div>
 													</div>
 													<%

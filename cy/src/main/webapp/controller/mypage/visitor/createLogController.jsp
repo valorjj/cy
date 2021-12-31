@@ -7,8 +7,15 @@
 <%
 // 다른 계정의 홈페이지에 방명록을 작성하는 컨트롤러
 String content = request.getParameter("content");
-
 int otherNo = Integer.parseInt(request.getParameter("otherUserNo"));
+
+if(content.length() < 5 ) {
+	out.println("<script type='text/javascript'> alert('방명록은 5글자 이상 작성하셔야 합니다.'); </script>");
+	
+	out.println("<script>location.href='/cy/view/mypage/visitor/viewLogList.jsp?userNumber="+otherNo+"';</script>");
+	// response.sendRedirect("/cy/view/mypage/visitor/viewLogList.jsp?userNumber=" +otherNo);
+}
+else {
 content = content.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 
 LogInSession logInSession = (LogInSession) session.getAttribute("logIn");
@@ -25,8 +32,9 @@ Visitor visitor = new Visitor(otherNo, content, user_id);
 
 boolean result = VisitorDao.getvisitorDao().visitorwrite(visitor);
 if (result) {
-	response.sendRedirect("/cy/view/mypage/visitor/viewLogList.jsp?userNumber=" + otherNo);
+	/* response.sendRedirect("/cy/view/mypage/visitor/viewLogList.jsp?userNumber=" + otherNo); */
 } else {
 
+}
 }
 %>

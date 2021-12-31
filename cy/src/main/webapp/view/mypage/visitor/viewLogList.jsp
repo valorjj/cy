@@ -126,11 +126,12 @@ ul.tabs li.current {
 								<div class="col-md-8">
 									<textarea rows="7" cols="70" class="form-control w-auto"
 										style="height: 100%;" name="content"></textarea>
-									<input type="submit" value="작성">
+									<input type="submit" value="작성" class="btn btn-outline-success">
 								</div>
 							</form>
 						</div>
-
+						<hr>
+						<br>
 
 						<!-- 방명록 작성 end -->
 						<!-- 방명록 list -->
@@ -147,29 +148,29 @@ ul.tabs li.current {
 								<span id="visitor_no">no : <%=visitor.getVisitor_no()%></span> <span>작성자
 									: <%=visitor.getUser_id()%></span> <span>작성일 : <%=visitor.getDate()%></span>
 							</div>
-
-							<%
-							if (loginid != null && loginid.equals(visitor.getUser_id())) {
-							%>
-							<div class="d-flex justify-content-end">
-								<div class="col-md-2">
-									<button type="button" class="btn btn-secondary" id="update"
-										onclick="update(<%=visitor.getVisitor_no()%>, <%=visitor.getUser_id()%>, <%=visitor.getDate()%>)"
-										data-toggle="modal" data-target="#exampleModal">
-										수정
-										<!-- 수정 버튼 modal -->
-									</button>
+								<%
+								if (loginid != null && loginid.equals(visitor.getUser_id())) {
+								%>
+								<div class="d-flex justify-content-end">
+									<div class="col-md-2">
+										<button type="button" class="btn btn-secondary" id="update"
+											onclick="update(<%=visitor.getVisitor_no()%>, <%=visitor.getUser_id()%>, <%=visitor.getDate()%>)"
+											data-toggle="modal" data-target="#exampleModal">
+											수정
+											<!-- 수정 버튼 modal -->
+										</button>
+									</div>
+									<div class="col-md-2">
+										<a
+											href="../../../controller/mypage/visitor/deleteLogController.jsp?visitor_no=<%=visitor.getVisitor_no()%>">
+											<button type="button" class="btn btn-danger">삭제</button>
+										</a>
+									</div>
 								</div>
-								<div class="col-md-2">
-									<a
-										href="../../../controller/mypage/visitor/deleteLogController.jsp?visitor_no=<%=visitor.getVisitor_no()%>">
-										<button type="button" class="btn btn-danger">삭제</button>
-									</a>
-								</div>
-							</div>
-							<%
-							}
-							%>
+								<%
+								}
+								%>
+							
 							<div class="row my-2">
 								<div class="col-md-4" style="height: 140px;">
 									<!-- 작성자 아이디를 가지고 가져오기 -->
@@ -183,6 +184,8 @@ ul.tabs li.current {
 								</div>
 							</div>
 						</div>
+						<hr>
+						<br>
 						<%
 						}
 						%>
