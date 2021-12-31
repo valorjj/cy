@@ -46,6 +46,7 @@ ul.tabs li.current {
 .tab-content.current {
 	display: inherit;
 }
+
 </style>
 
 <title>Insert title here</title>
@@ -148,7 +149,7 @@ ul.tabs li.current {
 									: <%=visitor.getUser_id()%></span> <span>작성일 : <%=visitor.getDate()%></span>
 									
 									<button type="button" class="btn btn-secondary" id="update"
-									onclick="update(<%=visitor.getVisitor_no()%>,'<%=visitor.getUser_id()%>','<%=visitor.getDate()%>')"	data-toggle="modal" data-target="#exampleModal">
+									onclick="update(<%=visitor.getVisitor_no()%>,'<%=visitor.getUser_id()%>','<%=visitor.getDate()%>')"	data-toggle="modal" data-target="#exampleModal" style="">
 									수정<!-- 수정 버튼 modal -->
 									</button>
 									<a href="../../../controller/mypage/visitor/deleteLogController.jsp?visitor_no=<%=visitor.getVisitor_no()%>">
