@@ -261,10 +261,18 @@
 							</div>
 						</div>
 						<br>
+
+						<%
+						if (userNo == user_no) {
+						%>
 						<div class="col-md-3 offset-9">
 							<br> <br> <a href="writeGallery.jsp?userNo=<%=userNo%>"><button
 									type="button" class="form-control">글 등록</button></a>
 						</div>
+
+						<%
+						}
+						%>
 					</div>
 				</div>
 
@@ -272,7 +280,7 @@
 				<div class="col-md-2 no-gutters">
 					<ul class="tabs">
 						<li class="tab-link"><a
-							href="/cy/view/main/test.jsp?userNumber=<%=userNo%>"
+							href="/cy/view/main/test.jsp?userSearch=<%=userNo%>"
 							class="text-white">홈</a></li>
 						<li class="tab-link"><a
 							href="/cy/view/user/viewUserProfile.jsp?userNumber=<%=userNo%>"

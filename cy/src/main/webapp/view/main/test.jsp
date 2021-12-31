@@ -148,32 +148,39 @@ ul.tabs li.current {
 	// 3.1 내 자신을 검색한 경우에는 로그인 한 사람의 번호로 초기화시킵니다.
 	// 3.2 다른 사람을 검색한 경우에는 검색한 사람의 번호로 초기화시킵니다. 
 	// 4. 검색이 없는 경우에는 로그인 한 계정의 번호로 초기화시킵니다. 
-	// 5. 
 
-	User myself = UserDao.getUserDao().getUser(user_no); // 로그인 한 사람의 정보를 미리 저장해둡니다. 
+	User myself = UserDao.getUserDao().getUser(user_no); // 메인 홈페이지에 내 정보를 우선적으로 표시해야하는 경우를 위해 로그인 한 사람의 정보를 미리 저장해둡니다. 
+	// 필요없을 것 같음
+	String otherUserId = null;
 
 	ArrayList<Total> totals;
 
 	System.out.println("접속한 본인 유저 번호는 : " + user_no);
 
-	if (request.getParameter("userSearch") != null) { // 검색이 존재하는 경우입니다. 
-		// 검색한 유저의 번호를 otherUserNo 라는 변수에 초기화시킵니다. 
-		// 다른 유저를 검색했을 경우, "other" 라는 세션에 그 번호를 저장합니다. 
+	if (request.getParameter("userSearch") != null) {
+		// 1. 검색이 존재하는 경우입니다. 
+		// 2. 검색한 유저의 번호를 otherUserNo 라는 변수에 초기화시킵니다. 
+		// 3. 다른 유저를 검색했을 경우, "other" 라는 세션에 그 번호를 저장합니다. 
 		otherUserNo = Integer.parseInt(request.getParameter("userSearch"));
-		session.setAttribute("other", otherUserNo); // 일단 otherSession 클래스는 버리고 번호 하나만 세션에 저장합니다.
+		otherUserId = UserDao.getUserDao().getid(otherUserNo);
+		OtherSession otherSession = new OtherSession(otherUserNo, otherUserId);
+
+		session.setAttribute("other", otherSession);
 		System.out.println("검색한 사람의 번호는 :" + otherUserNo);
 
 		if (otherUserNo == user_no) {
-			// 검색 대상이 본인 아이디인 경우
+			// 1. 검색 대상이 본인 아이디인 경우
+			// 2. otherUserNo 를 내 유저 번호로 초기화시킵니다. 
 			System.out.println("검색한 사람이 자기 자신일 때 :" + otherUserNo);
 			otherUserNo = user_no;
 		} else {
-			// 검색 대상이 남의 아이디인 경우
+			// 1. 검색 대상이 남의 아이디인 경우
+			// 2. 조회수를 증가시키는 부분입니다. 
 			System.out.println("검색한 사람이 남일 때 ");
 			UserDao.getUserDao().updateViewCount(otherUserNo); // 방문한 사람의 홈페이지 조회수를 +1 시킵니다.
 			String visitor = user_no + ":" + otherUserNo; // 로그인 한 계정 번호:찾아서 들어간 사람정보
 			if (session.getAttribute(visitor) == null) {
-		session.setAttribute(visitor, true); // 조회수 증가 방지 
+		session.setAttribute(visitor, true); // 조회수 증가 방지 세션 값 설정
 		session.setMaxInactiveInterval(60 * 60 * 24); // 세션 유효시간을 하루로 설정합니다. 
 			}
 		}
@@ -187,10 +194,9 @@ ul.tabs li.current {
 	if (otherUserNo == user_no) {
 		// 검색한 유저 고유 번호와 로그인 한 계정이 일치할 경우
 		// 관리 탭을 보이게한다. 
-		// 방문자 수가 증가되면 안된다.
-		User user = UserDao.getUserDao().getUser(user_no);
-		totals = UserDao.getUserDao().getTotalContents(user_no);
-		if (totals != null) {
+		System.out.println("현재 내 홈페이지를 보고있습니다. 내 회원 번호는 : " + otherUserNo);
+		User user = UserDao.getUserDao().getUser(otherUserNo);
+		// 로그인 한 사람 번호에 해당하는 게시물 가져오기
 	%>
 
 
@@ -276,7 +282,10 @@ ul.tabs li.current {
 													<hr />
 
 													<%
-													for (Total total : totals) {
+													System.out.println("현재 본인 미니 홈페이지를 보고 있습니다. 내 번호는 :" + otherUserNo);
+													totals = UserDao.getUserDao().getTotalContents(otherUserNo);
+													if (totals != null) {
+														for (Total total : totals) {
 													%>
 													<div class="col-12 d-flex border-bottom">
 														<div class="col-md-4">
@@ -301,6 +310,11 @@ ul.tabs li.current {
 															<div class="w-auto"><%=total.getContent().substring(0, 5)%></div>
 														</div>
 													</div>
+													<%
+													}
+													} else {
+													%>
+													<div>등록된 게시물이 없습니다 ...</div>
 													<%
 													}
 													%>
@@ -447,10 +461,10 @@ ul.tabs li.current {
 		</div>
 	</div>
 	<%
-	}
 	} else {
 	// 로그인 된 계정과 다른 유저의 미니 홈페이지에 방문하는 경우
 	// 관리 페이지를 숨긴다. 
+	System.out.println("다른 사람 홈페이지에 방문했습니다. 홈페이지 주인 번호는 : " + otherUserNo + " 입니다. ");
 	User user = UserDao.getUserDao().getUser(otherUserNo);
 	%>
 	<div class="container p-3" style="background-color: lightgrey;">
@@ -511,7 +525,6 @@ ul.tabs li.current {
 												<button type="button" class="btn btn-warning btn-sm"
 													value="" id="ilchonBtn"
 													onclick="becomeFriend(<%=friend_no%>, <%=user_no%>);">일촌맺기</button>
-
 												<%
 												} else {
 												%>
@@ -531,45 +544,51 @@ ul.tabs li.current {
 										</div>
 
 										<div class="col-md-9">
-											<!-- 센터 부분 -->
+											<!-- 센터 부분 : 게시판 정보, 사진, 일촌평, 미니룸은 나중에 -->
 											<div class="row" style="overflow: hidden;">
 												<div class="col-md-6">
 													<span style="color: orange;">updated news</span>
 													<hr />
-													<div class="row">
-														<div class="col-12 d-flex border-bottom">
-															<div class="col-md-4">
-																<div class="badge badge-info">사진첩</div>
-															</div>
-															<div class="col-md-8">
-																<div class="w-auto">사진첩 업데이트1</div>
-															</div>
+													<%
+													totals = UserDao.getUserDao().getTotalContents(user.getUser_no());
+													System.out.println("현재보고 있는 사람 회원 번호는 :" + user.getUser_no());
+													if (totals != null) {
+														for (Total total : totals) {
+													%>
+													<div class="col-12 d-flex border-bottom">
+														<div class="col-md-4">
+															<%
+															if (total.getCategory().equals("게시판")) {
+															%>
+															<div class="badge badge-info"><%=total.getCategory()%></div>
+
+															<%
+															} else if (total.getCategory().equals("사진첩")) {
+															%>
+															<div class="badge badge-danger"><%=total.getCategory()%></div>
+															<%
+															} else if (total.getCategory().equals("방명록")) {
+															%>
+															<div class="badge badge-warning"><%=total.getCategory()%></div>
+															<%
+															}
+															%>
 														</div>
-														<div class="col-12 d-flex border-bottom">
-															<div class="col-md-4">
-																<div class="badge badge-info">게시판</div>
-															</div>
-															<div class="col-md-8">
-																<div class="w-auto">게시판 업데이트1</div>
-															</div>
-														</div>
-														<div class="col-12 d-flex border-bottom">
-															<div class="col-md-4">
-																<div class="badge badge-danger">방명록</div>
-															</div>
-															<div class="col-md-8">
-																<div class="w-auto">방명록 업데이트1</div>
-															</div>
-														</div>
-														<div class="col-12 d-flex border-bottom">
-															<div class="col-md-4">
-																<div class="badge badge-primary">방명록</div>
-															</div>
-															<div class="col-md-8">
-																<div class="w-auto">방명록 업데이트1</div>
-															</div>
+														<div class="col-md-8">
+															<div class="w-auto"><%=total.getContent().substring(0, 5)%></div>
 														</div>
 													</div>
+													<%
+													}
+													} else { // 1. 등록된 게시물이 아무것도 없을 때
+													%>
+													<div>아무런 게시글이 없습니다 ...</div>
+													<div>아무런 게시글이 없습니다 ...</div>
+													<div>아무런 게시글이 없습니다 ...</div>
+													<div>아무런 게시글이 없습니다 ...</div>
+													<%
+													}
+													%>
 												</div>
 												<div class="col-md-6">
 													<span style="color: orange;">boardlist</span>
@@ -644,10 +663,6 @@ ul.tabs li.current {
 											</div>
 
 											<hr />
-
-											<div class="row p-2">
-												<span style="color: orange; font-size: 12px;"> 일촌평</span>
-											</div>
 											<%
 											// 1. 일촌평을 가져와서 출력합니다. 
 											ArrayList<FLog> fLogs = FLogDao.getFLogDao().getFLogList(user.getUser_no());
@@ -700,18 +715,18 @@ ul.tabs li.current {
 				<div class="col-md-2">
 					<ul class="tabs">
 						<li class="tab-link current text-white"><a
-							href="test.jsp?userNumber=<%=user.getUser_no()%>">홈</a></li>
+							href="test.jsp?userNumber=<%=otherUserNo%>">홈</a></li>
 						<li class="tab-link"><a
 							href="../user/viewUserProfile.jsp?userNumber=<%=otherUserNo%>"
 							class="text-white">프로필</a></li>
 						<li class="tab-link"><a
-							href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=user.getUser_no()%>"
+							href="/cy/view/mypage/post/listPost.jsp?userNumber=<%=otherUserNo%>"
 							class="text-white">게시판</a></li>
 						<li class="tab-link"><a
-							href="../mypage/gallery/listGallery.jsp?userNumber=<%=user.getUser_no()%>"
+							href="../mypage/gallery/listGallery.jsp?userNumber=<%=otherUserNo%>"
 							class="text-white">사진첩</a></li>
 						<li class="tab-link"><a
-							href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=user.getUser_no()%>"
+							href="/cy/view/mypage/visitor/viewLogList.jsp?userNumber=<%=otherUserNo%>"
 							class="text-white">방명록</a></li>
 					</ul>
 					<div class="musicplayer p-3" style="height: 100px;">
@@ -860,7 +875,7 @@ ul.tabs li.current {
 		
 	</script>
 	<!-- 이미지 배경 업로드 -->
-	<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 	document.getElementById('getval').addEventListener('change', readURL, true);
 	function readURL(){
 	    var file = document.getElementById("getval").files[0];
@@ -874,12 +889,12 @@ ul.tabs li.current {
 	    }
 	}
 	</script>
-	<!--미니미업로드1,2  -->
+	미니미업로드1,2 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script
-		src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script>
-	<script type="text/javascript">
+		src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.min.js"></script> -->
+	<!-- 	<script type="text/javascript">
 	var canvas = new fabric.Canvas('canvas');
 
 	document.getElementById('file').addEventListener("change", function (e) {
@@ -897,9 +912,9 @@ ul.tabs li.current {
 	  reader.readAsDataURL(file);
 	});
 
-	</script>
+	</script> -->
 	<!-- 글등록 -->
-	<script>
+	<!-- 	<script>
 	
 	$('.fori').each(function(){
 		
@@ -996,6 +1011,6 @@ ul.tabs li.current {
 
 
         }
-    </script>
+    </script> -->
 </body>
 </html>

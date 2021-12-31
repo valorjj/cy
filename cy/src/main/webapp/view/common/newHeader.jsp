@@ -41,6 +41,7 @@
 						href="../main/homeSkinList.jsp">스킨</a></li>
 					<li class="nav-item"><a class="nav-link button float-shadow" href="#" rel="float-shadow">주크박스</a></li>
 					<li class="nav-item"><a class="nav-link button float-shadow" href="#" rel="float-shadow">도토리결제</a></li>
+					<li class="nav-item"><a class="nav-link button float-shadow" href="../user/myinfo.jsp" rel="float-shadow">회원정보</a></li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="" method="get">
 					<input class="form-control mr-sm-3" type="search"

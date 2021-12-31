@@ -9,6 +9,8 @@ int user_no = Integer.parseInt(request.getParameter("userNo")); // 내꺼
 int other_no = Integer.parseInt(request.getParameter("otherUserNo")); // 남의꺼
 String content = request.getParameter("friendComment"); // 글 내용
 
+System.out.println("일촌평" + user_no + ":" + other_no + ":" + content);
+
 boolean result = FLogDao.getFLogDao().createNewFriendComment(content, other_no, user_no);
 
 if (result) {

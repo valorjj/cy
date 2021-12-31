@@ -1,5 +1,6 @@
 package dao.user;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import dao.DB;
@@ -109,7 +110,7 @@ public class UserDao extends DB {
 			if (rs.next()) {
 				User user = new User(rs.getInt(1), rs.getString(2), "", rs.getString(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getString(10),
-						rs.getString(11), rs.getInt(12)
+						rs.getString(11), rs.getInt(12), rs.getString(13)
 
 				);
 				return user;
@@ -122,11 +123,67 @@ public class UserDao extends DB {
 		return null;
 	}
 
-	// 4. 전체 회원 리스트 가져오는 메소드
+	// 5. 회원정보 출력 메소드
+	public User getUpdateUser(String id) {
+		String sql = "select * from user where user_id=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				// 동일한 아이디의 레코드를 비밀번호를 제외한 객체화
+				User user = new User(rs.getInt(1), rs.getString(2), null, // 패스워드제외
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+						rs.getInt(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13));
+				return user;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
 
-	// 5. 회원 정보 수정 메소드
+	// 회원수정
+	public boolean userUpdate(String type, String newdata, String id) {
+
+		String sql = "update user set " + type + " = ? where user_id =? ";
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, newdata);
+			ps.setString(2, id);
+
+			ps.executeUpdate();
+
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+
+	}
 
 	// 6. 회원 탈퇴 메소드
+	public boolean userDelete(String id, String password) {
+		String sql1 = "select * from user where user_id=? and user_password=?"; // 회원검사
+		String sql2 = "delete from user where user_id=? and user_password=?"; // 회원삭제
+		try {
+			ps = con.prepareStatement(sql1);
+			ps.setString(1, id);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			if (rs.next()) { // 아이디와 비밀번호가 동일한 경우의 결과가 있는 경우에만 회원삭제
+				PreparedStatement ps2 = con.prepareStatement(sql2);
+				ps2.setString(1, id);
+				ps2.setString(2, password);
+				ps2.executeUpdate();
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
 
 	// 7. 회원 아이디 검색 메소드 [ 다른 사람 페이지로 넘어갈때 ]
 	public OtherSession getother(String other) {
@@ -273,22 +330,14 @@ public class UserDao extends DB {
 	public ArrayList<Total> getTotalContents(int user_no) {
 
 		ArrayList<Total> totals = new ArrayList<>();
-
 		String sql = "select content,date,category from bpost union all select content,date,category from gpost union all select content,date,category from visitor where user_no="
-				+ user_no + " order by date asc limit 0, 4";
-
+				+ user_no + " order by date desc limit 0, 4";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-
-				Total total = new Total(
-
-						rs.getString(1), rs.getString(2), rs.getString(3)
-
-				);
+				Total total = new Total(rs.getString(1), rs.getString(2), rs.getString(3));
 				totals.add(total);
-
 			}
 			return totals;
 		} catch (Exception e) {

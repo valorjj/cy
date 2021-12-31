@@ -14,15 +14,17 @@ public class User {
 	private String nickname; // 홈페이지 별명
 	private String intro; // 홈페이지 소개글
 	private int view; // 조회수
-	
+	private String date;
+
 	// 1. 빈 생성자
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+
 	// 1. full 생성자
 	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
 			String user_email, String user_gender, String user_pic, int user_age, String nickname, String intro,
-			int view) {
+			int view, String date) {
 		super();
 		this.user_no = user_no;
 		this.user_id = user_id;
@@ -36,7 +38,9 @@ public class User {
 		this.nickname = nickname;
 		this.intro = intro;
 		this.view = view;
+		this.date = date;
 	}
+
 	// 1. 홈페이지 별명, 홈페이지 소개글, 방문자 수 제외한 생성자
 	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
 			String user_email, String user_gender, String user_pic, int user_age) {
@@ -51,8 +55,7 @@ public class User {
 		this.user_pic = user_pic;
 		this.user_age = user_age;
 	}
-	
-	
+
 	// 1. 유저 고유 번호, 방문자 수 제외한 생성자
 	public User(String user_id, String user_password, String user_name, String user_phone, String user_email,
 			String user_gender, String user_pic, int user_age, String nickname, String intro) {
@@ -68,9 +71,8 @@ public class User {
 		this.nickname = nickname;
 		this.intro = intro;
 	}
-	
-	
-	// 1. view 만 제외한 풀 생성자 
+
+	// 1. view 만 제외한 풀 생성자
 	public User(int user_no, String user_id, String user_password, String user_name, String user_phone,
 			String user_email, String user_gender, String user_pic, int user_age, String nickname, String intro) {
 		this.user_no = user_no;
@@ -85,11 +87,11 @@ public class User {
 		this.nickname = nickname;
 		this.intro = intro;
 	}
+
 	public int getUser_no() {
 		return user_no;
 	}
 
-	
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
@@ -180,6 +182,14 @@ public class User {
 
 	public void setView(int view) {
 		this.view = view;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }
